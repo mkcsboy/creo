@@ -37,12 +37,12 @@ function ProgressStepper({
   return (
     <div className="w-full max-w-4xl lg:max-w-5xl mx-auto mb-8 sm:mb-10 px-2 sm:px-4">
       {/* Stepper Card */}
-      <div className="relative bg-white rounded-2xl shadow-xs border border-[#C9DFF0] px-5 sm:px-8 py-4 sm:py-5">
+      <div className="relative bg-[var(--surface-card)] rounded-[var(--radius-2xl)] shadow-xs border border-[#C9DFF0] px-5 sm:px-8 py-4 sm:py-5">
         <div className="flex items-start justify-between relative">
 
           {/* Background track line */}
           <div
-            className="absolute left-0 right-0 h-[2px] rounded-full bg-slate-100"
+            className="absolute left-0 right-0 h-[2px] rounded-full bg-[var(--surface-sunken)]"
             style={{ top: "16px", marginLeft: "8%", marginRight: "8%" }}
           />
 
@@ -77,8 +77,8 @@ function ProgressStepper({
                         isDone
                           ? "bg-emerald-600 text-white"
                           : isActive
-                          ? "bg-[#2B7BC4] text-white"
-                          : "bg-slate-100 text-slate-400 border border-slate-200"
+                          ? "bg-[var(--primary)] text-white"
+                          : "bg-[var(--surface-sunken)] text-[var(--surface-muted)] border border-[var(--surface-border)]"
                       }`}
                     >
                       {isDone ? (
@@ -94,16 +94,16 @@ function ProgressStepper({
                   {/* Step label */}
                   <div className="mt-2 text-center">
                     <p className={`text-[9px] sm:text-[10px] font-bold uppercase tracking-wider mb-0.5 ${
-                      isActive ? "text-[#2B7BC4]" : isDone ? "text-emerald-600" : "text-slate-400"
+                      isActive ? "text-[var(--primary)]" : isDone ? "text-emerald-600" : "text-[var(--surface-muted)]"
                     }`}>
                       Step {s.step}
                     </p>
                     <p className={`text-[10px] sm:text-xs font-bold transition-colors ${
                       isActive
-                        ? "text-[#0D2137]"
+                        ? "text-[var(--foreground)]"
                         : isDone
                         ? "text-emerald-800"
-                        : "text-slate-500"
+                        : "text-[var(--surface-muted)]"
                     }`}>
                       <span className="sm:hidden">{s.short}</span>
                       <span className="hidden sm:inline whitespace-nowrap">{s.label}</span>
@@ -183,17 +183,17 @@ function StageVerifyEmail({
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -16 }}
-      className="max-w-xl mx-auto rounded-2xl border border-[#C9DFF0] bg-white p-8 sm:p-12 shadow-sm text-center"
+      className="max-w-xl mx-auto rounded-[var(--radius-2xl)] border border-[#C9DFF0] bg-[var(--surface-card)] p-8 sm:p-12 shadow-md text-center"
     >
-      <div className="size-14 mx-auto mb-4 rounded-2xl bg-[#E8F4FD] border border-[#C9DFF0] flex items-center justify-center text-[#2B7BC4]">
+      <div className="size-14 mx-auto mb-4 rounded-[var(--radius-2xl)] bg-[var(--primary)]/10 border border-[#C9DFF0] flex items-center justify-center text-[var(--primary)]">
         {verifiedSuccess ? (
           <ShieldCheck className="size-7 text-emerald-600" />
         ) : (
-          <Mail className="size-7 text-[#2B7BC4]" />
+          <Mail className="size-7 text-[var(--primary)]" />
         )}
       </div>
 
-      <h2 className="text-xl sm:text-2xl font-bold font-display text-[#0D2137] tracking-tight">
+      <h2 className="text-xl sm:text-2xl font-display font-black tracking-tight font-display text-[var(--foreground)] tracking-tight">
         {verifiedSuccess ? "Email Verified" : "Verify Your Email"}
       </h2>
       <p className="text-xs sm:text-sm text-[#64748B] mt-2 max-w-md mx-auto leading-relaxed">
@@ -204,7 +204,7 @@ function StageVerifyEmail({
 
       {message && (
         <div
-          className={`mt-4 p-3 rounded-xl text-xs font-medium ${
+          className={`mt-4 p-3 rounded-[var(--radius-xl)] text-xs font-medium ${
             message.type === "success"
               ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
               : "bg-rose-50 text-rose-800 border border-rose-200"
@@ -225,7 +225,7 @@ function StageVerifyEmail({
             <button
               type="button"
               onClick={onContinueToTerms}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#2B7BC4] text-white font-semibold text-xs sm:text-sm hover:bg-[#1A5EA8] shadow-xs transition-all cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white font-semibold text-xs sm:text-sm hover:bg-[#1A5EA8] shadow-xs transition-all cursor-pointer"
             >
               <span>Continue to Master Service Agreement (Step 2)</span>
               <ArrowRight className="size-4" />
@@ -237,7 +237,7 @@ function StageVerifyEmail({
           {!otpSent ? (
             <form onSubmit={handleSendOtp} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-[#0D2137] mb-1.5">
+                <label className="block text-xs font-semibold text-[var(--foreground)] mb-1.5">
                   Email Address
                 </label>
                 <input
@@ -246,14 +246,14 @@ function StageVerifyEmail({
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@company.com"
                   required
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#C9DFF0] bg-white text-sm text-[#0D2137] focus:outline-none focus:border-[#2B7BC4] focus:ring-2 focus:ring-[#2B7BC4]/20 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-[var(--radius-xl)] border border-[#C9DFF0] bg-[var(--surface-card)] text-sm text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[#2B7BC4]/20 transition-all"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-[#2B7BC4] text-white font-semibold text-sm hover:bg-[#1A5EA8] shadow-sm transition-all disabled:opacity-50"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white font-semibold text-sm hover:bg-[#1A5EA8] shadow-md transition-all disabled:opacity-50"
               >
                 {loading && <RefreshCw className="size-4 animate-spin" />}
                 <span>Send Verification Code</span>
@@ -263,14 +263,14 @@ function StageVerifyEmail({
             <form onSubmit={handleVerifyOtp} className="space-y-5">
               <div>
                 <div className="flex justify-between items-center mb-3">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                  <label className="text-xs font-bold uppercase tracking-wider text-[var(--surface-muted)]">
                     Enter 6-Digit Security Code
                   </label>
                   <button
                     type="button"
                     onClick={() => handleSendOtp()}
                     disabled={loading}
-                    className="text-xs font-semibold text-[#2B7BC4] hover:underline"
+                    className="text-xs font-semibold text-[var(--primary)] hover:underline"
                   >
                     Resend Code
                   </button>
@@ -287,7 +287,7 @@ function StageVerifyEmail({
               <button
                 type="submit"
                 disabled={loading || otpCode.length < 4}
-                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-[#2B7BC4] text-white font-semibold text-sm hover:bg-[#1A5EA8] shadow-sm transition-all disabled:opacity-50"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white font-semibold text-sm hover:bg-[#1A5EA8] shadow-md transition-all disabled:opacity-50"
               >
                 {loading && <RefreshCw className="size-4 animate-spin" />}
                 <span>Verify Code & Continue</span>
@@ -299,7 +299,7 @@ function StageVerifyEmail({
             <button
               type="button"
               onClick={onContinueToTerms}
-              className="text-xs text-[#64748B] hover:text-[#0D2137] underline transition-colors"
+              className="text-xs text-[#64748B] hover:text-[var(--foreground)] underline transition-colors"
             >
               Skip verification for now and proceed to Terms →
             </button>
@@ -416,7 +416,7 @@ export function OnboardingView({ userId, onPortalLaunch }: OnboardingViewProps) 
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] gap-3 text-[#64748B]">
-        <div className="size-8 rounded-full border-3 border-[#2B7BC4] border-t-transparent animate-spin" />
+        <div className="size-8 rounded-full border-3 border-[var(--primary)] border-t-transparent animate-spin" />
         <span className="text-sm font-medium">Loading onboarding progress...</span>
       </div>
     );
@@ -425,14 +425,14 @@ export function OnboardingView({ userId, onPortalLaunch }: OnboardingViewProps) 
   if (isError || !status) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] p-6 text-center">
-        <div className="max-w-md w-full p-6 rounded-2xl bg-white border border-[#C9DFF0] shadow-sm">
+        <div className="max-w-md w-full p-6 rounded-[var(--radius-2xl)] bg-[var(--surface-card)] border border-[#C9DFF0] shadow-md">
           <p className="text-sm text-rose-600 font-medium mb-3">
             Unable to connect to onboarding service.
           </p>
           <button
             type="button"
             onClick={() => void refreshStatus()}
-            className="px-4 py-2 rounded-xl bg-[#2B7BC4] text-white font-semibold text-xs hover:bg-[#1A5EA8] transition-colors"
+            className="px-4 py-2 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white font-semibold text-xs hover:bg-[#1A5EA8] transition-colors"
           >
             Retry Connection
           </button>

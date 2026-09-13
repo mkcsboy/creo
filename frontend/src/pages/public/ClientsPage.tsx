@@ -140,26 +140,26 @@ export function ClientsPage() {
       : TESTIMONIALS.filter((t) => t.industry === selectedSector);
 
   return (
-    <div className="w-full bg-[#FAFAF8] text-[#14171C]">
+    <div className="w-full bg-[var(--background)] text-[var(--foreground)]">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#E8F4FD] via-[#F4F9FD] to-[#FAFAF8] pt-10 pb-8 sm:pt-14 sm:pb-10">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-400/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <ScrollReveal variant="up">
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#2B7BC4]/10 border border-[#2B7BC4]/20 px-4 py-1.5 text-xs font-bold text-[#2B7BC4] mb-3 shadow-2xs">
-              <Sparkles className="size-3.5 text-[#2B7BC4]" />
+            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/20 px-4 py-1.5 text-xs font-bold text-[var(--primary)] mb-3 shadow-2xs">
+              <Sparkles className="size-3.5 text-[var(--primary)]" />
               <span>Proven Category Leaders</span>
             </div>
 
-            <h1 className="text-3xl font-black tracking-tight text-[#0D2137] sm:text-5xl max-w-3xl mx-auto leading-[1.15]">
+            <h1 className="text-3xl font-black tracking-tight text-[var(--foreground)] sm:text-5xl max-w-3xl mx-auto leading-[1.15]">
               Trusted by Ambitious Brands <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#2B7BC4] to-[#1E609A]">
                 Scaling on Autopilot
               </span>
             </h1>
 
-            <p className="mt-4 text-sm sm:text-base leading-relaxed text-slate-600 max-w-2xl mx-auto font-normal">
+            <p className="mt-4 text-sm sm:text-base leading-relaxed text-[var(--surface-muted)] max-w-2xl mx-auto font-normal">
               From emerging direct-to-consumer innovators to established lifestyle enterprises - see how high-cadence creative retainers power compounding social growth.
             </p>
 
@@ -173,7 +173,7 @@ export function ClientsPage() {
                   className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                     selectedSector === c.id
                       ? "bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white shadow-md shadow-blue-500/20"
-                      : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80 shadow-2xs"
+                      : "bg-[var(--surface-card)] text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)] border border-[var(--surface-border)]/80 shadow-2xs"
                   }`}
                 >
                   {c.label}
@@ -188,7 +188,7 @@ export function ClientsPage() {
       <section className="pb-12 sm:pb-16 relative z-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-6">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#2B7BC4]">
+            <p className="text-xs font-bold uppercase tracking-widest text-[var(--primary)]">
               Portfolio Brands in Active Production
             </p>
           </div>
@@ -196,9 +196,9 @@ export function ClientsPage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {filteredBrands.map((brand, idx) => (
               <ScrollReveal key={brand.name} variant="scale" delay={idx * 50} className="h-full">
-                <div className="bg-white rounded-3xl border border-slate-200/90 p-4 flex flex-col items-center text-center shadow-xs hover:shadow-xl hover:border-[#2B7BC4]/50 transition-all duration-300 hover:-translate-y-1 group h-full justify-between">
+                <div className="bg-[var(--surface-card)] rounded-[var(--radius-3xl)] border border-[var(--surface-border)]/90 p-4 flex flex-col items-center text-center shadow-xs hover:shadow-xl hover:border-[var(--primary)]/50 transition-all duration-300 hover:-translate-y-1 group h-full justify-between">
                   <div className="flex flex-col items-center">
-                    <div className="relative size-16 sm:size-20 rounded-2xl overflow-hidden mb-3 shadow-sm group-hover:scale-105 transition-transform duration-500 border border-slate-100 bg-slate-100">
+                    <div className="relative size-16 sm:size-20 rounded-[var(--radius-2xl)] overflow-hidden mb-3 shadow-md group-hover:scale-105 transition-transform duration-500 border border-[var(--surface-border)] bg-[var(--surface-sunken)]">
                       <img
                         src={brand.image}
                         alt={brand.name}
@@ -207,8 +207,8 @@ export function ClientsPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
                     </div>
-                    <h3 className="text-xs sm:text-sm font-bold text-[#0D2137] leading-tight">{brand.name}</h3>
-                    <p className="text-[10px] text-slate-500 mt-1 leading-tight">{brand.category}</p>
+                    <h3 className="text-xs sm:text-sm font-bold text-[var(--foreground)] leading-tight">{brand.name}</h3>
+                    <p className="text-[10px] text-[var(--surface-muted)] mt-1 leading-tight">{brand.category}</p>
                   </div>
                   <span className="mt-2.5 inline-block text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/80">
                     {brand.metric}
@@ -221,17 +221,17 @@ export function ClientsPage() {
       </section>
 
       {/* High-Impact Testimonials Grid */}
-      <section className="bg-white py-12 sm:py-16 border-y border-slate-200/80">
+      <section className="bg-[var(--surface-card)] py-12 sm:py-16 border-y border-[var(--surface-border)]/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal variant="up">
             <div className="text-center max-w-2xl mx-auto mb-10">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#2B7BC4]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[var(--primary)]">
                 Verified Client Reviews
               </span>
-              <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0D2137]">
+              <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--foreground)]">
                 Real Feedback from Founders & Marketing Leaders
               </h2>
-              <p className="text-slate-500 text-xs sm:text-sm mt-2">
+              <p className="text-[var(--surface-muted)] text-xs sm:text-sm mt-2">
                 How Creo's creative retainers drive tangible commercial outcomes.
               </p>
             </div>
@@ -240,7 +240,7 @@ export function ClientsPage() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {filteredTestimonials.map((t, idx) => (
               <ScrollReveal key={t.name} variant="up" delay={idx * 80} className="h-full">
-                <div className="rounded-3xl border border-slate-200/90 bg-[#FAFAF8] p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:shadow-xl hover:bg-white hover:border-[#2B7BC4]/50 transition-all duration-300 group h-full">
+                <div className="rounded-[var(--radius-3xl)] border border-[var(--surface-border)]/90 bg-[var(--background)] p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:shadow-xl hover:bg-[var(--surface-card)] hover:border-[var(--primary)]/50 transition-all duration-300 group h-full">
                   <div>
                     <div className="flex items-center gap-1 mb-3 text-amber-400">
                       {[...Array(5)].map((_, i) => (
@@ -252,18 +252,18 @@ export function ClientsPage() {
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-slate-200/60">
+                  <div className="mt-6 pt-4 border-t border-[var(--surface-border)]/60">
                     <div className="flex items-center gap-3 mb-2.5">
                       <div className="size-10 rounded-full bg-gradient-to-br from-[#2B7BC4] to-[#1E609A] text-white flex items-center justify-center text-xs font-bold shadow-xs">
                         {t.avatar}
                       </div>
                       <div>
-                        <p className="text-xs sm:text-sm font-bold text-[#0D2137]">{t.name}</p>
-                        <p className="text-[10px] text-slate-500">{t.title} - <span className="font-semibold text-slate-700">{t.business}</span></p>
+                        <p className="text-xs sm:text-sm font-bold text-[var(--foreground)]">{t.name}</p>
+                        <p className="text-[10px] text-[var(--surface-muted)]">{t.title} - <span className="font-semibold text-slate-700">{t.business}</span></p>
                       </div>
                     </div>
 
-                    <div className="rounded-xl bg-emerald-50 border border-emerald-200/80 px-3 py-1.5 flex items-center gap-2">
+                    <div className="rounded-[var(--radius-xl)] bg-emerald-50 border border-emerald-200/80 px-3 py-1.5 flex items-center gap-2">
                       <CheckCircle2 className="size-3.5 text-emerald-600 shrink-0" />
                       <p className="text-[11px] font-bold text-emerald-800 tracking-tight">
                         {t.result}
@@ -279,7 +279,7 @@ export function ClientsPage() {
 
       {/* Bottom CTA */}
       <section className="bg-gradient-to-br from-[#07192F] via-[#0B2545] to-[#123966] py-14 sm:py-18 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-10 w-96 h-96 bg-[var(--primary)]/100/10 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <ScrollReveal variant="scale">
             <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
@@ -291,14 +291,14 @@ export function ClientsPage() {
             <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
               <Link
                 to="/pricing"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white px-7 py-3 text-sm font-bold shadow-lg shadow-blue-600/30 hover:brightness-110 active:scale-95 transition-all w-full sm:w-auto cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white px-7 py-3 text-sm font-bold shadow-lg shadow-blue-600/30 hover:brightness-110 active:scale-95 transition-all w-full sm:w-auto cursor-pointer"
               >
                 <span>Explore Retainer Plans</span>
                 <ArrowRight className="size-4" />
               </Link>
               <Link
                 to="/portfolio"
-                className="inline-flex items-center justify-center rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 text-white px-6 py-3 text-sm font-semibold backdrop-blur-md transition-all w-full sm:w-auto cursor-pointer"
+                className="inline-flex items-center justify-center rounded-[var(--radius-xl)] bg-[var(--surface-card)]/10 hover:bg-[var(--surface-card)]/20 border border-white/25 text-white px-6 py-3 text-sm font-semibold backdrop-blur-md transition-all w-full sm:w-auto cursor-pointer"
               >
                 Browse Creative Portfolio
               </Link>

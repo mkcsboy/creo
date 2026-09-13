@@ -98,19 +98,19 @@ export function AboutPage() {
     <div className="w-full">
       {/* ── Hero Section ─────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#E8F4FD] via-[#F0F7FD] to-white pt-10 pb-8 sm:pt-14 sm:pb-10">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#2B7BC4]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[var(--primary)]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-[#2B7BC4] shadow-sm border border-[#C9DFF0] mb-4">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--surface-card)] px-4 py-1.5 text-xs font-semibold text-[var(--primary)] shadow-md border border-[#C9DFF0] mb-4">
               <Sparkles className="size-3.5" />
               Building Brands Since 2023
             </div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-[#0D2137] sm:text-5xl">
+            <h1 className="text-3xl font-extrabold tracking-tight text-[var(--foreground)] sm:text-5xl">
               We don&apos;t just market brands.
               <br />
-              <span className="text-[#2B7BC4]">We grow them.</span>
+              <span className="text-[var(--primary)]">We grow them.</span>
             </h1>
-            <p className="mt-4 text-sm sm:text-base leading-relaxed text-slate-600 max-w-2xl mx-auto">
+            <p className="mt-4 text-sm sm:text-base leading-relaxed text-[var(--surface-muted)] max-w-2xl mx-auto">
               Creo exists because every business deserves a growth partner — not
               just a vendor. We started with a simple belief: consistent,
               high-quality content delivered on time can transform a brand.
@@ -120,7 +120,7 @@ export function AboutPage() {
       </section>
 
       {/* ── Trust Metrics Strip ──────────────────────────────────────────── */}
-      <section className="py-8 sm:py-10 border-b border-[#C9DFF0] bg-white">
+      <section className="py-8 sm:py-10 border-b border-[#C9DFF0] bg-[var(--surface-card)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {TRUST_METRICS.map((m, idx) => (
@@ -128,12 +128,12 @@ export function AboutPage() {
                 key={m.label}
                 variant="up"
                 delay={idx * 80}
-                className="text-center p-3.5 sm:p-4 rounded-2xl bg-[#E8F4FD]/40 border border-[#C9DFF0]/50"
+                className="text-center p-3.5 sm:p-4 rounded-[var(--radius-2xl)] bg-[var(--primary)]/10/40 border border-[#C9DFF0]/50"
               >
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#0D2137] tracking-tight">
+                <div className="text-2xl sm:text-3xl font-extrabold text-[var(--foreground)] tracking-tight">
                   {m.value}
                 </div>
-                <div className="text-xs sm:text-sm font-medium text-slate-600 mt-0.5">
+                <div className="text-xs sm:text-sm font-medium text-[var(--surface-muted)] mt-0.5">
                   {m.label}
                 </div>
               </ScrollReveal>
@@ -143,16 +143,16 @@ export function AboutPage() {
       </section>
 
       {/* ── Mission Statement & Studio Showcase ──────────────────────────── */}
-      <section className="bg-white py-12 sm:py-16">
+      <section className="bg-[var(--surface-card)] py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal variant="up" className="mx-auto max-w-3xl text-center">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#2B7BC4]">
+            <span className="text-xs font-bold uppercase tracking-widest text-[var(--primary)]">
               Our Mission
             </span>
-            <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0D2137]">
+            <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--foreground)]">
               Why we exist — not just what we do
             </h2>
-            <p className="mt-4 text-sm sm:text-base leading-relaxed text-slate-600">
+            <p className="mt-4 text-sm sm:text-base leading-relaxed text-[var(--surface-muted)]">
               Most businesses know they need to post on social media. Few know
               how to do it consistently, on-brand, and with real strategy behind
               it. Creo bridges that gap. We combine creative firepower with
@@ -162,7 +162,7 @@ export function AboutPage() {
           </ScrollReveal>
 
           {/* Creative Studio Showcase Visual */}
-          <ScrollReveal variant="scale" delay={120} className="mt-8 max-w-4xl mx-auto rounded-3xl overflow-hidden border border-slate-200/90 shadow-xl relative group">
+          <ScrollReveal variant="scale" delay={120} className="mt-8 max-w-4xl mx-auto rounded-[var(--radius-3xl)] overflow-hidden border border-[var(--surface-border)]/90 shadow-xl relative group">
             <div className="aspect-[16/8] sm:aspect-[21/9] w-full overflow-hidden bg-slate-900 relative">
               <img
                 src="/assets/workflow/studio_master.jpg"
@@ -198,14 +198,14 @@ export function AboutPage() {
                 key={item.title}
                 variant="up"
                 delay={idx * 90}
-                className="flex items-start gap-3 p-4 rounded-2xl border border-[#C9DFF0]/50 bg-[#E8F4FD]/20 hover:bg-[#E8F4FD]/40 transition-colors"
+                className="flex items-start gap-3 p-4 rounded-[var(--radius-2xl)] border border-[#C9DFF0]/50 bg-[var(--primary)]/10/20 hover:bg-[var(--primary)]/10/40 transition-colors"
               >
-                <div className="size-9 shrink-0 rounded-xl bg-[#2B7BC4]/10 text-[#2B7BC4] flex items-center justify-center">
+                <div className="size-9 shrink-0 rounded-[var(--radius-xl)] bg-[var(--primary)]/10 text-[var(--primary)] flex items-center justify-center">
                   <item.icon className="size-4.5" />
                 </div>
                 <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-[#0D2137]">{item.title}</h4>
-                  <p className="text-[11px] text-slate-600 mt-0.5 leading-relaxed">{item.desc}</p>
+                  <h4 className="text-xs sm:text-sm font-bold text-[var(--foreground)]">{item.title}</h4>
+                  <p className="text-[11px] text-[var(--surface-muted)] mt-0.5 leading-relaxed">{item.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -217,13 +217,13 @@ export function AboutPage() {
       <section className="bg-[#F8F9FA] py-12 sm:py-16 border-y border-[#C9DFF0]/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal variant="up" className="mx-auto max-w-2xl text-center">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#2B7BC4]">
+            <span className="text-xs font-bold uppercase tracking-widest text-[var(--primary)]">
               Why Creo
             </span>
-            <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0D2137]">
+            <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--foreground)]">
               What makes us different
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-slate-600">
+            <p className="mt-2 text-xs sm:text-sm text-[var(--surface-muted)]">
               We&apos;re built for businesses that want measurable results, not
               just posts.
             </p>
@@ -237,14 +237,14 @@ export function AboutPage() {
                 delay={idx * 60}
                 className="h-full"
               >
-                <div className="group rounded-2xl border border-[#C9DFF0] bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
-                  <div className={`mb-4 flex size-11 items-center justify-center rounded-xl bg-gradient-to-br ${item.accent} text-white shadow-md transition-transform duration-300 group-hover:scale-110 ${idx % 2 === 0 ? "group-hover:rotate-3" : "group-hover:-rotate-3"}`}>
+                <div className="group rounded-[var(--radius-2xl)] border border-[#C9DFF0] bg-[var(--surface-card)] p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
+                  <div className={`mb-4 flex size-11 items-center justify-center rounded-[var(--radius-xl)] bg-gradient-to-br ${item.accent} text-white shadow-md transition-transform duration-300 group-hover:scale-110 ${idx % 2 === 0 ? "group-hover:rotate-3" : "group-hover:-rotate-3"}`}>
                     <item.icon className="size-5" />
                   </div>
-                  <h3 className="text-base font-bold text-[#0D2137] group-hover:text-[#2B7BC4] transition-colors">
+                  <h3 className="text-base font-bold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+                  <p className="mt-1.5 text-xs leading-relaxed text-[var(--surface-muted)]">
                     {item.description}
                   </p>
                 </div>
@@ -255,16 +255,16 @@ export function AboutPage() {
       </section>
 
       {/* ── Team Section ─────────────────────────────────────────────────── */}
-      <section className="bg-white py-12 sm:py-16">
+      <section className="bg-[var(--surface-card)] py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal variant="up" className="mx-auto max-w-2xl text-center">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#2B7BC4]">
+            <span className="text-xs font-bold uppercase tracking-widest text-[var(--primary)]">
               Our Team
             </span>
-            <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0D2137]">
+            <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--foreground)]">
               The people behind your growth
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-slate-600">
+            <p className="mt-2 text-xs sm:text-sm text-[var(--surface-muted)]">
               Small team. Big experience. Obsessed with your results.
             </p>
           </ScrollReveal>
@@ -277,19 +277,19 @@ export function AboutPage() {
                 delay={idx * 90}
                 className="h-full"
               >
-                <div className="group rounded-2xl border border-[#C9DFF0] bg-white p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
-                  <div className={`mx-auto mb-4 flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br ${member.gradient} text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                <div className="group rounded-[var(--radius-2xl)] border border-[#C9DFF0] bg-[var(--surface-card)] p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
+                  <div className={`mx-auto mb-4 flex size-16 items-center justify-center rounded-[var(--radius-2xl)] bg-gradient-to-br ${member.gradient} text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
                     <span className="text-lg font-black tracking-wider">
                       {member.initials}
                     </span>
                   </div>
-                  <h3 className="text-base font-bold text-[#0D2137]">
+                  <h3 className="text-base font-bold text-[var(--foreground)]">
                     {member.name}
                   </h3>
-                  <p className="text-xs font-semibold text-[#2B7BC4] mt-0.5">
+                  <p className="text-xs font-semibold text-[var(--primary)] mt-0.5">
                     {member.role}
                   </p>
-                  <p className="mt-2 text-xs leading-relaxed text-slate-600">
+                  <p className="mt-2 text-xs leading-relaxed text-[var(--surface-muted)]">
                     {member.description}
                   </p>
                 </div>
@@ -301,7 +301,7 @@ export function AboutPage() {
 
       {/* ── Bottom CTA ───────────────────────────────────────────────────── */}
       <section className="bg-gradient-to-br from-[#07192F] via-[#0B2545] to-[#123966] py-14 sm:py-18 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[var(--primary)]/100/10 rounded-full blur-3xl pointer-events-none" />
         <ScrollReveal variant="scale" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white">
             Ready to grow your brand?
@@ -312,7 +312,7 @@ export function AboutPage() {
           <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Link
               to="/pricing"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] hover:brightness-110 active:scale-95 text-white h-12 px-8 text-sm font-bold transition-all shadow-lg shadow-blue-600/30 w-full sm:w-auto cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] hover:brightness-110 active:scale-95 text-white h-12 px-8 text-sm font-bold transition-all shadow-lg shadow-blue-600/30 w-full sm:w-auto cursor-pointer"
             >
               Explore Our Retainer Plans
               <ArrowRight className="size-4" />
@@ -321,7 +321,7 @@ export function AboutPage() {
               href="https://wa.me/919941999415"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 text-white h-12 px-8 text-sm font-bold backdrop-blur-md transition-all shadow-md w-full sm:w-auto cursor-pointer"
+              className="inline-flex items-center justify-center rounded-[var(--radius-xl)] bg-[var(--surface-card)]/10 hover:bg-[var(--surface-card)]/20 border border-white/25 text-white h-12 px-8 text-sm font-bold backdrop-blur-md transition-all shadow-md w-full sm:w-auto cursor-pointer"
             >
               Speak with Ashok
             </a>

@@ -114,20 +114,20 @@ export function PricingPage() {
   const plans = rawPlans.filter((p) => ["starter", "growth", "pro"].includes(p.name));
 
   return (
-    <div className="w-full bg-[#FAFAF8] text-[#14171C]">
+    <div className="w-full bg-[var(--background)] text-[var(--foreground)]">
       {/* ── Hero Section (Compact) ─────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#E8F4FD] via-[#F4F9FD] to-[#FAFAF8] pt-8 pb-6 sm:pt-10 sm:pb-8">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-400/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="text-2xl font-black tracking-tight text-[#0D2137] sm:text-4xl max-w-3xl mx-auto leading-[1.15]">
+          <h1 className="text-2xl font-black tracking-tight text-[var(--foreground)] sm:text-4xl max-w-3xl mx-auto leading-[1.15]">
             Predictable Pricing for{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#2B7BC4] to-[#1F5C96]">
               Explosive Social Growth
             </span>
           </h1>
 
-          <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600 max-w-2xl mx-auto">
+          <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[var(--surface-muted)] max-w-2xl mx-auto">
             Fixed monthly investment. Zero hidden agency markups. Dedicated creative teams delivering brand-defining reels, posters, and stories every week.
           </p>
         </div>
@@ -147,10 +147,10 @@ export function PricingPage() {
               return (
                 <ScrollReveal key={plan.id} variant="up" delay={idx * 120} className="h-full">
                   <div
-                    className={`relative flex flex-col justify-between rounded-2xl border-2 bg-white transition-all duration-300 hover:-translate-y-1 h-full ${
+                    className={`relative flex flex-col justify-between rounded-[var(--radius-2xl)] border-2 bg-[var(--surface-card)] transition-all duration-300 hover:-translate-y-1 h-full ${
                       isRec
-                        ? "border-[#2B7BC4] shadow-2xl shadow-blue-500/15 ring-2 ring-[#2B7BC4]/30"
-                        : "border-slate-200/90 shadow-lg shadow-black/5 hover:border-[#2B7BC4]/60"
+                        ? "border-[var(--primary)] shadow-2xl shadow-blue-500/15 ring-2 ring-[#2B7BC4]/30"
+                        : "border-[var(--surface-border)]/90 shadow-lg shadow-black/5 hover:border-[var(--primary)]/60"
                     }`}
                   >
                     {isRec && (
@@ -163,39 +163,39 @@ export function PricingPage() {
                     <div className="p-5 sm:p-6">
                       {/* Header + Price — inline row */}
                       <div className="mb-3">
-                        <p className="text-[10px] font-bold uppercase tracking-wider text-[#2B7BC4]">
+                        <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--primary)]">
                           {plan.name === "pro" ? "Scale & Enterprise" : plan.name === "growth" ? "High Growth" : "Starter"}
                         </p>
-                        <h3 className="text-xl sm:text-2xl font-black text-[#0D2137] mt-0.5 tracking-tight">
+                        <h3 className="text-xl sm:text-2xl font-black text-[var(--foreground)] mt-0.5 tracking-tight">
                           {plan.display_name}
                         </h3>
                       </div>
 
                       {/* Price */}
-                      <div className="flex items-baseline gap-1 mb-4 pb-3 border-b border-slate-100">
-                        <span className="text-3xl sm:text-4xl font-black text-[#0D2137] tracking-tight">
+                      <div className="flex items-baseline gap-1 mb-4 pb-3 border-b border-[var(--surface-border)]">
+                        <span className="text-3xl sm:text-4xl font-black text-[var(--foreground)] tracking-tight">
                           {formatPrice(price)}
                         </span>
-                        <span className="text-xs font-medium text-slate-500"> / month</span>
+                        <span className="text-xs font-medium text-[var(--surface-muted)]"> / month</span>
                       </div>
 
                       {/* Production Quota Strip */}
-                      <div className="rounded-xl bg-blue-50/50 border border-blue-100/60 p-3 mb-4">
-                        <p className="text-[10px] font-bold uppercase tracking-wider text-[#2B7BC4] mb-1.5">
+                      <div className="rounded-[var(--radius-xl)] bg-[var(--primary)]/10/50 border border-blue-100/60 p-3 mb-4">
+                        <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--primary)] mb-1.5">
                           Monthly Allocation
                         </p>
                         <div className="grid grid-cols-3 gap-1.5 text-center">
-                          <div className="bg-white rounded-lg py-1.5 px-1 border border-blue-100/40">
-                            <p className="text-base font-black text-[#0D2137]">{plan.poster_quota}</p>
-                            <p className="text-[9px] text-slate-500 font-medium">Posters</p>
+                          <div className="bg-[var(--surface-card)] rounded-[var(--radius-xl)] py-1.5 px-1 border border-blue-100/40">
+                            <p className="text-base font-black text-[var(--foreground)]">{plan.poster_quota}</p>
+                            <p className="text-[9px] text-[var(--surface-muted)] font-medium">Posters</p>
                           </div>
-                          <div className="bg-white rounded-lg py-1.5 px-1 border border-blue-100/40">
-                            <p className="text-base font-black text-[#2B7BC4]">{plan.reel_quota}</p>
-                            <p className="text-[9px] text-slate-500 font-medium">Reels</p>
+                          <div className="bg-[var(--surface-card)] rounded-[var(--radius-xl)] py-1.5 px-1 border border-blue-100/40">
+                            <p className="text-base font-black text-[var(--primary)]">{plan.reel_quota}</p>
+                            <p className="text-[9px] text-[var(--surface-muted)] font-medium">Reels</p>
                           </div>
-                          <div className="bg-white rounded-lg py-1.5 px-1 border border-blue-100/40">
-                            <p className="text-base font-black text-[#0D2137]">{plan.story_quota}</p>
-                            <p className="text-[9px] text-slate-500 font-medium">Stories</p>
+                          <div className="bg-[var(--surface-card)] rounded-[var(--radius-xl)] py-1.5 px-1 border border-blue-100/40">
+                            <p className="text-base font-black text-[var(--foreground)]">{plan.story_quota}</p>
+                            <p className="text-[9px] text-[var(--surface-muted)] font-medium">Stories</p>
                           </div>
                         </div>
                       </div>
@@ -210,15 +210,15 @@ export function PricingPage() {
                             <span>{item}</span>
                           </li>
                         ))}
-                        <li className="flex items-start gap-2 leading-snug font-medium text-[#0D2137]">
+                        <li className="flex items-start gap-2 leading-snug font-medium text-[var(--foreground)]">
                           <div className="size-3.5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-200">
                             <Check className="size-2.5" />
                           </div>
                           <span>{plan.revision_rounds} revision round{plan.revision_rounds !== 1 ? "s" : ""} included</span>
                         </li>
                         {plan.has_dedicated_manager && (
-                          <li className="flex items-start gap-2 leading-snug font-semibold text-[#2B7BC4]">
-                            <div className="size-3.5 rounded-full bg-blue-50 text-[#2B7BC4] flex items-center justify-center shrink-0 mt-0.5 border border-blue-200">
+                          <li className="flex items-start gap-2 leading-snug font-semibold text-[var(--primary)]">
+                            <div className="size-3.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] flex items-center justify-center shrink-0 mt-0.5 border border-blue-200">
                               <Check className="size-2.5" />
                             </div>
                             <span>Dedicated Brand Account Director</span>
@@ -231,12 +231,12 @@ export function PricingPage() {
                     <div className="p-5 sm:p-6 pt-0">
                       <Link
                         to={`/signup?plan=${plan.name}`}
-                        className="w-full py-3 flex items-center justify-center gap-2 rounded-xl text-sm font-bold transition-all shadow-md cursor-pointer bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white hover:from-[#246bb0] hover:to-[#174e7e] shadow-blue-500/25 active:scale-[0.98]"
+                        className="w-full py-3 flex items-center justify-center gap-2 rounded-[var(--radius-xl)] text-sm font-bold transition-all shadow-md cursor-pointer bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white hover:from-[#246bb0] hover:to-[#174e7e] shadow-blue-500/25 active:scale-[0.98]"
                       >
                         <span>Choose {plan.display_name}</span>
                         <ArrowRight className="size-4" />
                       </Link>
-                      <p className="text-[10px] text-slate-400 text-center mt-1.5">
+                      <p className="text-[10px] text-[var(--surface-muted)] text-center mt-1.5">
                         Instant onboarding access • No lock-in
                       </p>
                     </div>
@@ -249,54 +249,54 @@ export function PricingPage() {
       </section>
 
       {/* ── Feature Comparison Matrix ────────────────────────────────────── */}
-      <section className="bg-white py-12 sm:py-16 border-y border-slate-200/80">
+      <section className="bg-[var(--surface-card)] py-12 sm:py-16 border-y border-[var(--surface-border)]/80">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal variant="up">
             <div className="text-center mb-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#0D2137] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-display font-black tracking-tight text-[var(--foreground)] tracking-tight">
                 Compare Retainer Inclusions
               </h2>
-              <p className="text-slate-500 text-xs sm:text-sm mt-1.5">
+              <p className="text-[var(--surface-muted)] text-xs sm:text-sm mt-1.5">
                 Everything required to transform your brand into a recognized category leader.
               </p>
             </div>
           </ScrollReveal>
 
           <ScrollReveal variant="scale" delay={120}>
-            <div className="overflow-x-auto rounded-3xl border border-slate-200 shadow-xs">
+            <div className="overflow-x-auto rounded-[var(--radius-3xl)] border border-[var(--surface-border)] shadow-xs">
             <table className="w-full text-left text-xs sm:text-sm">
               <thead>
-                <tr className="border-b border-slate-200 bg-slate-50/75">
-                  <th className="py-4 px-6 font-bold text-[#0D2137]">Feature & SLA</th>
-                  <th className="py-4 px-4 font-bold text-[#0D2137] text-center">Starter Growth</th>
-                  <th className="py-4 px-4 font-bold text-[#2B7BC4] text-center">Brand Accelerator</th>
-                  <th className="py-4 px-4 font-bold text-[#0D2137] text-center">Enterprise Domination</th>
+                <tr className="border-b border-[var(--surface-border)] bg-[var(--surface-sunken)]/75">
+                  <th className="py-4 px-6 font-bold text-[var(--foreground)]">Feature & SLA</th>
+                  <th className="py-4 px-4 font-bold text-[var(--foreground)] text-center">Starter Growth</th>
+                  <th className="py-4 px-4 font-bold text-[var(--primary)] text-center">Brand Accelerator</th>
+                  <th className="py-4 px-4 font-bold text-[var(--foreground)] text-center">Enterprise Domination</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 <tr>
                   <td className="py-4 px-6 font-medium text-slate-700">Monthly High-Impact Reels</td>
-                  <td className="py-4 px-4 text-center font-bold text-slate-800">4</td>
-                  <td className="py-4 px-4 text-center font-bold text-[#2B7BC4]">8</td>
-                  <td className="py-4 px-4 text-center font-bold text-slate-800">16</td>
+                  <td className="py-4 px-4 text-center font-bold text-[var(--foreground)]">4</td>
+                  <td className="py-4 px-4 text-center font-bold text-[var(--primary)]">8</td>
+                  <td className="py-4 px-4 text-center font-bold text-[var(--foreground)]">16</td>
                 </tr>
                 <tr>
                   <td className="py-4 px-6 font-medium text-slate-700">Monthly Static Brand Posters</td>
-                  <td className="py-4 px-4 text-center font-bold text-slate-800">8</td>
-                  <td className="py-4 px-4 text-center font-bold text-[#2B7BC4]">15</td>
-                  <td className="py-4 px-4 text-center font-bold text-slate-800">30</td>
+                  <td className="py-4 px-4 text-center font-bold text-[var(--foreground)]">8</td>
+                  <td className="py-4 px-4 text-center font-bold text-[var(--primary)]">15</td>
+                  <td className="py-4 px-4 text-center font-bold text-[var(--foreground)]">30</td>
                 </tr>
                 <tr>
                   <td className="py-4 px-6 font-medium text-slate-700">Story Creatives & Stickers</td>
-                  <td className="py-4 px-4 text-center font-bold text-slate-800">10</td>
-                  <td className="py-4 px-4 text-center font-bold text-[#2B7BC4]">20</td>
-                  <td className="py-4 px-4 text-center font-bold text-slate-800">40</td>
+                  <td className="py-4 px-4 text-center font-bold text-[var(--foreground)]">10</td>
+                  <td className="py-4 px-4 text-center font-bold text-[var(--primary)]">20</td>
+                  <td className="py-4 px-4 text-center font-bold text-[var(--foreground)]">40</td>
                 </tr>
                 <tr>
                   <td className="py-4 px-6 font-medium text-slate-700">Revision Rounds per Batch</td>
-                  <td className="py-4 px-4 text-center text-slate-600">1 Round</td>
-                  <td className="py-4 px-4 text-center font-semibold text-[#2B7BC4]">2 Rounds</td>
-                  <td className="py-4 px-4 text-center font-semibold text-slate-800">3 Rounds</td>
+                  <td className="py-4 px-4 text-center text-[var(--surface-muted)]">1 Round</td>
+                  <td className="py-4 px-4 text-center font-semibold text-[var(--primary)]">2 Rounds</td>
+                  <td className="py-4 px-4 text-center font-semibold text-[var(--foreground)]">3 Rounds</td>
                 </tr>
                 <tr>
                   <td className="py-4 px-6 font-medium text-slate-700">Direct Instagram Auto-Publishing</td>
@@ -312,9 +312,9 @@ export function PricingPage() {
                 </tr>
                 <tr>
                   <td className="py-4 px-6 font-medium text-slate-700">Turnaround SLA</td>
-                  <td className="py-4 px-4 text-center text-slate-600">3 Business Days</td>
-                  <td className="py-4 px-4 text-center font-semibold text-[#2B7BC4]">2 Business Days</td>
-                  <td className="py-4 px-4 text-center font-semibold text-slate-800">24h Priority</td>
+                  <td className="py-4 px-4 text-center text-[var(--surface-muted)]">3 Business Days</td>
+                  <td className="py-4 px-4 text-center font-semibold text-[var(--primary)]">2 Business Days</td>
+                  <td className="py-4 px-4 text-center font-semibold text-[var(--foreground)]">24h Priority</td>
                 </tr>
               </tbody>
             </table>
@@ -327,7 +327,7 @@ export function PricingPage() {
 
       {/* ── Bottom CTA ────────────────────────────────────────────────────── */}
       <section className="bg-gradient-to-br from-[#0D2137] to-[#122B48] py-14 sm:py-16 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--primary)]/100/10 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
             Ready to Put Your Content Production on Autopilot?
@@ -338,14 +338,14 @@ export function PricingPage() {
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/signup?plan=growth"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#2B7BC4] to-[#1F5C96] text-white px-8 py-4 text-base font-bold shadow-xl shadow-blue-600/30 hover:brightness-110 active:scale-95 transition-all w-full sm:w-auto cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 rounded-[var(--radius-2xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1F5C96] text-white px-8 py-4 text-base font-bold shadow-xl shadow-blue-600/30 hover:brightness-110 active:scale-95 transition-all w-full sm:w-auto cursor-pointer"
             >
               <span>Get Started with Brand Accelerator</span>
               <ArrowRight className="size-4" />
             </Link>
             <Link
               to="/portfolio"
-              className="inline-flex items-center justify-center rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-4 text-base font-semibold backdrop-blur-sm transition-all w-full sm:w-auto"
+              className="inline-flex items-center justify-center rounded-[var(--radius-2xl)] bg-[var(--surface-card)]/10 hover:bg-[var(--surface-card)]/20 border border-white/20 text-white px-6 py-4 text-base font-semibold backdrop-blur-sm transition-all w-full sm:w-auto"
             >
               View Client Portfolio
             </Link>

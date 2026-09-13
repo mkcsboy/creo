@@ -102,23 +102,23 @@ export function FaqPage() {
     <div className="w-full">
       {/* ── Hero Section ────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#E8F4FD] via-[#F0F7FD] to-white pt-10 pb-8 sm:pt-14 sm:pb-10">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#2B7BC4]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[var(--primary)]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-[#2B7BC4] shadow-sm border border-[#C9DFF0] mb-4">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--surface-card)] px-4 py-1.5 text-xs font-semibold text-[var(--primary)] shadow-md border border-[#C9DFF0] mb-4">
               <MessageSquare className="size-3.5" />
               Quick Answers to Common Questions
             </div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-[#0D2137] sm:text-5xl">
+            <h1 className="text-3xl font-extrabold tracking-tight text-[var(--foreground)] sm:text-5xl">
               Frequently Asked Questions
             </h1>
-            <p className="mt-4 text-sm sm:text-base leading-relaxed text-slate-600">
+            <p className="mt-4 text-sm sm:text-base leading-relaxed text-[var(--surface-muted)]">
               Everything you need to know about working with Creo.
             </p>
 
               {/* Search Bar */}
               <div className="mt-6 max-w-md mx-auto relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-[var(--surface-muted)]" />
                 <input
                   type="text"
                   value={searchQuery}
@@ -127,7 +127,7 @@ export function FaqPage() {
                     setOpenIndex(null);
                   }}
                   placeholder="Search questions..."
-                  className="w-full rounded-2xl border border-[#C9DFF0] bg-white pl-11 pr-10 py-2.5 text-sm text-[#0D2137] shadow-sm focus:ring-2 focus:ring-[#2B7BC4]/30 focus:border-[#2B7BC4] outline-none transition-all"
+                  className="w-full rounded-[var(--radius-2xl)] border border-[#C9DFF0] bg-[var(--surface-card)] pl-11 pr-10 py-2.5 text-sm text-[var(--foreground)] shadow-md focus:ring-2 focus:ring-[#2B7BC4]/30 focus:border-[var(--primary)] outline-none transition-all"
                 />
                 {searchQuery && (
                   <button
@@ -136,7 +136,7 @@ export function FaqPage() {
                       setSearchQuery("");
                       setOpenIndex(null);
                     }}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[var(--surface-muted)] hover:text-[var(--surface-muted)] cursor-pointer"
                   >
                     ×
                   </button>
@@ -147,7 +147,7 @@ export function FaqPage() {
         </section>
 
         {/* ── Category Filters + Accordion ────────────────────────────────── */}
-        <section className="bg-white py-12 sm:py-16">
+        <section className="bg-[var(--surface-card)] py-12 sm:py-16">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             {/* Category Pills */}
             <ScrollReveal variant="up" className="flex flex-wrap justify-center gap-2 mb-8">
@@ -161,10 +161,10 @@ export function FaqPage() {
                       setActiveCategory(cat.id);
                       setOpenIndex(null);
                     }}
-                    className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold transition-all cursor-pointer ${
+                    className={`inline-flex items-center gap-1.5 rounded-[var(--radius-xl)] px-4 py-2 text-xs font-semibold transition-all cursor-pointer ${
                       activeCategory === cat.id
                         ? "bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white shadow-md shadow-blue-500/20"
-                        : "bg-slate-100 text-slate-600 hover:bg-[#E8F4FD] hover:text-[#2B7BC4]"
+                        : "bg-[var(--surface-sunken)] text-[var(--surface-muted)] hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
                     }`}
                   >
                     <Icon className="size-3.5" />
@@ -179,10 +179,10 @@ export function FaqPage() {
             {filteredItems.length === 0 ? (
               <div className="text-center py-12">
                 <HelpCircle className="size-10 text-slate-300 mx-auto mb-3" />
-                <p className="text-sm font-semibold text-slate-500">
+                <p className="text-sm font-semibold text-[var(--surface-muted)]">
                   No matching questions found
                 </p>
-                <p className="text-xs text-slate-400 mt-1">
+                <p className="text-xs text-[var(--surface-muted)] mt-1">
                   Try a different search term or category
                 </p>
               </div>
@@ -194,10 +194,10 @@ export function FaqPage() {
                     key={item.question}
                     variant="up"
                     delay={Math.min(index * 35, 200)}
-                    className={`rounded-2xl border transition-all duration-300 ${
+                    className={`rounded-[var(--radius-2xl)] border transition-all duration-300 ${
                       isOpen
-                        ? "border-[#2B7BC4]/30 bg-[#E8F4FD]/20 shadow-md shadow-[#2B7BC4]/5"
-                        : "border-[#C9DFF0] bg-white hover:border-[#2B7BC4]/20"
+                        ? "border-[var(--primary)]/30 bg-[var(--primary)]/10/20 shadow-md shadow-[#2B7BC4]/5"
+                        : "border-[#C9DFF0] bg-[var(--surface-card)] hover:border-[var(--primary)]/20"
                     }`}
                   >
                     <button
@@ -207,10 +207,10 @@ export function FaqPage() {
                     >
                       <div className="flex items-start gap-3 flex-1 pr-4">
                         <div
-                          className={`size-8 shrink-0 rounded-xl flex items-center justify-center transition-colors ${
+                          className={`size-8 shrink-0 rounded-[var(--radius-xl)] flex items-center justify-center transition-colors ${
                             isOpen
-                              ? "bg-[#2B7BC4] text-white"
-                              : "bg-[#E8F4FD] text-[#2B7BC4]"
+                              ? "bg-[var(--primary)] text-white"
+                              : "bg-[var(--primary)]/10 text-[var(--primary)]"
                           }`}
                         >
                           <HelpCircle className="size-4" />
@@ -218,18 +218,18 @@ export function FaqPage() {
                         <div>
                           <span
                             className={`text-sm sm:text-base font-bold transition-colors ${
-                              isOpen ? "text-[#2B7BC4]" : "text-[#0D2137]"
+                              isOpen ? "text-[var(--primary)]" : "text-[var(--foreground)]"
                             }`}
                           >
                             {item.question}
                           </span>
-                          <span className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mt-0.5">
+                          <span className="block text-[10px] font-semibold text-[var(--surface-muted)] uppercase tracking-wider mt-0.5">
                             {item.category}
                           </span>
                         </div>
                       </div>
                       <ChevronDown
-                        className={`size-5 text-[#2B7BC4] transition-transform duration-300 shrink-0 ${
+                        className={`size-5 text-[var(--primary)] transition-transform duration-300 shrink-0 ${
                           isOpen ? "rotate-180" : ""
                         }`}
                       />
@@ -241,7 +241,7 @@ export function FaqPage() {
                       }`}
                     >
                       <div className="px-5 sm:px-6 pb-5 sm:pb-6 pl-16 sm:pl-[4.5rem]">
-                        <p className="text-sm leading-relaxed text-slate-600">
+                        <p className="text-sm leading-relaxed text-[var(--surface-muted)]">
                           {item.answer}
                         </p>
                       </div>
@@ -253,16 +253,16 @@ export function FaqPage() {
           </div>
 
           {/* Still Have Questions Banner */}
-          <ScrollReveal variant="scale" delay={100} className="mt-12 rounded-2xl border border-[#C9DFF0] bg-gradient-to-r from-[#E8F4FD] to-sky-50 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <ScrollReveal variant="scale" delay={100} className="mt-12 rounded-[var(--radius-2xl)] border border-[#C9DFF0] bg-gradient-to-r from-[#E8F4FD] to-sky-50 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex items-start sm:items-center gap-3">
-              <div className="size-10 rounded-xl bg-[#2B7BC4] text-white flex items-center justify-center shrink-0 shadow-sm">
+              <div className="size-10 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white flex items-center justify-center shrink-0 shadow-md">
                 <Clock className="size-5" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-[#0D2137]">
+                <h4 className="text-sm font-bold text-[var(--foreground)]">
                   Still have questions?
                 </h4>
-                <p className="text-xs text-slate-600 mt-0.5">
+                <p className="text-xs text-[var(--surface-muted)] mt-0.5">
                   Our team responds within 4 business hours during working days
                   (10:00 AM – 7:00 PM IST).
                 </p>
@@ -272,7 +272,7 @@ export function FaqPage() {
               href="https://wa.me/919941999415?text=Hi%2C%20I%20have%20a%20question%20about%20Creo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] hover:brightness-110 active:scale-95 px-5 py-2.5 text-xs font-bold text-white transition-all shadow-md shadow-blue-500/20 shrink-0 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] hover:brightness-110 active:scale-95 px-5 py-2.5 text-xs font-bold text-white transition-all shadow-md shadow-blue-500/20 shrink-0 cursor-pointer"
             >
               <MessageSquare className="size-3.5" />
               Chat with Us
@@ -283,7 +283,7 @@ export function FaqPage() {
 
       {/* ── Bottom CTA ──────────────────────────────────────────────────── */}
       <section className="bg-gradient-to-br from-[#07192F] via-[#0B2545] to-[#123966] py-14 sm:py-18 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[var(--primary)]/100/10 rounded-full blur-3xl pointer-events-none" />
         <ScrollReveal variant="scale" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white">
             Ready to start?
@@ -294,7 +294,7 @@ export function FaqPage() {
           <div className="mt-7">
             <Link
               to="/pricing"
-              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] hover:brightness-110 active:scale-95 text-white rounded-xl h-12 px-8 text-sm font-bold shadow-lg shadow-blue-600/30 transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] hover:brightness-110 active:scale-95 text-white rounded-[var(--radius-xl)] h-12 px-8 text-sm font-bold shadow-lg shadow-blue-600/30 transition-all cursor-pointer"
             >
               Explore Retainer Plans
               <ArrowRight className="size-4" />

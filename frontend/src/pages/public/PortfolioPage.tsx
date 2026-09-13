@@ -217,19 +217,19 @@ export function PortfolioPage() {
       {/* ── 1. Hero Section ────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#E8F4FD] via-[#F4F9FD] to-white pt-10 pb-8 sm:pt-14 sm:pb-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1 text-xs font-semibold text-[#2B7BC4] shadow-2xs border border-[#C9DFF0] mb-4">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[var(--surface-card)] px-3.5 py-1 text-xs font-semibold text-[var(--primary)] shadow-2xs border border-[#C9DFF0] mb-4">
             <Sparkles className="size-3.5" />
             Proven Campaign Execution Across 50+ Retainers
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-[#0D2137] sm:text-5xl">
+          <h1 className="text-3xl font-extrabold tracking-tight text-[var(--foreground)] sm:text-5xl">
             Our Work Speaks <br />
-            <span className="text-[#2B7BC4]">in Measurable Growth</span>
+            <span className="text-[var(--primary)]">in Measurable Growth</span>
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[var(--surface-muted)] sm:text-lg">
             Every reel, carousel, and creative asset we deliver is engineered for audience retention,
             brand differentiation, and commercial conversion.
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs sm:text-sm font-semibold text-slate-600">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs sm:text-sm font-semibold text-[var(--surface-muted)]">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="size-4 text-emerald-600" />
               <span>Native 4K & High-Res Formats</span>
@@ -247,16 +247,16 @@ export function PortfolioPage() {
       </section>
 
       {/* ── 2. Case Studies Section ────────────────────────────────────── */}
-      <section className="bg-white py-12 sm:py-16">
+      <section className="bg-[var(--surface-card)] py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#2B7BC4]">
+            <span className="text-xs font-bold uppercase tracking-widest text-[var(--primary)]">
               Performance Highlights
             </span>
-            <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-[#0D2137] sm:text-3xl">
+            <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-[var(--foreground)] sm:text-3xl">
               Real Brands, Verifiable Returns
             </h2>
-            <p className="mt-2 text-sm text-slate-600 sm:text-base">
+            <p className="mt-2 text-sm text-[var(--surface-muted)] sm:text-base">
               We replace subjective opinions with structured weekly production and measurable engagement lifts.
             </p>
           </div>
@@ -264,49 +264,49 @@ export function PortfolioPage() {
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {CASE_STUDIES.map((study, idx) => (
               <ScrollReveal key={study.brand} variant="up" delay={idx * 100} className="h-full">
-                <div className="group relative flex flex-col justify-between rounded-3xl border border-[#C9DFF0] bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-full">
+                <div className="group relative flex flex-col justify-between rounded-[var(--radius-3xl)] border border-[#C9DFF0] bg-[var(--surface-card)] p-7 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-full">
                   <div>
                     <div className="flex items-center justify-between">
                       <div>
-                        <h3 className="text-xl font-bold text-[#0D2137]">{study.brand}</h3>
-                        <span className="text-xs font-semibold text-slate-500">{study.industry}</span>
+                        <h3 className="text-xl font-bold text-[var(--foreground)]">{study.brand}</h3>
+                        <span className="text-xs font-semibold text-[var(--surface-muted)]">{study.industry}</span>
                       </div>
-                      <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-bold text-slate-700">
+                      <span className="rounded-full bg-[var(--surface-sunken)] px-3 py-1 text-[11px] font-bold text-slate-700">
                         Verified Client
                       </span>
                     </div>
 
                     <div className="mt-6 space-y-4">
                       <div>
-                        <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-[var(--surface-muted)]">
                           The Challenge
                         </p>
-                        <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                        <p className="mt-1 text-sm leading-relaxed text-[var(--surface-muted)]">
                           {study.challenge}
                         </p>
                       </div>
                       <div>
-                        <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-[var(--surface-muted)]">
                           Our Solution
                         </p>
-                        <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                        <p className="mt-1 text-sm leading-relaxed text-[var(--surface-muted)]">
                           {study.approach}
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-6 border-t border-slate-100 pt-5">
-                    <div className={`rounded-2xl ${study.color} p-4 border border-black/5`}>
+                  <div className="mt-6 border-t border-[var(--surface-border)] pt-5">
+                    <div className={`rounded-[var(--radius-2xl)] ${study.color} p-4 border border-black/5`}>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-semibold text-slate-600">{study.metricLabel}</span>
+                        <span className="text-xs font-semibold text-[var(--surface-muted)]">{study.metricLabel}</span>
                         <TrendingUp className={`size-4 ${study.accent}`} />
                       </div>
                       <p className={`mt-1 text-2xl font-black ${study.accent}`}>
                         {study.result}
                       </p>
                     </div>
-                    <p className="mt-3 text-[11px] font-medium text-slate-400 flex items-center gap-1.5">
+                    <p className="mt-3 text-[11px] font-medium text-[var(--surface-muted)] flex items-center gap-1.5">
                       <span className="inline-block size-1.5 rounded-full bg-emerald-500" />
                       {study.deliverables}
                     </p>
@@ -316,8 +316,8 @@ export function PortfolioPage() {
             ))}
           </div>
 
-          <div className="mt-12 rounded-2xl bg-[#E8F4FD]/50 border border-[#C9DFF0] p-4 text-center">
-            <p className="text-xs font-medium text-slate-600">
+          <div className="mt-12 rounded-[var(--radius-2xl)] bg-[var(--primary)]/10/50 border border-[#C9DFF0] p-4 text-center">
+            <p className="text-xs font-medium text-[var(--surface-muted)]">
               ⚡ All case study metrics are validated through client Meta Insights, Google Analytics, and direct CRM reporting for active Creo retainers.
             </p>
           </div>
@@ -328,20 +328,20 @@ export function PortfolioPage() {
       <section className="bg-[#F8F9FA] py-12 sm:py-16 border-y border-[#C9DFF0]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#2B7BC4]">
+            <span className="text-xs font-bold uppercase tracking-widest text-[var(--primary)]">
               Deliverables Portfolio
             </span>
-            <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-[#0D2137] sm:text-3xl">
+            <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-[var(--foreground)] sm:text-3xl">
               Engineered for Thumbs to Stop Scrolling
             </h2>
-            <p className="mt-2 text-sm text-slate-600 sm:text-base">
+            <p className="mt-2 text-sm text-[var(--surface-muted)] sm:text-base">
               Explore recent production outputs designed for Instagram, LinkedIn, and Meta Ad networks.
             </p>
           </div>
 
           {/* Filter Tabs */}
           <div className="mt-8 flex justify-center">
-            <div className="inline-flex rounded-2xl bg-white p-1.5 shadow-xs border border-[#C9DFF0]">
+            <div className="inline-flex rounded-[var(--radius-2xl)] bg-[var(--surface-card)] p-1.5 shadow-xs border border-[#C9DFF0]">
               {(
                 [
                   { id: "all", label: "All Formats" },
@@ -354,10 +354,10 @@ export function PortfolioPage() {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
-                  className={`rounded-xl px-4 py-1.5 text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                  className={`rounded-[var(--radius-xl)] px-4 py-1.5 text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                     activeTab === tab.id
-                      ? "bg-[#2B7BC4] text-white shadow-md shadow-[#2B7BC4]/20"
-                      : "text-slate-600 hover:text-[#0D2137]"
+                      ? "bg-[var(--primary)] text-white shadow-md shadow-[#2B7BC4]/20"
+                      : "text-[var(--surface-muted)] hover:text-[var(--foreground)]"
                   }`}
                 >
                   {tab.label}
@@ -372,7 +372,7 @@ export function PortfolioPage() {
               <ScrollReveal key={item.id} variant="scale" delay={idx * 60} className="h-full">
                 <div
                   onClick={() => setSelectedItem(item)}
-                  className="group relative cursor-pointer overflow-hidden rounded-3xl border border-[#C9DFF0] bg-white shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-full flex flex-col justify-between"
+                  className="group relative cursor-pointer overflow-hidden rounded-[var(--radius-3xl)] border border-[#C9DFF0] bg-[var(--surface-card)] shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-full flex flex-col justify-between"
                 >
                   {/* Visual Thumbnail Area with Real AI Image & Micro-Animations */}
                   <div className="relative h-64 w-full bg-slate-900 p-5 flex flex-col justify-between text-white overflow-hidden">
@@ -389,15 +389,15 @@ export function PortfolioPage() {
                       <span className="rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-[11px] font-bold text-white uppercase tracking-wider border border-white/20 shadow-xs">
                         {item.brand}
                       </span>
-                      <span className="rounded-full bg-emerald-500 px-2.5 py-0.5 text-[10px] font-extrabold text-white shadow-sm flex items-center gap-1">
-                        <span className="size-1.5 rounded-full bg-white animate-pulse" />
+                      <span className="rounded-full bg-emerald-500 px-2.5 py-0.5 text-[10px] font-extrabold text-white shadow-md flex items-center gap-1">
+                        <span className="size-1.5 rounded-full bg-[var(--surface-card)] animate-pulse" />
                         {item.tag}
                       </span>
                     </div>
 
                     {/* Center Action Indicator / Play or View */}
                     <div className="relative z-10 my-auto flex flex-col items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                      <div className="size-14 rounded-2xl bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-lg group-hover:bg-[#2B7BC4] transition-colors">
+                      <div className="size-14 rounded-[var(--radius-2xl)] bg-[var(--surface-card)]/20 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-lg group-hover:bg-[var(--primary)] transition-colors">
                         {item.category === "reels" ? (
                           <Play className="size-6 fill-white text-white ml-0.5" />
                         ) : item.category === "carousels" ? (
@@ -414,7 +414,7 @@ export function PortfolioPage() {
                       <span className="flex items-center gap-1 text-[11px]">
                         {item.format}
                       </span>
-                      <span className="inline-flex items-center gap-1 text-white bg-white/25 hover:bg-white/40 backdrop-blur-sm rounded-lg px-2.5 py-1 transition-all text-xs">
+                      <span className="inline-flex items-center gap-1 text-white bg-[var(--surface-card)]/25 hover:bg-[var(--surface-card)]/40 backdrop-blur-sm rounded-[var(--radius-xl)] px-2.5 py-1 transition-all text-xs">
                         <Eye className="size-3.5" /> Inspect Specs
                       </span>
                     </div>
@@ -422,18 +422,18 @@ export function PortfolioPage() {
 
                   {/* Card Content */}
                   <div className="p-6">
-                    <h4 className="text-base font-bold text-[#0D2137] group-hover:text-[#2B7BC4] transition-colors line-clamp-1">
+                    <h4 className="text-base font-bold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors line-clamp-1">
                       {item.title}
                     </h4>
-                    <p className="mt-2 text-xs leading-relaxed text-slate-600 line-clamp-2">
+                    <p className="mt-2 text-xs leading-relaxed text-[var(--surface-muted)] line-clamp-2">
                       {item.description}
                     </p>
 
-                    <div className="mt-4 flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
+                    <div className="mt-4 flex flex-wrap gap-1.5 pt-3 border-t border-[var(--surface-border)]">
                       {item.specs.map((spec) => (
                         <span
                           key={spec}
-                          className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-600"
+                          className="rounded-md bg-[var(--surface-sunken)] px-2 py-0.5 text-[10px] font-semibold text-[var(--surface-muted)]"
                         >
                           {spec}
                         </span>
@@ -456,19 +456,19 @@ export function PortfolioPage() {
           onClick={() => setSelectedItem(null)}
         >
           <div
-            className="relative w-full max-w-2xl rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-[#C9DFF0] animate-scale-up"
+            className="relative w-full max-w-2xl rounded-[var(--radius-3xl)] bg-[var(--surface-card)] p-6 sm:p-8 shadow-2xl border border-[#C9DFF0] animate-scale-up"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               type="button"
               onClick={() => setSelectedItem(null)}
-              className="absolute right-5 top-5 rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors"
+              className="absolute right-5 top-5 rounded-full p-2 text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)] hover:text-slate-700 transition-colors"
             >
               <X className="size-5" />
             </button>
 
             <div className="flex items-center gap-3">
-              <span className="rounded-full bg-[#E8F4FD] px-3.5 py-1 text-xs font-bold text-[#2B7BC4]">
+              <span className="rounded-full bg-[var(--primary)]/10 px-3.5 py-1 text-xs font-bold text-[var(--primary)]">
                 {selectedItem.brand}
               </span>
               <span className="rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-700">
@@ -476,12 +476,12 @@ export function PortfolioPage() {
               </span>
             </div>
 
-            <h3 className="mt-4 text-2xl font-black text-[#0D2137]">
+            <h3 className="mt-4 text-2xl font-black text-[var(--foreground)]">
               {selectedItem.title}
             </h3>
 
             <div
-              className="relative mt-6 h-52 rounded-2xl overflow-hidden shadow-inner bg-slate-900"
+              className="relative mt-6 h-52 rounded-[var(--radius-2xl)] overflow-hidden shadow-inner bg-slate-900"
             >
               <img
                 src={selectedItem.image}
@@ -490,7 +490,7 @@ export function PortfolioPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/30 flex items-center justify-center text-white">
                 <div className="text-center">
-                  <div className="mx-auto size-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 mb-2">
+                  <div className="mx-auto size-12 rounded-[var(--radius-2xl)] bg-[var(--surface-card)]/20 backdrop-blur-md flex items-center justify-center border border-white/30 mb-2">
                     {selectedItem.category === "reels" ? (
                       <Play className="size-6 fill-white text-white ml-0.5" />
                     ) : selectedItem.category === "carousels" ? (
@@ -505,41 +505,41 @@ export function PortfolioPage() {
               </div>
             </div>
 
-            <p className="mt-6 text-sm leading-relaxed text-slate-600">
+            <p className="mt-6 text-sm leading-relaxed text-[var(--surface-muted)]">
               {selectedItem.description}
             </p>
 
-            <div className="mt-6 rounded-2xl bg-slate-50 border border-slate-200/80 p-4">
-              <h5 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+            <div className="mt-6 rounded-[var(--radius-2xl)] bg-[var(--surface-sunken)] border border-[var(--surface-border)]/80 p-4">
+              <h5 className="text-xs font-bold uppercase tracking-wider text-[var(--surface-muted)] mb-2">
                 Production & Delivery Specifications
               </h5>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 <div>
-                  <span className="block text-[10px] text-slate-400 uppercase">Dimensions</span>
-                  <span className="text-xs font-bold text-[#0D2137]">{selectedItem.ratio}</span>
+                  <span className="block text-[10px] text-[var(--surface-muted)] uppercase">Dimensions</span>
+                  <span className="text-xs font-bold text-[var(--foreground)]">{selectedItem.ratio}</span>
                 </div>
                 <div>
-                  <span className="block text-[10px] text-slate-400 uppercase">Licensing</span>
+                  <span className="block text-[10px] text-[var(--surface-muted)] uppercase">Licensing</span>
                   <span className="text-xs font-bold text-emerald-600">Full Commercial Use</span>
                 </div>
                 <div>
-                  <span className="block text-[10px] text-slate-400 uppercase">Revisions</span>
-                  <span className="text-xs font-bold text-[#0D2137]">2 Rounds Included</span>
+                  <span className="block text-[10px] text-[var(--surface-muted)] uppercase">Revisions</span>
+                  <span className="text-xs font-bold text-[var(--foreground)]">2 Rounds Included</span>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 flex flex-col sm:flex-row items-center justify-end gap-3 pt-4 border-t border-slate-100">
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-end gap-3 pt-4 border-t border-[var(--surface-border)]">
               <button
                 type="button"
                 onClick={() => setSelectedItem(null)}
-                className="w-full sm:w-auto rounded-xl border border-slate-200 px-5 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-colors cursor-pointer"
+                className="w-full sm:w-auto rounded-[var(--radius-xl)] border border-[var(--surface-border)] px-5 py-2.5 text-xs font-semibold text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)] transition-colors cursor-pointer"
               >
                 Close Preview
               </button>
               <Link
                 to="/pricing"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] px-6 py-2.5 text-xs font-bold text-white hover:brightness-110 active:scale-95 transition-all shadow-md shadow-blue-500/20 cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] px-6 py-2.5 text-xs font-bold text-white hover:brightness-110 active:scale-95 transition-all shadow-md shadow-blue-500/20 cursor-pointer"
               >
                 Order Deliverables Like This
                 <ArrowUpRight className="size-3.5" />
@@ -551,7 +551,7 @@ export function PortfolioPage() {
 
       {/* ── 5. Bottom CTA ─────────────────────────────────────────────── */}
       <section className="bg-gradient-to-br from-[#07192F] via-[#0B2545] to-[#123966] py-16 sm:py-20 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[var(--primary)]/100/10 rounded-full blur-3xl pointer-events-none" />
         <ScrollReveal variant="scale" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl">
             Want Content That Elevates Your Brand?
@@ -562,7 +562,7 @@ export function PortfolioPage() {
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/pricing"
-              className="inline-flex items-center justify-center bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] hover:brightness-110 active:scale-95 text-white rounded-xl h-12 px-8 text-sm font-bold transition-all shadow-lg shadow-blue-600/30 w-full sm:w-auto cursor-pointer"
+              className="inline-flex items-center justify-center bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] hover:brightness-110 active:scale-95 text-white rounded-[var(--radius-xl)] h-12 px-8 text-sm font-bold transition-all shadow-lg shadow-blue-600/30 w-full sm:w-auto cursor-pointer"
             >
               Explore Monthly Retainers
             </Link>
@@ -570,7 +570,7 @@ export function PortfolioPage() {
               href="https://wa.me/919941999415"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/25 text-white rounded-xl h-12 px-8 text-sm font-bold backdrop-blur-md transition-all shadow-md w-full sm:w-auto gap-2 cursor-pointer"
+              className="inline-flex items-center justify-center bg-[var(--surface-card)]/10 hover:bg-[var(--surface-card)]/20 border border-white/25 text-white rounded-[var(--radius-xl)] h-12 px-8 text-sm font-bold backdrop-blur-md transition-all shadow-md w-full sm:w-auto gap-2 cursor-pointer"
             >
               <span>Speak with Our Creative Director</span>
               <ArrowUpRight className="size-4" />

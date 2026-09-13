@@ -37,12 +37,12 @@ export function GoogleCallbackPage() {
       refresh().then(() => {
         setStatus("success");
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/admin/tasks");
         }, 600);
       }).catch(() => {
         setStatus("success");
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/admin/tasks");
         }, 600);
       });
       return;
@@ -83,7 +83,7 @@ export function GoogleCallbackPage() {
               res.user.role === "editor" ||
               res.user.role === "designer"
             ) {
-              navigate("/dashboard");
+              navigate("/admin/tasks");
             } else {
               navigate("/portal");
             }
@@ -111,31 +111,31 @@ export function GoogleCallbackPage() {
         {/* Atmospheric Cinematic Sapphire Vignette */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#030A16]/85 via-[#07192F]/65 to-[#040D1A]/90 backdrop-blur-[2px]" />
         {/* Animated Ambient Light Pulses */}
-        <div className="absolute -top-28 -left-28 w-[520px] h-[520px] bg-blue-500/20 rounded-full blur-[120px] animate-ai-orb-1" />
+        <div className="absolute -top-28 -left-28 w-[520px] h-[520px] bg-[var(--primary)]/100/20 rounded-full blur-[120px] animate-ai-orb-1" />
         <div className="absolute -bottom-28 -right-28 w-[580px] h-[580px] bg-cyan-400/15 rounded-full blur-[130px] animate-ai-orb-2" />
       </div>
 
       {/* ── Top Header Bar ────────────────────────────────────────────────── */}
       <header className="max-w-md w-full mx-auto flex items-center justify-between pb-1 relative z-10 shrink-0">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="flex size-8 items-center justify-center rounded-xl bg-gradient-to-br from-[#2B7BC4] to-[#0EA5E9] shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform border border-white/20">
+          <div className="flex size-8 items-center justify-center rounded-[var(--radius-xl)] bg-gradient-to-br from-[#2B7BC4] to-[#0EA5E9] shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform border border-white/20">
             <span className="font-mono text-base font-black text-white">C</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-black tracking-tight text-white drop-shadow-sm">Creo</span>
+            <span className="text-lg font-black tracking-tight text-white drop-shadow-md">Creo</span>
             <span className="text-[8px] font-bold tracking-wider text-cyan-300 uppercase">
               Identity Services
             </span>
           </div>
         </Link>
-        <div className="flex items-center gap-1.5 text-[11px] font-medium text-blue-200/80 bg-white/5 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md">
+        <div className="flex items-center gap-1.5 text-[11px] font-medium text-blue-200/80 bg-[var(--surface-card)]/5 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md">
           <Lock className="size-3 text-cyan-300" />
           <span>TLS 1.3 / OAuth 2.0</span>
         </div>
       </header>
 
       {/* ── Main Handshake Card ─────────────────────────────────────────── */}
-      <div className="relative w-full max-w-md mx-auto my-auto rounded-3xl border border-white/40 bg-white/95 backdrop-blur-2xl p-8 sm:p-10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] text-center space-y-6 z-10 animate-page-in">
+      <div className="relative w-full max-w-md mx-auto my-auto rounded-3xl border border-white/40 bg-[var(--surface-card)]/95 backdrop-blur-2xl p-8 sm:p-10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] text-center space-y-6 z-10 animate-page-in">
         {/* Dual Brand Handshake Bridge: Google <───> Creo */}
         <div className="relative flex items-center justify-center gap-4 py-2">
           {/* Connecting Handshake Line with Pulse */}
@@ -144,7 +144,7 @@ export function GoogleCallbackPage() {
           </div>
 
           {/* Google Icon Container */}
-          <div className="relative flex size-14 items-center justify-center rounded-2xl bg-white border border-slate-200/80 shadow-md shadow-slate-200/50 hover:scale-105 transition-transform z-10">
+          <div className="relative flex size-14 items-center justify-center rounded-[var(--radius-2xl)] bg-[var(--surface-card)] border border-[var(--surface-border)]/80 shadow-md shadow-slate-200/50 hover:scale-105 transition-transform z-10">
             <svg className="size-7" viewBox="0 0 24 24">
               <path
                 fill="#4285F4"
@@ -171,7 +171,7 @@ export function GoogleCallbackPage() {
           </div>
 
           {/* Creo Logo Container */}
-          <div className="relative flex size-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#2B7BC4] to-[#1E609A] text-white font-black text-2xl shadow-lg shadow-blue-500/30 hover:scale-105 transition-transform z-10 border border-blue-400/30">
+          <div className="relative flex size-14 items-center justify-center rounded-[var(--radius-2xl)] bg-gradient-to-tr from-[#2B7BC4] to-[#1E609A] text-white font-black text-2xl shadow-lg shadow-blue-500/30 hover:scale-105 transition-transform z-10 border border-blue-400/30">
             C
           </div>
         </div>
@@ -185,22 +185,22 @@ export function GoogleCallbackPage() {
               <div className="absolute inset-0 rounded-full border-3 border-blue-200/60" />
               <div className="size-14 rounded-full border-3 border-transparent border-t-[#2B7BC4] border-r-[#0EA5E9] animate-spin" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <ShieldCheck className="size-5 text-[#2B7BC4]" />
+                <ShieldCheck className="size-5 text-[var(--primary)]" />
               </div>
             </div>
 
             <div>
-              <h2 className="text-xl font-extrabold text-[#0D2137] tracking-tight">
+              <h2 className="text-xl font-extrabold text-[var(--foreground)] tracking-tight">
                 Signing in with Google
               </h2>
-              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed max-w-xs mx-auto">
+              <p className="text-xs text-[var(--surface-muted)] mt-1.5 leading-relaxed max-w-xs mx-auto">
                 {step === 1 && "Verifying secure cryptographic signature..."}
                 {step === 2 && "Synchronizing workspace credentials & profile..."}
                 {step >= 3 && "Configuring authenticated session..."}
               </p>
             </div>
 
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/70 text-[11px] font-bold text-[#2B7BC4] shadow-2xs">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[var(--primary)]/10/80 border border-blue-200/70 text-[11px] font-bold text-[var(--primary)] shadow-2xs">
               <ShieldCheck className="size-3.5 text-[#0EA5E9]" />
               <span>OAuth 2.0 Encrypted Handshake</span>
             </div>
@@ -215,10 +215,10 @@ export function GoogleCallbackPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-black text-[#0D2137] tracking-tight">
+              <h2 className="text-xl font-black text-[var(--foreground)] tracking-tight">
                 Welcome, {authenticatedUser?.full_name?.split(" ")[0] || "there"}!
               </h2>
-              <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+              <p className="text-xs text-[var(--surface-muted)] mt-1 leading-relaxed">
                 Authentication confirmed. Launching your Creo production portal...
               </p>
             </div>
@@ -238,8 +238,8 @@ export function GoogleCallbackPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-[#0D2137]">Authentication Failed</h2>
-              <p className="text-xs text-rose-700 bg-rose-50/90 p-3.5 rounded-2xl border border-rose-200/80 mt-2.5 leading-relaxed text-left">
+              <h2 className="text-xl font-bold text-[var(--foreground)]">Authentication Failed</h2>
+              <p className="text-xs text-rose-700 bg-rose-50/90 p-3.5 rounded-[var(--radius-2xl)] border border-rose-200/80 mt-2.5 leading-relaxed text-left">
                 {errorMessage}
               </p>
             </div>
@@ -247,7 +247,7 @@ export function GoogleCallbackPage() {
             <div className="pt-2">
               <Link
                 to="/login"
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] px-6 py-2.5 text-xs font-bold text-white shadow-md shadow-blue-500/25 hover:brightness-110 active:scale-95 transition-all"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] px-6 py-2.5 text-xs font-bold text-white shadow-md shadow-blue-500/25 hover:brightness-110 active:scale-95 transition-all"
               >
                 Back to Sign In <ArrowRight className="size-3.5" />
               </Link>

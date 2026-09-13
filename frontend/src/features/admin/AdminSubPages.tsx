@@ -83,14 +83,14 @@ export function AdminClientsPage() {
   });
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+    <div className="space-y-6 animate-page-in">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <Users className="size-5 text-[#2B7BC4]" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">Clients Roster</h1>
+            <Users className="size-5 text-[var(--primary)]" />
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">Clients Roster</h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             Registered brands, onboarding stage tracking, and creative quota allocations
           </p>
         </div>
@@ -105,20 +105,20 @@ export function AdminClientsPage() {
       {/* Controls */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-[var(--surface-muted)]" />
           <input
             type="text"
             placeholder="Search by brand name or email..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-200 bg-white text-xs text-[#0D2137] focus:outline-none focus:border-[#2B7BC4] focus:ring-1 focus:ring-[#2B7BC4]"
+            className="w-full pl-9 pr-4 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] text-xs text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)] focus:ring-1 focus:ring-[#2B7BC4]"
           />
         </div>
         <div className="flex items-center gap-2">
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs text-[#0D2137] focus:outline-none focus:border-[#2B7BC4]"
+            className="px-3 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] text-xs text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)]"
           >
             <option value="all">All Statuses</option>
             <option value="active">Active</option>
@@ -129,16 +129,16 @@ export function AdminClientsPage() {
       </div>
 
       {/* Client List */}
-      <div className="rounded-2xl border border-slate-200/90 bg-white shadow-xs overflow-hidden">
+      <div className="rounded-[var(--radius-2xl)] border border-[var(--surface-border)]/90 bg-[var(--surface-card)] shadow-xs overflow-hidden">
         {/* Mobile View (< 768px) */}
         <div className="block md:hidden divide-y divide-slate-100">
           {loading ? (
-            <div className="p-8 text-center text-slate-400">
-              <Loader2 className="size-5 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+            <div className="p-8 text-center text-[var(--surface-muted)]">
+              <Loader2 className="size-5 animate-spin mx-auto mb-2 text-[var(--primary)]" />
               Loading client roster...
             </div>
           ) : filteredClients.length === 0 ? (
-            <div className="p-8 text-center text-slate-500 text-xs">
+            <div className="p-8 text-center text-[var(--surface-muted)] text-xs">
               No clients found matching filter criteria.
             </div>
           ) : (
@@ -146,10 +146,10 @@ export function AdminClientsPage() {
               <div key={client.client_id} className="p-4 space-y-2.5">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <h4 className="font-bold text-sm text-[#0D2137]">
+                    <h4 className="font-bold text-sm text-[var(--foreground)]">
                       {client.company_name || client.email.split("@")[0]}
                     </h4>
-                    <p className="text-xs text-slate-500 font-mono mt-0.5">{client.email}</p>
+                    <p className="text-xs text-[var(--surface-muted)] font-mono mt-0.5">{client.email}</p>
                   </div>
                   <span
                     className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
@@ -162,10 +162,10 @@ export function AdminClientsPage() {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between text-xs pt-1 border-t border-slate-100">
+                <div className="flex items-center justify-between text-xs pt-1 border-t border-[var(--surface-border)]">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-slate-400">Plan:</span>
-                    <span className="font-semibold text-[#0D2137] capitalize">
+                    <span className="text-[var(--surface-muted)]">Plan:</span>
+                    <span className="font-semibold text-[var(--foreground)] capitalize">
                       {client.plan_name || "Growth Tier"}
                     </span>
                   </div>
@@ -173,10 +173,10 @@ export function AdminClientsPage() {
                     client.onboarding_stage >= 4 && client.plan_name && client.plan_name !== "No Plan"
                       ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
                       : client.onboarding_stage === 3 && client.plan_name && client.plan_name !== "No Plan"
-                      ? "bg-blue-50 text-[#2B7BC4] border border-blue-200"
+                      ? "bg-blue-50 text-[var(--primary)] border border-blue-200"
                       : !client.plan_name || client.plan_name === "No Plan"
                       ? "bg-amber-50 text-amber-800 border border-amber-200"
-                      : "bg-slate-100 text-slate-700 border border-slate-200"
+                      : "bg-[var(--surface-sunken)] text-slate-700 border border-[var(--surface-border)]"
                   }`}>
                     {client.onboarding_stage >= 4 && client.plan_name && client.plan_name !== "No Plan"
                       ? "Stage 4 / 4 • Done"
@@ -195,7 +195,7 @@ export function AdminClientsPage() {
         {/* Desktop Table (>= 768px) */}
         <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50 text-[#0D2137] border-b border-slate-200 font-semibold uppercase tracking-wider text-[11px]">
+            <thead className="bg-[var(--surface-sunken)] text-[var(--foreground)] border-b border-[var(--surface-border)] font-semibold uppercase tracking-wider text-[11px]">
               <tr>
                 <th className="px-4 py-3">Client / Brand</th>
                 <th className="px-4 py-3">Onboarding Stage</th>
@@ -206,35 +206,35 @@ export function AdminClientsPage() {
             <tbody className="divide-y divide-slate-100">
               {loading ? (
                 <tr>
-                  <td colSpan={4} className="px-4 py-8 text-center text-slate-400">
-                    <Loader2 className="size-5 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+                  <td colSpan={4} className="px-4 py-8 text-center text-[var(--surface-muted)]">
+                    <Loader2 className="size-5 animate-spin mx-auto mb-2 text-[var(--primary)]" />
                     Loading client roster...
                   </td>
                 </tr>
               ) : filteredClients.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="px-4 py-8 text-center text-slate-400">
+                  <td colSpan={4} className="px-4 py-8 text-center text-[var(--surface-muted)]">
                     No clients found matching filter criteria.
                   </td>
                 </tr>
               ) : (
                 filteredClients.map((client) => (
-                  <tr key={client.client_id} className="hover:bg-slate-50/70 transition-colors">
+                  <tr key={client.client_id} className="hover:bg-[var(--surface-sunken)]/70 transition-colors">
                     <td className="px-4 py-3">
-                      <div className="font-semibold text-[#0D2137]">
+                      <div className="font-semibold text-[var(--foreground)]">
                         {client.company_name || client.email.split("@")[0]}
                       </div>
-                      <div className="text-[11px] text-slate-400">{client.email}</div>
+                      <div className="text-[11px] text-[var(--surface-muted)]">{client.email}</div>
                     </td>
                     <td className="px-4 py-3">
                       <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
                         client.onboarding_stage >= 4 && client.plan_name && client.plan_name !== "No Plan"
                           ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
                           : client.onboarding_stage === 3 && client.plan_name && client.plan_name !== "No Plan"
-                          ? "bg-blue-50 text-[#2B7BC4] border border-blue-200"
+                          ? "bg-blue-50 text-[var(--primary)] border border-blue-200"
                           : !client.plan_name || client.plan_name === "No Plan"
                           ? "bg-amber-50 text-amber-800 border border-amber-200"
-                          : "bg-slate-100 text-slate-700 border border-slate-200"
+                          : "bg-[var(--surface-sunken)] text-slate-700 border border-[var(--surface-border)]"
                       }`}>
                         {client.onboarding_stage >= 4 && client.plan_name && client.plan_name !== "No Plan"
                           ? "Stage 4 / 4 • Completed"
@@ -531,15 +531,15 @@ export function AdminDeliverablesPage() {
   const revisionCount = deliverables.filter((d) => d.status.includes("revision")).length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-page-in">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <FileStack className="size-5 text-[#2B7BC4]" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">Deliverables Hub</h1>
+            <FileStack className="size-5 text-[var(--primary)]" />
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">Deliverables Hub</h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             Team Leads & Editors upload, manage, and dispatch creative deliverables directly for client approval
           </p>
         </div>
@@ -551,7 +551,7 @@ export function AdminDeliverablesPage() {
               setIsUploadOpen(true);
               setUploadError(null);
             }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1A5EA8] text-white text-xs font-semibold shadow-xs hover:brightness-105 active:scale-[0.98] transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1A5EA8] text-white text-xs font-semibold shadow-xs hover:brightness-105 active:scale-[0.98] transition-all cursor-pointer"
           >
             <UploadCloud className="size-4" />
             Upload Deliverable
@@ -561,7 +561,7 @@ export function AdminDeliverablesPage() {
 
       {/* Success Banner */}
       {uploadSuccess && (
-        <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs text-emerald-800 font-semibold flex items-center justify-between animate-in fade-in">
+        <div className="rounded-[var(--radius-xl)] border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs text-emerald-800 font-semibold flex items-center justify-between animate-in fade-in">
           <span className="flex items-center gap-2">
             <CheckCircle2 className="size-4 text-emerald-600 shrink-0" />
             {uploadSuccess}
@@ -577,27 +577,27 @@ export function AdminDeliverablesPage() {
       )}
 
       {/* Controls & Filter Bar */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-[var(--surface-card)] p-3 rounded-[var(--radius-xl)] border border-[var(--surface-border)] shadow-2xs">
         {/* Search and Client Filter */}
         <div className="flex flex-wrap items-center gap-2 flex-1">
           <div className="relative min-w-[200px] flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-[var(--surface-muted)]" />
             <input
               type="text"
               placeholder="Search by creative title or client..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-[#2B7BC4] focus:ring-1 focus:ring-[#2B7BC4]"
+              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-[var(--radius-xl)] border border-[var(--surface-border)] focus:outline-none focus:border-[var(--primary)] focus:ring-1 focus:ring-[#2B7BC4]"
             />
           </div>
 
-          <div className="flex items-center gap-1.5 text-xs text-slate-600">
-            <Filter className="size-3.5 text-slate-400" />
+          <div className="flex items-center gap-1.5 text-xs text-[var(--surface-muted)]">
+            <Filter className="size-3.5 text-[var(--surface-muted)]" />
             <select
               value={selectedClientFilter}
               onChange={(e) => setSelectedClientFilter(e.target.value)}
               aria-label="Filter deliverables by client"
-              className="px-2.5 py-1.5 text-xs rounded-lg border border-slate-200 bg-white font-medium text-slate-700 focus:outline-none focus:border-[#2B7BC4]"
+              className="px-2.5 py-1.5 text-xs rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] font-medium text-slate-700 focus:outline-none focus:border-[var(--primary)]"
             >
               <option value="all">All Clients ({clients.length})</option>
               {clients.map((c) => (
@@ -610,14 +610,14 @@ export function AdminDeliverablesPage() {
         </div>
 
         {/* Status Pills */}
-        <div className="flex flex-wrap gap-1.5 border-t md:border-t-0 md:border-l border-slate-100 pt-2 md:pt-0 md:pl-3">
+        <div className="flex flex-wrap gap-1.5 border-t md:border-t-0 md:border-l border-[var(--surface-border)] pt-2 md:pt-0 md:pl-3">
           <button
             type="button"
             onClick={() => setFilter("all")}
-            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+            className={`px-3 py-1 rounded-[var(--radius-xl)] text-xs font-semibold transition-colors cursor-pointer ${
               filter === "all"
-                ? "bg-[#2B7BC4] text-white"
-                : "bg-slate-50 text-slate-600 hover:bg-slate-100"
+                ? "bg-[var(--primary)] text-white"
+                : "bg-[var(--surface-sunken)] text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)]"
             }`}
           >
             All ({deliverables.length})
@@ -625,10 +625,10 @@ export function AdminDeliverablesPage() {
           <button
             type="button"
             onClick={() => setFilter("pending")}
-            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+            className={`px-3 py-1 rounded-[var(--radius-xl)] text-xs font-semibold transition-colors cursor-pointer ${
               filter === "pending"
-                ? "bg-[#2B7BC4] text-white"
-                : "bg-slate-50 text-slate-600 hover:bg-slate-100"
+                ? "bg-[var(--primary)] text-white"
+                : "bg-[var(--surface-sunken)] text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)]"
             }`}
           >
             Awaiting Review ({pendingCount})
@@ -636,10 +636,10 @@ export function AdminDeliverablesPage() {
           <button
             type="button"
             onClick={() => setFilter("approved")}
-            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+            className={`px-3 py-1 rounded-[var(--radius-xl)] text-xs font-semibold transition-colors cursor-pointer ${
               filter === "approved"
-                ? "bg-[#2B7BC4] text-white"
-                : "bg-slate-50 text-slate-600 hover:bg-slate-100"
+                ? "bg-[var(--primary)] text-white"
+                : "bg-[var(--surface-sunken)] text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)]"
             }`}
           >
             Approved ({approvedCount})
@@ -648,10 +648,10 @@ export function AdminDeliverablesPage() {
             <button
               type="button"
               onClick={() => setFilter("revision")}
-              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+              className={`px-3 py-1 rounded-[var(--radius-xl)] text-xs font-semibold transition-colors cursor-pointer ${
                 filter === "revision"
-                  ? "bg-[#2B7BC4] text-white"
-                  : "bg-slate-50 text-slate-600 hover:bg-slate-100"
+                  ? "bg-[var(--primary)] text-white"
+                  : "bg-[var(--surface-sunken)] text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)]"
               }`}
             >
               Revision ({revisionCount})
@@ -662,15 +662,15 @@ export function AdminDeliverablesPage() {
 
       {/* Deliverables Grid */}
       {loading ? (
-        <div className="py-16 text-center text-slate-400">
-          <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+        <div className="py-16 text-center text-[var(--surface-muted)]">
+          <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[var(--primary)]" />
           Loading deliverables from database...
         </div>
       ) : filtered.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-slate-200 bg-white p-12 text-center">
+        <div className="rounded-[var(--radius-2xl)] border border-dashed border-[var(--surface-border)] bg-[var(--surface-card)] p-12 text-center">
           <UploadCloud className="size-10 text-slate-300 mx-auto mb-3" />
-          <h3 className="text-sm font-bold text-[#0D2137]">No deliverables found</h3>
-          <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+          <h3 className="text-sm font-bold text-[var(--foreground)]">No deliverables found</h3>
+          <p className="text-xs text-[var(--surface-muted)] mt-1 max-w-sm mx-auto">
             {deliverables.length === 0
               ? "No creative deliverables have been uploaded yet. Upload a deliverable for your clients to review."
               : "No deliverables match the active filter or client selection."}
@@ -678,7 +678,7 @@ export function AdminDeliverablesPage() {
           <button
             type="button"
             onClick={() => setIsUploadOpen(true)}
-            className="mt-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#2B7BC4] text-white text-xs font-semibold hover:bg-[#1A5EA8] cursor-pointer"
+            className="mt-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white text-xs font-semibold hover:bg-[#1A5EA8] cursor-pointer"
           >
             <Plus className="size-3.5" /> Upload Now
           </button>
@@ -688,11 +688,11 @@ export function AdminDeliverablesPage() {
           {filtered.map((item) => (
             <div
               key={item.id}
-              className="group rounded-xl border border-slate-200 bg-white p-5 shadow-xs flex flex-col justify-between hover:shadow-md hover:border-slate-300 transition-all"
+              className="group rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] p-5 shadow-xs flex flex-col justify-between hover:shadow-md hover:border-[var(--surface-border)] transition-all"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#E8F4FD] text-[#2B7BC4] text-[10px] font-bold border border-[#C9DFF0] flex items-center gap-1">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#E8F4FD] text-[var(--primary)] text-[10px] font-bold border border-[#C9DFF0] flex items-center gap-1">
                     {item.type.includes("Reel") || item.type.includes("video") ? (
                       <Film className="size-3" />
                     ) : (
@@ -713,10 +713,10 @@ export function AdminDeliverablesPage() {
                   </span>
                 </div>
 
-                <h3 className="font-bold text-sm text-[#0D2137] line-clamp-1 group-hover:text-[#2B7BC4] transition-colors">
+                <h3 className="font-bold text-sm text-[var(--foreground)] line-clamp-1 group-hover:text-[var(--primary)] transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-[var(--surface-muted)] mt-1">
                   Client: <span className="font-semibold text-slate-700">{item.client}</span>
                 </p>
 
@@ -728,7 +728,7 @@ export function AdminDeliverablesPage() {
                       setIsTheaterExpanded(false);
                       setPreviewItem(item);
                     }}
-                    className="mt-3 relative h-32 w-full rounded-xl bg-slate-950 overflow-hidden border border-slate-200 hover:border-[#2B7BC4] transition-all cursor-pointer flex items-center justify-center group/thumb shadow-2xs"
+                    className="mt-3 relative h-32 w-full rounded-[var(--radius-xl)] bg-slate-950 overflow-hidden border border-[var(--surface-border)] hover:border-[var(--primary)] transition-all cursor-pointer flex items-center justify-center group/thumb shadow-2xs"
                     title="Click to Enlarge / Full Preview"
                   >
                     {isVideoAsset(item.file_url, item.type) ? (
@@ -741,7 +741,7 @@ export function AdminDeliverablesPage() {
                           preload="none"
                         />
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="size-10 rounded-full bg-black/60 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-lg group-hover/thumb:scale-110 group-hover/thumb:bg-[#2B7BC4] transition-all">
+                          <div className="size-10 rounded-full bg-black/60 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-lg group-hover/thumb:scale-110 group-hover/thumb:bg-[var(--primary)] transition-all">
                             <Play className="size-4 fill-white ml-0.5" />
                           </div>
                         </div>
@@ -771,19 +771,19 @@ export function AdminDeliverablesPage() {
                   </div>
                 )}
 
-                <div className="mt-3 p-2.5 rounded-lg bg-slate-50 border border-slate-100 text-xs space-y-1">
-                  <div className="flex justify-between text-slate-500">
+                <div className="mt-3 p-2.5 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] border border-[var(--surface-border)] text-xs space-y-1">
+                  <div className="flex justify-between text-[var(--surface-muted)]">
                     <span>Timing:</span>
-                    <span className="font-medium text-[#0D2137]">{item.date}</span>
+                    <span className="font-medium text-[var(--foreground)]">{item.date}</span>
                   </div>
-                  <div className="flex justify-between text-slate-500">
+                  <div className="flex justify-between text-[var(--surface-muted)]">
                     <span>Revision:</span>
-                    <span className="font-medium text-[#0D2137]">{item.round}</span>
+                    <span className="font-medium text-[var(--foreground)]">{item.round}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <div className="mt-4 pt-3 border-t border-[var(--surface-border)] flex items-center justify-between">
                 <button
                   type="button"
                   onClick={() => {
@@ -791,7 +791,7 @@ export function AdminDeliverablesPage() {
                     setIsTheaterExpanded(false);
                     setPreviewItem(item);
                   }}
-                  className="text-xs font-bold text-[#2B7BC4] hover:text-[#1A5EA8] flex items-center gap-1.5 cursor-pointer group/btn"
+                  className="text-xs font-bold text-[var(--primary)] hover:text-[#1A5EA8] flex items-center gap-1.5 cursor-pointer group/btn"
                 >
                   <Maximize2 className="size-3.5 transition-transform group-hover/btn:scale-110" /> Full Preview & Enlarge
                 </button>
@@ -801,7 +801,7 @@ export function AdminDeliverablesPage() {
                       type="button"
                       disabled={updatingId === item.id}
                       onClick={() => handleStatusUpdate(item.id, "approved")}
-                      className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold hover:bg-emerald-100 cursor-pointer disabled:opacity-50"
+                      className="px-2.5 py-1 rounded-[var(--radius-xl)] bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold hover:bg-emerald-100 cursor-pointer disabled:opacity-50"
                     >
                       Approve
                     </button>
@@ -820,22 +820,22 @@ export function AdminDeliverablesPage() {
       {/* Upload Deliverable Modal */}
       {isUploadOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs overflow-y-auto animate-in fade-in">
-          <div className="w-full max-w-xl rounded-2xl bg-white shadow-2xl border border-slate-100 overflow-hidden my-8">
+          <div className="w-full max-w-xl rounded-[var(--radius-2xl)] bg-[var(--surface-card)] shadow-2xl border border-[var(--surface-border)] overflow-hidden my-8">
             {/* Modal Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--surface-border)] bg-gradient-to-r from-slate-50 to-white">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-[#E8F4FD] text-[#2B7BC4]">
+                <div className="p-2 rounded-[var(--radius-xl)] bg-[#E8F4FD] text-[var(--primary)]">
                   <UploadCloud className="size-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#0D2137]">Upload Client Deliverable</h3>
-                  <p className="text-xs text-slate-500">Dispatch reel, post, or carousel for client review & approval</p>
+                  <h3 className="text-base font-bold text-[var(--foreground)]">Upload Client Deliverable</h3>
+                  <p className="text-xs text-[var(--surface-muted)]">Dispatch reel, post, or carousel for client review & approval</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setIsUploadOpen(false)}
-                className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 cursor-pointer"
+                className="rounded-[var(--radius-xl)] p-1.5 text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)] cursor-pointer"
               >
                 <X className="size-4" />
               </button>
@@ -844,7 +844,7 @@ export function AdminDeliverablesPage() {
             {/* Modal Form */}
             <form onSubmit={handleCreateDeliverable} className="p-6 space-y-4">
               {uploadError && (
-                <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold flex items-center gap-2">
+                <div className="p-3 rounded-[var(--radius-xl)] bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold flex items-center gap-2">
                   <AlertTriangle className="size-4 shrink-0" />
                   <span>{uploadError}</span>
                 </div>
@@ -860,7 +860,7 @@ export function AdminDeliverablesPage() {
                   onChange={(e) => setUploadForm({ ...uploadForm, clientId: e.target.value })}
                   aria-label="Target Client"
                   required
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white font-medium text-slate-800 focus:outline-none focus:border-[#2B7BC4] focus:ring-2 focus:ring-[#2B7BC4]/20"
+                  className="w-full px-3 py-2 text-xs rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] font-medium text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[#2B7BC4]/20"
                 >
                   {clients.length === 0 && <option value="">No clients found in system</option>}
                   {clients.map((c) => (
@@ -869,7 +869,7 @@ export function AdminDeliverablesPage() {
                     </option>
                   ))}
                 </select>
-                <p className="text-[11px] text-slate-400 mt-1">
+                <p className="text-[11px] text-[var(--surface-muted)] mt-1">
                   The client will instantly receive and see this deliverable on their Creative Deliverables portal.
                 </p>
               </div>
@@ -885,7 +885,7 @@ export function AdminDeliverablesPage() {
                     placeholder="e.g. Summer Launch Reel #1"
                     value={uploadForm.title}
                     onChange={(e) => setUploadForm({ ...uploadForm, title: e.target.value })}
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2B7BC4] focus:ring-2 focus:ring-[#2B7BC4]/20"
+                    className="w-full px-3 py-2 text-xs rounded-[var(--radius-xl)] border border-[var(--surface-border)] focus:outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[#2B7BC4]/20"
                   />
                 </div>
 
@@ -895,7 +895,7 @@ export function AdminDeliverablesPage() {
                     value={uploadForm.type}
                     onChange={(e) => setUploadForm({ ...uploadForm, type: e.target.value })}
                     aria-label="Creative Format"
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white font-medium text-slate-800 focus:outline-none focus:border-[#2B7BC4]"
+                    className="w-full px-3 py-2 text-xs rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] font-medium text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)]"
                   >
                     <option value="reel">Reel (9:16 Video)</option>
                     <option value="static_post">Static Poster (Image)</option>
@@ -911,12 +911,12 @@ export function AdminDeliverablesPage() {
                   <label className="block text-xs font-bold text-slate-700">
                     Creative Asset Media <span className="text-rose-500">*</span>
                   </label>
-                  <div className="flex gap-1 bg-slate-100 p-0.5 rounded-lg text-[11px]">
+                  <div className="flex gap-1 bg-[var(--surface-sunken)] p-0.5 rounded-[var(--radius-xl)] text-[11px]">
                     <button
                       type="button"
                       onClick={() => setActiveMediaTab("file")}
                       className={`px-2.5 py-0.5 rounded-md font-semibold transition-all cursor-pointer ${
-                        activeMediaTab === "file" ? "bg-white text-[#0D2137] shadow-2xs" : "text-slate-500 hover:text-slate-800"
+                        activeMediaTab === "file" ? "bg-[var(--surface-card)] text-[var(--foreground)] shadow-2xs" : "text-[var(--surface-muted)] hover:text-[var(--foreground)]"
                       }`}
                     >
                       <Upload className="size-3 inline mr-1" /> File Upload
@@ -925,7 +925,7 @@ export function AdminDeliverablesPage() {
                       type="button"
                       onClick={() => setActiveMediaTab("url")}
                       className={`px-2.5 py-0.5 rounded-md font-semibold transition-all cursor-pointer ${
-                        activeMediaTab === "url" ? "bg-white text-[#0D2137] shadow-2xs" : "text-slate-500 hover:text-slate-800"
+                        activeMediaTab === "url" ? "bg-[var(--surface-card)] text-[var(--foreground)] shadow-2xs" : "text-[var(--surface-muted)] hover:text-[var(--foreground)]"
                       }`}
                     >
                       Media URL
@@ -934,7 +934,7 @@ export function AdminDeliverablesPage() {
                       type="button"
                       onClick={() => setActiveMediaTab("presets")}
                       className={`px-2.5 py-0.5 rounded-md font-semibold transition-all cursor-pointer ${
-                        activeMediaTab === "presets" ? "bg-white text-[#0D2137] shadow-2xs" : "text-slate-500 hover:text-slate-800"
+                        activeMediaTab === "presets" ? "bg-[var(--surface-card)] text-[var(--foreground)] shadow-2xs" : "text-[var(--surface-muted)] hover:text-[var(--foreground)]"
                       }`}
                     >
                       <Sparkles className="size-3 inline mr-1 text-amber-500" /> Demo Presets
@@ -944,7 +944,7 @@ export function AdminDeliverablesPage() {
 
                 {/* Tab A: Local File Upload */}
                 {activeMediaTab === "file" && (
-                  <div className="border-2 border-dashed border-slate-200 hover:border-[#2B7BC4] rounded-xl p-5 text-center transition-colors bg-slate-50/50">
+                  <div className="border-2 border-dashed border-[var(--surface-border)] hover:border-[var(--primary)] rounded-[var(--radius-xl)] p-5 text-center transition-colors bg-[var(--surface-sunken)]/50">
                     <input
                       type="file"
                       id="deliverable-file-input"
@@ -958,23 +958,23 @@ export function AdminDeliverablesPage() {
                     >
                       {isUploadingFile ? (
                         <div className="space-y-2 py-2">
-                          <Loader2 className="size-6 animate-spin text-[#2B7BC4] mx-auto" />
-                          <p className="text-xs font-semibold text-slate-600">Uploading media asset to server...</p>
+                          <Loader2 className="size-6 animate-spin text-[var(--primary)] mx-auto" />
+                          <p className="text-xs font-semibold text-[var(--surface-muted)]">Uploading media asset to server...</p>
                         </div>
                       ) : uploadForm.fileUrl && uploadForm.fileUrl.startsWith("/static") ? (
                         <div className="space-y-2 py-1">
                           <CheckCircle2 className="size-6 text-emerald-500 mx-auto" />
-                          <p className="text-xs font-bold text-slate-800">Media file uploaded successfully!</p>
-                          <span className="text-[11px] text-slate-500 font-mono break-all">{uploadForm.fileUrl}</span>
-                          <p className="text-[11px] text-[#2B7BC4] font-semibold hover:underline">Click to replace file</p>
+                          <p className="text-xs font-bold text-[var(--foreground)]">Media file uploaded successfully!</p>
+                          <span className="text-[11px] text-[var(--surface-muted)] font-mono break-all">{uploadForm.fileUrl}</span>
+                          <p className="text-[11px] text-[var(--primary)] font-semibold hover:underline">Click to replace file</p>
                         </div>
                       ) : (
                         <div className="space-y-1.5 py-1">
-                          <UploadCloud className="size-8 text-[#2B7BC4] mx-auto" />
+                          <UploadCloud className="size-8 text-[var(--primary)] mx-auto" />
                           <p className="text-xs font-bold text-slate-700">
                             Click to browse or drag & drop creative file
                           </p>
-                          <p className="text-[11px] text-slate-400">
+                          <p className="text-[11px] text-[var(--surface-muted)]">
                             Supports MP4 / MOV reels, PNG, JPG, and WEBP posters
                           </p>
                         </div>
@@ -1000,9 +1000,9 @@ export function AdminDeliverablesPage() {
                           type: isVideo ? "reel" : uploadForm.type,
                         });
                       }}
-                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2B7BC4] font-mono text-slate-700"
+                      className="w-full px-3 py-2 text-xs rounded-[var(--radius-xl)] border border-[var(--surface-border)] focus:outline-none focus:border-[var(--primary)] font-mono text-slate-700"
                     />
-                    <p className="text-[11px] text-slate-400">
+                    <p className="text-[11px] text-[var(--surface-muted)]">
                       Paste direct link to S3, Cloudflare R2, Unsplash, or CDN video/image.
                     </p>
                   </div>
@@ -1041,14 +1041,14 @@ export function AdminDeliverablesPage() {
                         key={preset.title}
                         type="button"
                         onClick={() => handleApplyPreset(preset)}
-                        className={`text-left p-2.5 rounded-xl border text-xs transition-all cursor-pointer flex flex-col justify-between ${
+                        className={`text-left p-2.5 rounded-[var(--radius-xl)] border text-xs transition-all cursor-pointer flex flex-col justify-between ${
                           uploadForm.fileUrl === preset.url
-                            ? "border-[#2B7BC4] bg-[#E8F4FD] text-[#0D2137] font-semibold"
-                            : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700"
+                            ? "border-[var(--primary)] bg-[#E8F4FD] text-[var(--foreground)] font-semibold"
+                            : "border-[var(--surface-border)] bg-[var(--surface-card)] hover:bg-[var(--surface-sunken)] text-slate-700"
                         }`}
                       >
                         <span className="line-clamp-1">{preset.title}</span>
-                        <span className="text-[10px] text-[#2B7BC4] font-bold mt-1 uppercase">
+                        <span className="text-[10px] text-[var(--primary)] font-bold mt-1 uppercase">
                           {preset.type.replace("_", " ")}
                         </span>
                       </button>
@@ -1059,8 +1059,8 @@ export function AdminDeliverablesPage() {
 
               {/* Live Thumbnail Preview if URL is set */}
               {uploadForm.fileUrl && (
-                <div className="p-3 rounded-xl bg-slate-900 flex items-center gap-3">
-                  <div className="h-16 w-16 shrink-0 rounded-lg overflow-hidden bg-black flex items-center justify-center">
+                <div className="p-3 rounded-[var(--radius-xl)] bg-slate-900 flex items-center gap-3">
+                  <div className="h-16 w-16 shrink-0 rounded-[var(--radius-xl)] overflow-hidden bg-black flex items-center justify-center">
                     {uploadForm.fileUrl.endsWith(".mp4") || uploadForm.fileType?.includes("video") ? (
                       <video src={uploadForm.fileUrl} className="h-full w-full object-cover" muted />
                     ) : (
@@ -1069,7 +1069,7 @@ export function AdminDeliverablesPage() {
                   </div>
                   <div className="flex-1 min-w-0 text-white">
                     <p className="text-xs font-bold truncate">{uploadForm.title || "Ready to upload"}</p>
-                    <p className="text-[11px] text-slate-400 font-mono truncate">{uploadForm.fileUrl}</p>
+                    <p className="text-[11px] text-[var(--surface-muted)] font-mono truncate">{uploadForm.fileUrl}</p>
                     <span className="inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
                       Asset Verified & Attached
                     </span>
@@ -1085,7 +1085,7 @@ export function AdminDeliverablesPage() {
                     value={uploadForm.status}
                     onChange={(e) => setUploadForm({ ...uploadForm, status: e.target.value })}
                     aria-label="Initial Status"
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white font-medium text-slate-800 focus:outline-none focus:border-[#2B7BC4]"
+                    className="w-full px-3 py-2 text-xs rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] font-medium text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)]"
                   >
                     <option value="pending_approval">Awaiting Client Review (Ready for Approval)</option>
                     <option value="in_production">In Production (Drafting)</option>
@@ -1099,7 +1099,7 @@ export function AdminDeliverablesPage() {
                     value={uploadForm.revisionRound}
                     onChange={(e) => setUploadForm({ ...uploadForm, revisionRound: Number(e.target.value) })}
                     aria-label="Revision Round"
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white font-medium text-slate-800 focus:outline-none focus:border-[#2B7BC4]"
+                    className="w-full px-3 py-2 text-xs rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] font-medium text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)]"
                   >
                     <option value={1}>Draft 1 (First Cut)</option>
                     <option value={2}>Round 2 (Revision)</option>
@@ -1118,23 +1118,23 @@ export function AdminDeliverablesPage() {
                   placeholder="e.g. Optimized for high engagement reels. Audio timed at 128 BPM with branded lower thirds."
                   value={uploadForm.description}
                   onChange={(e) => setUploadForm({ ...uploadForm, description: e.target.value })}
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-[#2B7BC4] focus:ring-2 focus:ring-[#2B7BC4]/20"
+                  className="w-full px-3 py-2 text-xs rounded-[var(--radius-xl)] border border-[var(--surface-border)] focus:outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[#2B7BC4]/20"
                 />
               </div>
 
               {/* Modal Actions */}
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-end gap-2.5">
+              <div className="pt-3 border-t border-[var(--surface-border)] flex items-center justify-end gap-2.5">
                 <button
                   type="button"
                   onClick={() => setIsUploadOpen(false)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 cursor-pointer"
+                  className="px-4 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs font-bold text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)] cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting || isUploadingFile}
-                  className="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1A5EA8] text-white text-xs font-bold shadow-xs hover:brightness-105 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-5 py-2 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1A5EA8] text-white text-xs font-bold shadow-xs hover:brightness-105 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>
@@ -1166,7 +1166,7 @@ export function AdminDeliverablesPage() {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-2 sm:p-4 md:p-6 backdrop-blur-md animate-in fade-in overflow-hidden"
         >
           <div
-            className={`w-full transition-all duration-300 rounded-2xl bg-[#0D2137] text-white shadow-2xl border border-slate-700/60 flex flex-col overflow-hidden ${
+            className={`w-full transition-all duration-300 rounded-[var(--radius-2xl)] bg-[#0D2137] text-white shadow-2xl border border-slate-700/60 flex flex-col overflow-hidden ${
               isTheaterExpanded
                 ? "max-w-[98vw] h-[96vh]"
                 : "max-w-5xl h-[88vh] md:h-[84vh]"
@@ -1175,14 +1175,14 @@ export function AdminDeliverablesPage() {
             {/* Modal Top Header Bar */}
             <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-800 bg-[#081524]">
               <div className="flex items-center gap-3 min-w-0">
-                <span className="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-[#2B7BC4]/20 text-[#60A5FA] border border-[#2B7BC4]/40 shrink-0">
+                <span className="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-[var(--primary)]/20 text-[#60A5FA] border border-[var(--primary)]/40 shrink-0">
                   {previewItem.type}
                 </span>
                 <div className="min-w-0">
                   <h3 className="text-sm sm:text-base font-bold text-white truncate">
                     {previewItem.title}
                   </h3>
-                  <p className="text-xs text-slate-400 truncate">
+                  <p className="text-xs text-[var(--surface-muted)] truncate">
                     Client: <span className="font-semibold text-slate-200">{previewItem.client}</span> · {previewItem.round}
                   </p>
                 </div>
@@ -1196,7 +1196,7 @@ export function AdminDeliverablesPage() {
                     type="button"
                     onClick={() => setPhoneFrameMode((prev) => !prev)}
                     title={phoneFrameMode ? "Switch to Wide Video" : "Switch to 9:16 Mobile Frame"}
-                    className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors cursor-pointer flex items-center gap-1 text-xs font-semibold"
+                    className="p-2 rounded-[var(--radius-xl)] text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors cursor-pointer flex items-center gap-1 text-xs font-semibold"
                   >
                     <Smartphone className="size-4 text-[#60A5FA]" />
                     <span className="hidden sm:inline">{phoneFrameMode ? "9:16 Frame" : "Wide Cinema"}</span>
@@ -1205,13 +1205,13 @@ export function AdminDeliverablesPage() {
 
                 {/* Zoom Controls for Static Posters */}
                 {!isVideoAsset(previewItem.file_url, previewItem.type) && (
-                  <div className="flex items-center bg-slate-800/80 rounded-xl p-0.5 border border-slate-700/50">
+                  <div className="flex items-center bg-slate-800/80 rounded-[var(--radius-xl)] p-0.5 border border-slate-700/50">
                     <button
                       type="button"
                       onClick={() => setPreviewZoom((z) => Math.max(1, z - 0.25))}
                       disabled={previewZoom <= 1}
                       title="Zoom Out"
-                      className="p-1.5 rounded-lg text-slate-300 hover:text-white disabled:opacity-40 cursor-pointer"
+                      className="p-1.5 rounded-[var(--radius-xl)] text-slate-300 hover:text-white disabled:opacity-40 cursor-pointer"
                     >
                       <ZoomOut className="size-3.5" />
                     </button>
@@ -1223,7 +1223,7 @@ export function AdminDeliverablesPage() {
                       onClick={() => setPreviewZoom((z) => Math.min(2.5, z + 0.25))}
                       disabled={previewZoom >= 2.5}
                       title="Zoom In"
-                      className="p-1.5 rounded-lg text-slate-300 hover:text-white disabled:opacity-40 cursor-pointer"
+                      className="p-1.5 rounded-[var(--radius-xl)] text-slate-300 hover:text-white disabled:opacity-40 cursor-pointer"
                     >
                       <ZoomIn className="size-3.5" />
                     </button>
@@ -1235,7 +1235,7 @@ export function AdminDeliverablesPage() {
                   type="button"
                   onClick={() => setIsTheaterExpanded((prev) => !prev)}
                   title={isTheaterExpanded ? "Exit Theater Mode" : "Expand Full Theater Mode"}
-                  className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors cursor-pointer"
+                  className="p-2 rounded-[var(--radius-xl)] text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors cursor-pointer"
                 >
                   {isTheaterExpanded ? (
                     <Minimize2 className="size-4" />
@@ -1250,7 +1250,7 @@ export function AdminDeliverablesPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Open Raw File in New Tab"
-                  className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors cursor-pointer"
+                  className="p-2 rounded-[var(--radius-xl)] text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors cursor-pointer"
                 >
                   <ExternalLink className="size-4" />
                 </a>
@@ -1260,7 +1260,7 @@ export function AdminDeliverablesPage() {
                   href={getResolvedMediaUrl(previewItem.file_url, previewItem.type)}
                   download={`${previewItem.title.replace(/\s+/g, "_")}.${isVideoAsset(previewItem.file_url, previewItem.type) ? "mp4" : "png"}`}
                   title="Download Creative Asset"
-                  className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors cursor-pointer"
+                  className="p-2 rounded-[var(--radius-xl)] text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors cursor-pointer"
                 >
                   <Download className="size-4" />
                 </a>
@@ -1273,7 +1273,7 @@ export function AdminDeliverablesPage() {
                     setIsTheaterExpanded(false);
                   }}
                   title="Close (Esc)"
-                  className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-rose-500/20 hover:text-rose-300 transition-colors cursor-pointer ml-1"
+                  className="p-2 rounded-[var(--radius-xl)] text-[var(--surface-muted)] hover:text-white hover:bg-rose-500/20 hover:text-rose-300 transition-colors cursor-pointer ml-1"
                 >
                   <X className="size-5" />
                 </button>
@@ -1302,7 +1302,7 @@ export function AdminDeliverablesPage() {
                       {/* Video Loading Spinner */}
                       {isVideoLoading && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 backdrop-blur-xs z-10 pointer-events-none">
-                          <Loader2 className="size-8 text-[#2B7BC4] animate-spin mb-2" />
+                          <Loader2 className="size-8 text-[var(--primary)] animate-spin mb-2" />
                           <span className="text-[11px] font-medium text-slate-300">Loading Reel...</span>
                         </div>
                       )}
@@ -1332,8 +1332,8 @@ export function AdminDeliverablesPage() {
                     <div className="w-full h-full max-h-[82vh] flex items-center justify-center relative">
                       {/* Video Loading Spinner */}
                       {isVideoLoading && (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 backdrop-blur-xs z-10 pointer-events-none rounded-xl">
-                          <Loader2 className="size-8 text-[#2B7BC4] animate-spin mb-2" />
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 backdrop-blur-xs z-10 pointer-events-none rounded-[var(--radius-xl)]">
+                          <Loader2 className="size-8 text-[var(--primary)] animate-spin mb-2" />
                           <span className="text-[11px] font-medium text-slate-300">Loading Reel...</span>
                         </div>
                       )}
@@ -1350,7 +1350,7 @@ export function AdminDeliverablesPage() {
                         onPlaying={() => setIsVideoLoading(false)}
                         onCanPlay={() => setIsVideoLoading(false)}
                         onLoadedData={() => setIsVideoLoading(false)}
-                        className="max-h-full max-w-full rounded-xl shadow-2xl object-contain"
+                        className="max-h-full max-w-full rounded-[var(--radius-xl)] shadow-2xl object-contain"
                       />
                     </div>
                   )
@@ -1368,13 +1368,13 @@ export function AdminDeliverablesPage() {
                       src={getResolvedMediaUrl(previewItem.file_url, previewItem.type)}
                       alt={previewItem.title}
                       style={{ transform: `scale(${previewZoom})` }}
-                      className="max-h-[80vh] max-w-full object-contain rounded-xl shadow-2xl transition-transform duration-200 cursor-zoom-in"
+                      className="max-h-[80vh] max-w-full object-contain rounded-[var(--radius-xl)] shadow-2xl transition-transform duration-200 cursor-zoom-in"
                     />
                   </div>
                 )}
 
                 {/* Floating Bottom Hint */}
-                <div className="absolute bottom-3 left-4 z-10 hidden sm:flex items-center gap-2 px-3 py-1 rounded-lg bg-black/60 backdrop-blur-xs text-[11px] text-slate-400 border border-white/10 pointer-events-none">
+                <div className="absolute bottom-3 left-4 z-10 hidden sm:flex items-center gap-2 px-3 py-1 rounded-[var(--radius-xl)] bg-black/60 backdrop-blur-xs text-[11px] text-[var(--surface-muted)] border border-white/10 pointer-events-none">
                   <span>Press <kbd className="px-1 py-0.5 rounded bg-slate-800 text-slate-200 font-mono text-[10px]">Esc</kbd> to close</span>
                   <span>·</span>
                   <span>Click <Maximize2 className="size-3 inline mx-0.5" /> for Full Theater</span>
@@ -1386,12 +1386,12 @@ export function AdminDeliverablesPage() {
                 <div className="w-full md:w-[35%] bg-[#0B1A2C] border-t md:border-t-0 md:border-l border-slate-800 p-5 flex flex-col justify-between overflow-y-auto">
                   <div className="space-y-4">
                     <div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--surface-muted)]">
                         Deliverable Status
                       </span>
                       <div className="mt-1 flex items-center gap-2">
                         <span
-                          className={`px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${
+                          className={`px-3 py-1 rounded-[var(--radius-xl)] text-xs font-bold uppercase tracking-wider ${
                             previewItem.status === "approved"
                               ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
                               : previewItem.status === "revision_requested" || previewItem.status === "rejected"
@@ -1401,27 +1401,27 @@ export function AdminDeliverablesPage() {
                         >
                           {previewItem.status.replace("_", " ")}
                         </span>
-                        <span className="text-xs text-slate-400 font-medium">
+                        <span className="text-xs text-[var(--surface-muted)] font-medium">
                           {previewItem.round}
                         </span>
                       </div>
                     </div>
 
                     {/* Creative Metadata Spec Table */}
-                    <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs space-y-2">
-                      <div className="flex justify-between items-center text-slate-400">
+                    <div className="p-3.5 rounded-[var(--radius-xl)] bg-slate-900/90 border border-slate-800 text-xs space-y-2">
+                      <div className="flex justify-between items-center text-[var(--surface-muted)]">
                         <span>Format:</span>
                         <span className="font-semibold text-white">{previewItem.type}</span>
                       </div>
-                      <div className="flex justify-between items-center text-slate-400">
+                      <div className="flex justify-between items-center text-[var(--surface-muted)]">
                         <span>Scheduled:</span>
                         <span className="font-semibold text-white">{previewItem.date}</span>
                       </div>
-                      <div className="flex justify-between items-center text-slate-400">
+                      <div className="flex justify-between items-center text-[var(--surface-muted)]">
                         <span>Creative Pod:</span>
                         <span className="font-semibold text-white">{previewItem.assigned_name || "Creative Studio"}</span>
                       </div>
-                      <div className="flex justify-between items-center text-slate-400">
+                      <div className="flex justify-between items-center text-[var(--surface-muted)]">
                         <span>Aspect Ratio:</span>
                         <span className="font-mono text-[#60A5FA]">
                           {isVideoAsset(previewItem.file_url, previewItem.type) ? "9:16 (1080 × 1920)" : "4:5 (1080 × 1350)"}
@@ -1457,7 +1457,7 @@ export function AdminDeliverablesPage() {
                           )}
                         </button>
                       </div>
-                      <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-slate-300 leading-relaxed max-h-32 overflow-y-auto">
+                      <div className="p-3 rounded-[var(--radius-xl)] bg-slate-900/60 border border-slate-800 text-xs text-slate-300 leading-relaxed max-h-32 overflow-y-auto">
                         {previewItem.description || "No specific caption provided for this creative cut."}
                       </div>
                     </div>
@@ -1473,7 +1473,7 @@ export function AdminDeliverablesPage() {
                           handleStatusUpdate(previewItem.id, "approved");
                           setPreviewItem((prev: any) => prev ? { ...prev, status: "approved" } : null);
                         }}
-                        className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white text-xs font-bold shadow-lg flex items-center justify-center gap-2 cursor-pointer transition-all disabled:opacity-50"
+                        className="w-full py-2.5 px-4 rounded-[var(--radius-xl)] bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white text-xs font-bold shadow-lg flex items-center justify-center gap-2 cursor-pointer transition-all disabled:opacity-50"
                       >
                         <Check className="size-4" />
                         Approve Deliverable
@@ -1481,7 +1481,7 @@ export function AdminDeliverablesPage() {
                     )}
 
                     {previewItem.status === "approved" && (
-                      <div className="py-2 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold text-center flex items-center justify-center gap-1.5">
+                      <div className="py-2 px-3 rounded-[var(--radius-xl)] bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold text-center flex items-center justify-center gap-1.5">
                         <CheckCircle2 className="size-4" />
                         Approved & Ready for Dispatch
                       </div>
@@ -1496,7 +1496,7 @@ export function AdminDeliverablesPage() {
                             handleStatusUpdate(previewItem.id, "revision_requested");
                             setPreviewItem((prev: any) => prev ? { ...prev, status: "revision_requested" } : null);
                           }}
-                          className="flex-1 py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors cursor-pointer"
+                          className="flex-1 py-2 px-3 rounded-[var(--radius-xl)] bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors cursor-pointer"
                         >
                           Request Revision
                         </button>
@@ -1507,7 +1507,7 @@ export function AdminDeliverablesPage() {
                           setPreviewItem(null);
                           setIsTheaterExpanded(false);
                         }}
-                        className="flex-1 py-2 px-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700/80 transition-colors cursor-pointer"
+                        className="flex-1 py-2 px-3 rounded-[var(--radius-xl)] bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700/80 transition-colors cursor-pointer"
                       >
                         Close
                       </button>
@@ -1555,47 +1555,47 @@ export function AdminTasksPage() {
   });
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+    <div className="space-y-6 animate-page-in">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <CheckSquare className="size-5 text-[#2B7BC4]" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">Task Dispatch Queue</h1>
+            <CheckSquare className="size-5 text-[var(--primary)]" />
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">Task Dispatch Queue</h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             Workload distribution, creative pod assignments, and SLA production deadlines
           </p>
         </div>
         <Link
-          to="/dashboard"
-          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#2B7BC4] text-white text-xs font-semibold hover:bg-[#1A5EA8] transition-colors shadow-xs"
+          to="/admin/tasks"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white text-xs font-semibold hover:bg-[#1A5EA8] transition-colors shadow-xs"
         >
-          Open Creative Kanban →
+          Open Task Queue →
         </Link>
       </div>
 
       {/* Staff Capacity Grid */}
-      <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
-        <h3 className="text-sm font-bold text-[#0D2137] mb-4">Creative Pod Staff Workload & Headroom</h3>
+      <div className="rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] p-5 shadow-xs">
+        <h3 className="text-sm font-bold text-[var(--foreground)] mb-4">Creative Pod Staff Workload & Headroom</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {(queue?.staff || []).map((member) => {
             const ratio = (member.active_wip / Math.max(member.daily_capacity, 1)) * 100;
             return (
               <div
                 key={member.user_id}
-                className="p-3.5 rounded-xl border border-slate-200 bg-slate-50/60 space-y-2"
+                className="p-3.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-sunken)]/60 space-y-2"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-xs text-[#0D2137] truncate max-w-[140px]" title={member.full_name || member.email}>
+                  <span className="font-semibold text-xs text-[var(--foreground)] truncate max-w-[140px]" title={member.full_name || member.email}>
                     {member.full_name || member.email}
                   </span>
-                  <span className="text-[10px] uppercase font-bold text-slate-500 bg-white px-1.5 py-0.5 rounded border border-slate-200">
+                  <span className="text-[10px] uppercase font-bold text-[var(--surface-muted)] bg-[var(--surface-card)] px-1.5 py-0.5 rounded border border-[var(--surface-border)]">
                     {member.department}
                   </span>
                 </div>
-                <div className="flex justify-between text-[11px] text-slate-500">
+                <div className="flex justify-between text-[11px] text-[var(--surface-muted)]">
                   <span>Active WIP:</span>
-                  <span className="font-bold text-[#0D2137]">
+                  <span className="font-bold text-[var(--foreground)]">
                     {member.active_wip} / {member.daily_capacity}
                   </span>
                 </div>
@@ -1614,28 +1614,28 @@ export function AdminTasksPage() {
       </div>
 
       {/* Pipeline Tasks Table */}
-      <div className="rounded-2xl border border-slate-200/90 bg-white shadow-xs overflow-hidden">
-        <div className="p-4 border-b border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="rounded-[var(--radius-2xl)] border border-[var(--surface-border)]/90 bg-[var(--surface-card)] shadow-xs overflow-hidden">
+        <div className="p-4 border-b border-[var(--surface-border)] bg-[var(--surface-sunken)]/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-sm text-[#0D2137]">Active Pipeline Tasks</span>
-            <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 text-[#2B7BC4] border border-blue-100">
+            <span className="font-bold text-sm text-[var(--foreground)]">Active Pipeline Tasks</span>
+            <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 text-[var(--primary)] border border-blue-100">
               {filteredTasks.length} {filteredTasks.length === 1 ? "task" : "tasks"}
             </span>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
             <div className="relative">
-              <Search className="size-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Search className="size-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-[var(--surface-muted)]" />
               <input
                 type="text"
                 placeholder="Search client or assignee..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-8 pr-3 py-1.5 text-xs rounded-lg border border-slate-200 bg-white text-slate-700 placeholder:text-slate-400 focus:outline-none focus:border-[#2B7BC4] w-48 sm:w-60"
+                className="pl-8 pr-3 py-1.5 text-xs rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] text-slate-700 placeholder:text-[var(--surface-muted)] focus:outline-none focus:border-[var(--primary)] w-48 sm:w-60"
               />
             </div>
 
-            <div className="flex items-center gap-1 bg-white p-1 rounded-lg border border-slate-200 text-xs">
+            <div className="flex items-center gap-1 bg-[var(--surface-card)] p-1 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs">
               {(["all", "in_production", "internal_qa", "backlog"] as const).map((st) => (
                 <button
                   key={st}
@@ -1643,8 +1643,8 @@ export function AdminTasksPage() {
                   onClick={() => setFilterStatus(st)}
                   className={`px-2.5 py-1 rounded-md text-[11px] font-semibold capitalize transition-all cursor-pointer ${
                     filterStatus === st
-                      ? "bg-[#2B7BC4] text-white shadow-xs"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                      ? "bg-[var(--primary)] text-white shadow-xs"
+                      : "text-[var(--surface-muted)] hover:text-[var(--foreground)] hover:bg-[var(--surface-sunken)]"
                   }`}
                 >
                   {st === "all" ? "All" : st.replace("_", " ")}
@@ -1657,19 +1657,19 @@ export function AdminTasksPage() {
         {/* Mobile Task Cards (< 768px) */}
         <div className="block md:hidden divide-y divide-slate-100">
           {loading ? (
-            <div className="p-8 text-center text-slate-400">
-              <Loader2 className="size-5 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+            <div className="p-8 text-center text-[var(--surface-muted)]">
+              <Loader2 className="size-5 animate-spin mx-auto mb-2 text-[var(--primary)]" />
               Loading task queue...
             </div>
           ) : filteredTasks.length === 0 ? (
-            <div className="p-8 text-center text-xs text-slate-500">
+            <div className="p-8 text-center text-xs text-[var(--surface-muted)]">
               No tasks match the active filter.
             </div>
           ) : (
             filteredTasks.slice(0, 25).map((task) => (
               <div key={task.id} className="p-4 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-sm text-[#0D2137]">{task.client_company || task.client_email || "Agency Client"}</span>
+                  <span className="font-bold text-sm text-[var(--foreground)]">{task.client_company || task.client_email || "Agency Client"}</span>
                   <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase font-mono ${
                     task.deliverable_type === "reel"
                       ? "bg-purple-50 text-purple-700 border border-purple-200"
@@ -1680,17 +1680,17 @@ export function AdminTasksPage() {
                     {task.deliverable_type}
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-xs text-slate-500">
+                <div className="flex items-center justify-between text-xs text-[var(--surface-muted)]">
                   <span className="font-medium text-slate-700">
                     👤 {task.assignee_name || "Unassigned"} {task.assignee_role ? `(${task.assignee_role})` : ""}
                   </span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-semibold uppercase bg-slate-100 text-slate-600">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-semibold uppercase bg-[var(--surface-sunken)] text-[var(--surface-muted)]">
                     {task.status || "In Production"}
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono pt-1">
+                <div className="flex items-center justify-between text-[11px] text-[var(--surface-muted)] font-mono pt-1">
                   <span>#{task.id.slice(0, 8)}</span>
-                  <span>Due: <strong className="text-[#0D2137]">{task.sla_due_at ? new Date(task.sla_due_at).toLocaleDateString() : "Immediate"}</strong></span>
+                  <span>Due: <strong className="text-[var(--foreground)]">{task.sla_due_at ? new Date(task.sla_due_at).toLocaleDateString() : "Immediate"}</strong></span>
                 </div>
               </div>
             ))
@@ -1700,7 +1700,7 @@ export function AdminTasksPage() {
         {/* Desktop Task Table (>= 768px) */}
         <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50 text-slate-500 font-semibold uppercase tracking-wider text-[11px] border-b border-slate-200">
+            <thead className="bg-[var(--surface-sunken)] text-[var(--surface-muted)] font-semibold uppercase tracking-wider text-[11px] border-b border-[var(--surface-border)]">
               <tr>
                 <th className="px-5 py-3">Task ID</th>
                 <th className="px-5 py-3">Client</th>
@@ -1713,24 +1713,24 @@ export function AdminTasksPage() {
             <tbody className="divide-y divide-slate-100">
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="px-5 py-8 text-center text-slate-400">
-                    <Loader2 className="size-5 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+                  <td colSpan={6} className="px-5 py-8 text-center text-[var(--surface-muted)]">
+                    <Loader2 className="size-5 animate-spin mx-auto mb-2 text-[var(--primary)]" />
                     Loading task queue...
                   </td>
                 </tr>
               ) : filteredTasks.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-5 py-8 text-center text-slate-400">
+                  <td colSpan={6} className="px-5 py-8 text-center text-[var(--surface-muted)]">
                     No tasks match the active filter.
                   </td>
                 </tr>
               ) : (
                 filteredTasks.slice(0, 35).map((task) => (
-                  <tr key={task.id} className="hover:bg-slate-50/70 transition-colors">
-                    <td className="px-5 py-3 font-mono text-xs text-[#0D2137]">#{task.id.slice(0, 8)}</td>
-                    <td className="px-5 py-3 font-semibold text-[#0D2137]">
+                  <tr key={task.id} className="hover:bg-[var(--surface-sunken)]/70 transition-colors">
+                    <td className="px-5 py-3 font-mono text-xs text-[var(--foreground)]">#{task.id.slice(0, 8)}</td>
+                    <td className="px-5 py-3 font-semibold text-[var(--foreground)]">
                       <div>{task.client_company || "Agency Client"}</div>
-                      {task.client_email && <div className="text-[10px] text-slate-400 font-normal">{task.client_email}</div>}
+                      {task.client_email && <div className="text-[10px] text-[var(--surface-muted)] font-normal">{task.client_email}</div>}
                     </td>
                     <td className="px-5 py-3">
                       <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase font-mono border ${
@@ -1744,8 +1744,8 @@ export function AdminTasksPage() {
                       </span>
                     </td>
                     <td className="px-5 py-3">
-                      <div className="font-semibold text-slate-800">{task.assignee_name || "Unassigned"}</div>
-                      <div className="text-[10px] text-slate-400 capitalize">{task.assignee_role || "Creative Pod"}</div>
+                      <div className="font-semibold text-[var(--foreground)]">{task.assignee_name || "Unassigned"}</div>
+                      <div className="text-[10px] text-[var(--surface-muted)] capitalize">{task.assignee_role || "Creative Pod"}</div>
                     </td>
                     <td className="px-5 py-3">
                       <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
@@ -1753,12 +1753,12 @@ export function AdminTasksPage() {
                           ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
                           : task.status === "internal_qa"
                           ? "bg-amber-50 text-amber-700 border border-amber-200"
-                          : "bg-blue-50 text-[#2B7BC4] border border-blue-200"
+                          : "bg-blue-50 text-[var(--primary)] border border-blue-200"
                       }`}>
                         {(task.status || "in_production").replace("_", " ")}
                       </span>
                     </td>
-                    <td className="px-5 py-3 font-mono text-slate-600">
+                    <td className="px-5 py-3 font-mono text-[var(--surface-muted)]">
                       {task.sla_due_at ? new Date(task.sla_due_at).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }) : "Immediate"}
                     </td>
                   </tr>
@@ -1840,36 +1840,36 @@ export function AdminCalendarPage() {
   });
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+    <div className="space-y-6 animate-page-in">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <CalendarDays className="size-5 text-[#2B7BC4]" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">Content Calendar</h1>
+            <CalendarDays className="size-5 text-[var(--primary)]" />
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">Content Calendar</h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             Agency master scheduling timeline across all brand accounts and creative pods
           </p>
         </div>
 
         {/* Month Navigation & Format Filter */}
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 shadow-2xs">
+          <div className="flex items-center gap-1 bg-[var(--surface-card)] p-1 rounded-[var(--radius-xl)] border border-[var(--surface-border)] shadow-2xs">
             <button
               type="button"
               onClick={() => navigateMonth(-1)}
-              className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-600 transition-colors cursor-pointer"
+              className="p-1.5 rounded-[var(--radius-xl)] hover:bg-[var(--surface-sunken)] text-[var(--surface-muted)] transition-colors cursor-pointer"
               title="Previous Month"
             >
               <ChevronLeft className="size-4" />
             </button>
-            <span className="text-xs font-bold text-[#0D2137] px-2 min-w-[120px] text-center">
+            <span className="text-xs font-bold text-[var(--foreground)] px-2 min-w-[120px] text-center">
               {CALENDAR_MONTHS[currentMonth]} {currentYear}
             </span>
             <button
               type="button"
               onClick={() => navigateMonth(1)}
-              className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-600 transition-colors cursor-pointer"
+              className="p-1.5 rounded-[var(--radius-xl)] hover:bg-[var(--surface-sunken)] text-[var(--surface-muted)] transition-colors cursor-pointer"
               title="Next Month"
             >
               <ChevronRight className="size-4" />
@@ -1877,22 +1877,22 @@ export function AdminCalendarPage() {
             <button
               type="button"
               onClick={goToToday}
-              className="ml-1 px-2.5 py-1 text-[11px] font-bold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
+              className="ml-1 px-2.5 py-1 text-[11px] font-bold rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
             >
               Today
             </button>
           </div>
 
-          <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 text-xs shadow-2xs">
+          <div className="flex items-center gap-1 bg-[var(--surface-card)] p-1 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs shadow-2xs">
             {(["all", "reel", "poster", "story"] as const).map((fmt) => (
               <button
                 key={fmt}
                 type="button"
                 onClick={() => setSelectedFormat(fmt)}
-                className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold capitalize transition-all cursor-pointer ${
+                className={`px-2.5 py-1 rounded-[var(--radius-xl)] text-[11px] font-semibold capitalize transition-all cursor-pointer ${
                   selectedFormat === fmt
-                    ? "bg-[#2B7BC4] text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                    ? "bg-[var(--primary)] text-white shadow-xs"
+                    : "text-[var(--surface-muted)] hover:text-[var(--foreground)] hover:bg-[var(--surface-sunken)]"
                 }`}
               >
                 {fmt === "all" ? "All Formats" : fmt}
@@ -1900,29 +1900,29 @@ export function AdminCalendarPage() {
             ))}
           </div>
 
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 text-[#2B7BC4] text-xs font-semibold border border-blue-200">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 text-[var(--primary)] text-xs font-semibold border border-blue-200">
             {monthEvents.length} Assets Scheduled
           </span>
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-6 shadow-xs">
+      <div className="rounded-[var(--radius-2xl)] border border-[var(--surface-border)]/90 bg-[var(--surface-card)] p-4 sm:p-6 shadow-xs">
         {/* Mobile Agenda List (< 768px) */}
         <div className="block md:hidden">
-          <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+          <div className="flex items-center justify-between pb-3 mb-3 border-b border-[var(--surface-border)]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[var(--surface-muted)]">
               {CALENDAR_MONTHS[currentMonth]} {currentYear} Agenda
             </span>
-            <span className="text-xs font-semibold text-[#2B7BC4]">{monthEvents.length} Items</span>
+            <span className="text-xs font-semibold text-[var(--primary)]">{monthEvents.length} Items</span>
           </div>
 
           {loading ? (
-            <div className="py-12 text-center text-slate-400">
-              <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+            <div className="py-12 text-center text-[var(--surface-muted)]">
+              <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[var(--primary)]" />
               Loading scheduled deliverables...
             </div>
           ) : monthEvents.length === 0 ? (
-            <div className="py-8 text-center text-xs text-slate-500">
+            <div className="py-8 text-center text-xs text-[var(--surface-muted)]">
               No deliverables scheduled for {CALENDAR_MONTHS[currentMonth]} {currentYear}.
             </div>
           ) : (
@@ -1934,11 +1934,11 @@ export function AdminCalendarPage() {
                   <div
                     key={item.id || idx}
                     onClick={() => setSelectedEvent(item)}
-                    className="p-3.5 rounded-xl border border-slate-200/90 bg-slate-50/50 hover:bg-slate-50 transition-colors cursor-pointer space-y-2"
+                    className="p-3.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)]/90 bg-[var(--surface-sunken)]/50 hover:bg-[var(--surface-sunken)] transition-colors cursor-pointer space-y-2"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="size-8 rounded-lg bg-[#2B7BC4] text-white flex items-center justify-center font-bold text-xs font-mono shrink-0">
+                        <span className="size-8 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white flex items-center justify-center font-bold text-xs font-mono shrink-0">
                           {dayNum}
                         </span>
                         <div>
@@ -1952,11 +1952,11 @@ export function AdminCalendarPage() {
                             }`}>
                               {item.type || "Asset"}
                             </span>
-                            <h4 className="font-bold text-xs text-[#0D2137] truncate max-w-[160px]">
+                            <h4 className="font-bold text-xs text-[var(--foreground)] truncate max-w-[160px]">
                               {item.client_name || "Client"}
                             </h4>
                           </div>
-                          <span className="text-[10px] text-slate-500 font-medium">
+                          <span className="text-[10px] text-[var(--surface-muted)] font-medium">
                             {item.time || "11:00 AM"} • {item.title || "Scheduled Deliverable"}
                           </span>
                         </div>
@@ -1965,7 +1965,7 @@ export function AdminCalendarPage() {
                         className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase shrink-0 ${
                           item.status === "approved"
                             ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                            : "bg-blue-50 text-[#2B7BC4] border border-blue-200"
+                            : "bg-blue-50 text-[var(--primary)] border border-blue-200"
                         }`}
                       >
                         {item.status || "Scheduled"}
@@ -1980,7 +1980,7 @@ export function AdminCalendarPage() {
 
         {/* Desktop 7-Column Grid (>= 768px) with Weekday Offset Padding */}
         <div className="hidden md:block">
-          <div className="grid grid-cols-7 gap-2.5 mb-2.5 text-center text-xs font-bold uppercase text-slate-400">
+          <div className="grid grid-cols-7 gap-2.5 mb-2.5 text-center text-xs font-bold uppercase text-[var(--surface-muted)]">
             {WEEKDAY_HEADERS.map((w) => (
               <div key={w} className="py-1">
                 {w}
@@ -1989,8 +1989,8 @@ export function AdminCalendarPage() {
           </div>
 
           {loading ? (
-            <div className="py-20 text-center text-slate-400">
-              <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+            <div className="py-20 text-center text-[var(--surface-muted)]">
+              <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[var(--primary)]" />
               Loading scheduled deliverables...
             </div>
           ) : (
@@ -2000,7 +2000,7 @@ export function AdminCalendarPage() {
                   return (
                     <div
                       key={`blank-${idx}`}
-                      className="min-h-[115px] p-2 rounded-xl bg-slate-50/20 border border-slate-100/60 opacity-40 pointer-events-none"
+                      className="min-h-[115px] p-2 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)]/20 border border-[var(--surface-border)]/60 opacity-40 pointer-events-none"
                     />
                   );
                 }
@@ -2018,24 +2018,24 @@ export function AdminCalendarPage() {
                 return (
                   <div
                     key={`day-${dateNum}`}
-                    className={`min-h-[120px] p-2 rounded-xl border transition-all flex flex-col justify-between ${
+                    className={`min-h-[120px] p-2 rounded-[var(--radius-xl)] border transition-all flex flex-col justify-between ${
                       isToday
-                        ? "border-[#2B7BC4] bg-blue-50/20 shadow-xs"
-                        : "border-slate-200/80 bg-slate-50/40 hover:border-slate-300"
+                        ? "border-[var(--primary)] bg-blue-50/20 shadow-xs"
+                        : "border-[var(--surface-border)]/80 bg-[var(--surface-sunken)]/40 hover:border-[var(--surface-border)]"
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span
                         className={`size-6 rounded-full flex items-center justify-center text-xs font-bold ${
                           isToday
-                            ? "bg-[#2B7BC4] text-white"
-                            : "text-[#0D2137]"
+                            ? "bg-[var(--primary)] text-white"
+                            : "text-[var(--foreground)]"
                         }`}
                       >
                         {dateNum}
                       </span>
                       {dayEvents.length > 0 && (
-                        <span className="text-[10px] font-bold text-slate-400">
+                        <span className="text-[10px] font-bold text-[var(--surface-muted)]">
                           {dayEvents.length}
                         </span>
                       )}
@@ -2051,7 +2051,7 @@ export function AdminCalendarPage() {
                           <div
                             key={item.id || itemIdx}
                             onClick={() => setSelectedEvent(item)}
-                            className={`p-1.5 rounded-lg text-[10px] leading-tight border transition-all cursor-pointer hover:scale-[1.02] ${
+                            className={`p-1.5 rounded-[var(--radius-xl)] text-[10px] leading-tight border transition-all cursor-pointer hover:scale-[1.02] ${
                               item.status === "approved"
                                 ? "bg-emerald-50 border-emerald-200 text-emerald-800"
                                 : isReel
@@ -2087,7 +2087,7 @@ export function AdminCalendarPage() {
           onClick={() => setSelectedEvent(null)}
         >
           <div
-            className="max-w-lg w-full rounded-2xl bg-white border border-slate-200 shadow-2xl p-6 space-y-4"
+            className="max-w-lg w-full rounded-[var(--radius-2xl)] bg-[var(--surface-card)] border border-[var(--surface-border)] shadow-2xl p-6 space-y-4"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between">
@@ -2100,18 +2100,18 @@ export function AdminCalendarPage() {
                   }`}>
                     {selectedEvent.type || "Asset"}
                   </span>
-                  <span className="text-xs font-bold text-slate-500">
+                  <span className="text-xs font-bold text-[var(--surface-muted)]">
                     {selectedEvent.client_name}
                   </span>
                 </div>
-                <h3 className="font-bold text-base text-[#0D2137]">
+                <h3 className="font-bold text-base text-[var(--foreground)]">
                   {selectedEvent.title || "Scheduled Deliverable"}
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => setSelectedEvent(null)}
-                className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+                className="p-1 rounded-[var(--radius-xl)] text-[var(--surface-muted)] hover:text-slate-700 hover:bg-[var(--surface-sunken)] transition-colors"
               >
                 <X className="size-5" />
               </button>
@@ -2119,7 +2119,7 @@ export function AdminCalendarPage() {
 
             {/* Media Preview */}
             {selectedEvent.file_url && (
-              <div className="rounded-xl overflow-hidden border border-slate-200 bg-black max-h-[300px] flex items-center justify-center">
+              <div className="rounded-[var(--radius-xl)] overflow-hidden border border-[var(--surface-border)] bg-black max-h-[300px] flex items-center justify-center">
                 {(selectedEvent.type || "").toLowerCase().includes("reel") || (selectedEvent.file_url || "").includes(".mp4") ? (
                   <video
                     src={selectedEvent.file_url}
@@ -2139,14 +2139,14 @@ export function AdminCalendarPage() {
             )}
 
             <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                <span className="text-slate-400 block text-[10px] uppercase font-bold">Scheduled Date</span>
-                <span className="font-semibold text-[#0D2137]">
+              <div className="p-3 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] border border-[var(--surface-border)]/80">
+                <span className="text-[var(--surface-muted)] block text-[10px] uppercase font-bold">Scheduled Date</span>
+                <span className="font-semibold text-[var(--foreground)]">
                   {selectedEvent.date} ({selectedEvent.time || "11:00 AM"})
                 </span>
               </div>
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                <span className="text-slate-400 block text-[10px] uppercase font-bold">Status</span>
+              <div className="p-3 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] border border-[var(--surface-border)]/80">
+                <span className="text-[var(--surface-muted)] block text-[10px] uppercase font-bold">Status</span>
                 <span className="font-semibold text-emerald-700 capitalize">
                   {selectedEvent.status || "Scheduled"}
                 </span>
@@ -2154,8 +2154,8 @@ export function AdminCalendarPage() {
             </div>
 
             {selectedEvent.caption && (
-              <div className="text-xs p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-slate-600">
-                <span className="text-slate-400 block text-[10px] uppercase font-bold mb-1">Caption</span>
+              <div className="text-xs p-3 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] border border-[var(--surface-border)]/80 text-[var(--surface-muted)]">
+                <span className="text-[var(--surface-muted)] block text-[10px] uppercase font-bold mb-1">Caption</span>
                 {selectedEvent.caption}
               </div>
             )}
@@ -2163,7 +2163,7 @@ export function AdminCalendarPage() {
             <div className="pt-2 flex justify-end gap-2">
               <Link
                 to="/admin/deliverables"
-                className="px-4 py-2 rounded-xl bg-[#2B7BC4] text-white text-xs font-semibold hover:bg-[#1A5EA8] transition-colors"
+                className="px-4 py-2 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white text-xs font-semibold hover:bg-[#1A5EA8] transition-colors"
                 onClick={() => setSelectedEvent(null)}
               >
                 Inspect in Deliverables Hub →
@@ -2260,64 +2260,64 @@ export function AdminSupportPage() {
   });
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+    <div className="space-y-6 animate-page-in">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <LifeBuoy className="size-5 text-[#2B7BC4]" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">Support Tickets</h1>
+            <LifeBuoy className="size-5 text-[var(--primary)]" />
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">Support Tickets</h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             Real client inquiries, SLA triage, and concierge customer success management
           </p>
         </div>
         <div className="flex items-center gap-3">
           {/* Status Filter */}
-          <div className="flex items-center bg-slate-100 p-1 rounded-xl text-xs">
+          <div className="flex items-center bg-[var(--surface-sunken)] p-1 rounded-[var(--radius-xl)] text-xs">
             {["all", "open", "in_progress", "resolved", "closed"].map((st) => (
               <button
                 key={st}
                 type="button"
                 onClick={() => setStatusFilter(st)}
-                className={`px-2.5 py-1 rounded-lg font-medium capitalize transition-all cursor-pointer ${
+                className={`px-2.5 py-1 rounded-[var(--radius-xl)] font-medium capitalize transition-all cursor-pointer ${
                   statusFilter === st
-                    ? "bg-white text-[#0D2137] shadow-xs font-bold"
-                    : "text-slate-500 hover:text-slate-800"
+                    ? "bg-[var(--surface-card)] text-[var(--foreground)] shadow-xs font-bold"
+                    : "text-[var(--surface-muted)] hover:text-[var(--foreground)]"
                 }`}
               >
                 {st.replace("_", " ")}
               </button>
             ))}
           </div>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F4FD] text-[#2B7BC4] text-xs font-bold">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F4FD] text-[var(--primary)] text-xs font-bold">
             {filteredTickets.length} Tickets
           </span>
         </div>
       </div>
 
-      <div className="rounded-xl border border-slate-200 bg-white shadow-xs overflow-hidden">
+      <div className="rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-xs overflow-hidden">
         {loading ? (
-          <div className="py-16 text-center text-slate-400">
-            <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+          <div className="py-16 text-center text-[var(--surface-muted)]">
+            <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[var(--primary)]" />
             Loading tickets from database...
           </div>
         ) : filteredTickets.length === 0 ? (
-          <div className="p-12 text-center text-slate-500 space-y-2">
+          <div className="p-12 text-center text-[var(--surface-muted)] space-y-2">
             <p className="font-semibold text-sm">No support tickets found.</p>
-            <p className="text-xs text-slate-400">All client tickets are currently clear or match filter.</p>
+            <p className="text-xs text-[var(--surface-muted)]">All client tickets are currently clear or match filter.</p>
           </div>
         ) : (
           <div className="divide-y divide-slate-100">
             {filteredTickets.map((t) => (
-              <div key={t.id} className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-slate-50/70 transition-colors">
+              <div key={t.id} className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-[var(--surface-sunken)]/70 transition-colors">
                 <div className="space-y-1.5 flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-semibold text-xs text-[#0D2137]">{t.subject}</span>
+                    <span className="font-semibold text-xs text-[var(--foreground)]">{t.subject}</span>
                     <span
                       className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
                         t.priority === "urgent" || t.priority === "high"
                           ? "bg-rose-50 text-rose-700 border border-rose-200"
-                          : "bg-slate-100 text-slate-700"
+                          : "bg-[var(--surface-sunken)] text-slate-700"
                       }`}
                     >
                       {t.priority}
@@ -2335,16 +2335,16 @@ export function AdminSupportPage() {
                       </span>
                     )}
                     {t.message_count > 0 && (
-                      <span className="text-[10px] text-slate-400 font-mono">
+                      <span className="text-[10px] text-[var(--surface-muted)] font-mono">
                         ({t.message_count} {t.message_count === 1 ? "msg" : "msgs"})
                       </span>
                     )}
                   </div>
-                  <div className="text-[11px] text-slate-500">
-                    Client: <span className="font-medium text-[#0D2137]">{t.client}</span> · {t.time}
+                  <div className="text-[11px] text-[var(--surface-muted)]">
+                    Client: <span className="font-medium text-[var(--foreground)]">{t.client}</span> · {t.time}
                   </div>
                   {t.description && (
-                    <p className="text-xs text-slate-600 line-clamp-1 max-w-2xl">
+                    <p className="text-xs text-[var(--surface-muted)] line-clamp-1 max-w-2xl">
                       {t.description}
                     </p>
                   )}
@@ -2353,7 +2353,7 @@ export function AdminSupportPage() {
                   <select
                     value={t.status}
                     onChange={(e) => updateStatusInline(t.id, e.target.value)}
-                    className="px-2.5 py-1 rounded-lg text-xs font-semibold uppercase border border-slate-200 bg-slate-50 text-slate-800 focus:outline-none cursor-pointer"
+                    className="px-2.5 py-1 rounded-[var(--radius-xl)] text-xs font-semibold uppercase border border-[var(--surface-border)] bg-[var(--surface-sunken)] text-[var(--foreground)] focus:outline-none cursor-pointer"
                   >
                     <option value="open">OPEN</option>
                     <option value="in_progress">IN PROGRESS</option>
@@ -2363,7 +2363,7 @@ export function AdminSupportPage() {
                   <button
                     type="button"
                     onClick={() => openTicketModal(t)}
-                    className="px-3.5 py-1.5 rounded-lg bg-[#2B7BC4] text-white text-xs font-bold hover:bg-[#1A5EA8] shadow-xs cursor-pointer inline-flex items-center gap-1.5"
+                    className="px-3.5 py-1.5 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white text-xs font-bold hover:bg-[#1A5EA8] shadow-xs cursor-pointer inline-flex items-center gap-1.5"
                   >
                     <MessageSquare className="size-3.5" />
                     Inspect / Reply
@@ -2378,29 +2378,29 @@ export function AdminSupportPage() {
       {/* Reply & Thread Detail Modal */}
       {activeReply && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-md p-4 animate-fade-in">
-          <div className="w-full max-w-lg rounded-3xl bg-white p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto animate-scale-in border border-slate-100">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div className="w-full max-w-lg rounded-[var(--radius-3xl)] bg-[var(--surface-card)] p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto animate-scale-in border border-[var(--surface-border)]">
+            <div className="flex items-center justify-between border-b border-[var(--surface-border)] pb-3">
               <div>
-                <h3 className="text-base font-bold text-[#0D2137] flex items-center gap-2">
-                  <LifeBuoy className="size-4 text-[#2B7BC4]" />
+                <h3 className="text-base font-bold text-[var(--foreground)] flex items-center gap-2">
+                  <LifeBuoy className="size-4 text-[var(--primary)]" />
                   Support Ticket Thread
                 </h3>
-                <p className="text-xs text-slate-500">{activeReply.client}: {activeReply.subject}</p>
+                <p className="text-xs text-[var(--surface-muted)]">{activeReply.client}: {activeReply.subject}</p>
               </div>
               <button
                 type="button"
                 onClick={() => setActiveReply(null)}
-                className="size-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
+                className="size-8 rounded-full bg-[var(--surface-sunken)] flex items-center justify-center text-[var(--surface-muted)] hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
               >
                 <X className="size-4" />
               </button>
             </div>
 
             {/* Ticket Details summary */}
-            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-2">
+            <div className="p-3.5 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] border border-[var(--surface-border)] text-xs space-y-2">
               <div className="flex items-center justify-between">
-                <span className="font-bold text-[#0D2137]">Original Client Request</span>
-                <span className="text-[10px] text-slate-400 font-mono">#{activeReply.id.slice(0, 8)}</span>
+                <span className="font-bold text-[var(--foreground)]">Original Client Request</span>
+                <span className="text-[10px] text-[var(--surface-muted)] font-mono">#{activeReply.id.slice(0, 8)}</span>
               </div>
               <p className="text-slate-700 leading-relaxed">{activeReply.description}</p>
             </div>
@@ -2408,10 +2408,10 @@ export function AdminSupportPage() {
             {/* Thread History */}
             <div className="space-y-2">
               <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider">Conversation History</h4>
-              <div className="space-y-2.5 max-h-52 overflow-y-auto pr-1 p-2 bg-slate-50/50 rounded-xl border border-slate-200/60">
+              <div className="space-y-2.5 max-h-52 overflow-y-auto pr-1 p-2 bg-[var(--surface-sunken)]/50 rounded-[var(--radius-xl)] border border-[var(--surface-border)]/60">
                 {messagesLoading ? (
-                  <div className="py-6 text-center text-xs text-slate-400 flex items-center justify-center gap-2">
-                    <Loader2 className="size-4 animate-spin text-[#2B7BC4]" />
+                  <div className="py-6 text-center text-xs text-[var(--surface-muted)] flex items-center justify-center gap-2">
+                    <Loader2 className="size-4 animate-spin text-[var(--primary)]" />
                     Loading messages...
                   </div>
                 ) : messages.length > 0 ? (
@@ -2420,13 +2420,13 @@ export function AdminSupportPage() {
                     return (
                       <div
                         key={m.id}
-                        className={`p-3 rounded-xl max-w-[88%] text-xs ${
+                        className={`p-3 rounded-[var(--radius-xl)] max-w-[88%] text-xs ${
                           isStaff
-                            ? "ml-auto bg-[#E8F4FD] border border-[#C9DFF0] text-[#0D2137]"
-                            : "mr-auto bg-white border border-slate-200 text-[#0D2137]"
+                            ? "ml-auto bg-[#E8F4FD] border border-[#C9DFF0] text-[var(--foreground)]"
+                            : "mr-auto bg-[var(--surface-card)] border border-[var(--surface-border)] text-[var(--foreground)]"
                         }`}
                       >
-                        <div className="flex items-center justify-between gap-3 mb-1 text-[10px] text-slate-500">
+                        <div className="flex items-center justify-between gap-3 mb-1 text-[10px] text-[var(--surface-muted)]">
                           <span className="font-bold">{m.sender_name || (isStaff ? "Staff Specialist" : "Client")}</span>
                           <span>{m.created_at ? new Date(m.created_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : ""}</span>
                         </div>
@@ -2435,19 +2435,19 @@ export function AdminSupportPage() {
                     );
                   })
                 ) : (
-                  <p className="text-slate-400 italic text-xs text-center py-4">No responses in thread yet.</p>
+                  <p className="text-[var(--surface-muted)] italic text-xs text-center py-4">No responses in thread yet.</p>
                 )}
               </div>
             </div>
 
             {/* Reply Controls */}
-            <div className="space-y-3 pt-2 border-t border-slate-100">
+            <div className="space-y-3 pt-2 border-t border-[var(--surface-border)]">
               <div className="flex items-center justify-between gap-3">
                 <label className="text-xs font-semibold text-slate-700">Set Ticket Status:</label>
                 <select
                   value={selectedStatus}
                   onChange={(e) => setSelectedStatus(e.target.value)}
-                  className="rounded-xl border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-bold text-[#0D2137] shadow-2xs appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%20fill%3D%22none%22%20stroke%3D%22%232B7BC4%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[position:right_0.6rem_center] bg-no-repeat pr-8 hover:border-[#2B7BC4]/60 focus:border-[#2B7BC4] focus:outline-none cursor-pointer"
+                  className="rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] px-3.5 py-1.5 text-xs font-bold text-[var(--foreground)] shadow-2xs appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%20fill%3D%22none%22%20stroke%3D%22%232B7BC4%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[position:right_0.6rem_center] bg-no-repeat pr-8 hover:border-[var(--primary)]/60 focus:border-[var(--primary)] focus:outline-none cursor-pointer"
                 >
                   <option value="open">Open (Keep in queue)</option>
                   <option value="in_progress">In Progress (Staff Working)</option>
@@ -2461,14 +2461,14 @@ export function AdminSupportPage() {
                 value={replyText}
                 onChange={(e) => setReplyText(e.target.value)}
                 placeholder="Type your response to the client..."
-                className="w-full rounded-xl border border-slate-200 p-3 text-xs text-[#0D2137] focus:outline-none focus:border-[#2B7BC4]"
+                className="w-full rounded-[var(--radius-xl)] border border-[var(--surface-border)] p-3 text-xs text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)]"
               />
 
               <div className="flex justify-end gap-2">
                 <button
                   type="button"
                   onClick={() => setActiveReply(null)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 cursor-pointer"
+                  className="px-4 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs font-bold text-slate-700 hover:bg-[var(--surface-sunken)] cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -2476,7 +2476,7 @@ export function AdminSupportPage() {
                   type="button"
                   onClick={handleSendReply}
                   disabled={submitting}
-                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-xs font-bold text-white hover:brightness-110 shadow-md shadow-blue-500/20 disabled:opacity-50 cursor-pointer inline-flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-xs font-bold text-white hover:brightness-110 shadow-md shadow-blue-500/20 disabled:opacity-50 cursor-pointer inline-flex items-center gap-1.5"
                 >
                   {submitting ? (
                     <Loader2 className="size-3.5 animate-spin" />
@@ -2672,17 +2672,17 @@ export function AdminTeamsPage() {
   const existingTeamLeads = members.filter((m) => m.role === "team_lead");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-page-in">
       {/* ── Top Header ──────────────────────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <UserCog className="size-5 text-[#2B7BC4]" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">
+            <UserCog className="size-5 text-[var(--primary)]" />
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">
               {isTeamLead ? "My Pod Team & Capacity" : "Agency Team & Capacity Management"}
             </h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             {isTeamLead
               ? "Manage your creative pod's editors, designers, and calibrate individual daily workload capacities."
               : "Internal creatives, editors, team leads, and agency-wide load-balanced pod controllers."}
@@ -2691,7 +2691,7 @@ export function AdminTeamsPage() {
         <button
           type="button"
           onClick={handleOpenAddModal}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white text-xs font-bold hover:from-[#246bb0] hover:to-[#174e7e] shadow-md shadow-blue-500/20 transition-all cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white text-xs font-bold hover:from-[#246bb0] hover:to-[#174e7e] shadow-md shadow-blue-500/20 transition-all cursor-pointer"
         >
           <Plus className="size-4" /> Add Team Member
         </button>
@@ -2699,8 +2699,8 @@ export function AdminTeamsPage() {
 
       {/* ── Role Scope Notice ─────────────────────────────────────────────── */}
       {isTeamLead && (
-        <div className="flex items-center gap-3 bg-blue-50/80 border border-blue-200/70 rounded-2xl p-4 text-xs text-blue-900">
-          <Shield className="size-4 text-[#2B7BC4] shrink-0" />
+        <div className="flex items-center gap-3 bg-blue-50/80 border border-blue-200/70 rounded-[var(--radius-2xl)] p-4 text-xs text-blue-900">
+          <Shield className="size-4 text-[var(--primary)] shrink-0" />
           <span>
             <strong>Team Lead Pod Scope:</strong> You have autonomous authority to view and manage team members, manage login credentials, and edit daily task capacities for members assigned to your pod.
           </span>
@@ -2708,18 +2708,18 @@ export function AdminTeamsPage() {
       )}
 
       {/* ── Search & Filter Controls ──────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3 rounded-2xl border border-slate-200/80 shadow-2xs">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-[var(--surface-card)] p-3 rounded-[var(--radius-2xl)] border border-[var(--surface-border)]/80 shadow-2xs">
         <div className="relative flex-1">
-          <Search className="size-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="size-4 text-[var(--surface-muted)] absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search team member by name, email, or skill..."
-            className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-900 focus:bg-white focus:border-[#2B7BC4] focus:outline-none"
+            className="w-full pl-9 pr-4 py-2 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] border border-[var(--surface-border)]/80 text-xs text-[var(--foreground)] focus:bg-[var(--surface-card)] focus:border-[var(--primary)] focus:outline-none"
           />
         </div>
-        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl text-xs overflow-x-auto">
+        <div className="flex items-center gap-1 bg-[var(--surface-sunken)] p-1 rounded-[var(--radius-xl)] text-xs overflow-x-auto">
           {[
             { id: "all", label: "All Members" },
             { id: "editor", label: "Editors" },
@@ -2731,10 +2731,10 @@ export function AdminTeamsPage() {
               key={f.id}
               type="button"
               onClick={() => setRoleFilter(f.id)}
-              className={`px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-[var(--radius-xl)] font-medium whitespace-nowrap transition-all cursor-pointer ${
                 roleFilter === f.id
-                  ? "bg-white text-[#0D2137] shadow-2xs font-bold"
-                  : "text-slate-500 hover:text-slate-800"
+                  ? "bg-[var(--surface-card)] text-[var(--foreground)] shadow-2xs font-bold"
+                  : "text-[var(--surface-muted)] hover:text-[var(--foreground)]"
               }`}
             >
               {f.label}
@@ -2746,15 +2746,15 @@ export function AdminTeamsPage() {
       {/* ── Team Roster Cards Grid ────────────────────────────────────────── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {loading ? (
-          <div className="col-span-full py-16 text-center text-slate-400">
-            <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+          <div className="col-span-full py-16 text-center text-[var(--surface-muted)]">
+            <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[var(--primary)]" />
             Loading team roster cards...
           </div>
         ) : filteredMembers.length === 0 ? (
-          <div className="col-span-full py-12 text-center text-slate-500 bg-slate-50 rounded-2xl border border-dashed border-slate-200 space-y-2">
-            <UserCog className="size-8 text-slate-400 mx-auto" />
+          <div className="col-span-full py-12 text-center text-[var(--surface-muted)] bg-[var(--surface-sunken)] rounded-[var(--radius-2xl)] border border-dashed border-[var(--surface-border)] space-y-2">
+            <UserCog className="size-8 text-[var(--surface-muted)] mx-auto" />
             <p className="font-semibold text-sm">No team members match your filter.</p>
-            <p className="text-xs text-slate-400">Try adjusting your search terms or click "Add Team Member".</p>
+            <p className="text-xs text-[var(--surface-muted)]">Try adjusting your search terms or click "Add Team Member".</p>
           </div>
         ) : (
           filteredMembers.map((staff) => {
@@ -2772,25 +2772,25 @@ export function AdminTeamsPage() {
             return (
               <div
                 key={staff.id}
-                className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-xs flex flex-col justify-between space-y-4 hover:border-[#2B7BC4]/40 hover:shadow-md transition-all group"
+                className="rounded-[var(--radius-2xl)] border border-[var(--surface-border)]/90 bg-[var(--surface-card)] p-5 shadow-xs flex flex-col justify-between space-y-4 hover:border-[var(--primary)]/40 hover:shadow-md transition-all group"
               >
                 <div className="space-y-3.5">
                   {/* Top Avatar & Name Header */}
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="size-12 rounded-2xl bg-gradient-to-br from-[#2B7BC4] to-[#1E609A] text-white font-black flex items-center justify-center text-sm shadow-sm shrink-0 border border-blue-400/30">
+                      <div className="size-12 rounded-[var(--radius-2xl)] bg-gradient-to-br from-[#2B7BC4] to-[#1E609A] text-white font-black flex items-center justify-center text-sm shadow-sm shrink-0 border border-blue-400/30">
                         {(staff.full_name || staff.email).slice(0, 2).toUpperCase()}
                       </div>
                       <div className="space-y-0.5 min-w-0">
                         <div className="flex items-center gap-1.5 flex-wrap">
-                          <h3 className="font-bold text-sm text-[#0D2137] truncate">{staff.full_name}</h3>
+                          <h3 className="font-bold text-sm text-[var(--foreground)] truncate">{staff.full_name}</h3>
                           {isSelf && (
-                            <span className="text-[10px] bg-blue-100 text-[#2B7BC4] font-bold px-2 py-0.5 rounded-full border border-blue-200">
+                            <span className="text-[10px] bg-blue-100 text-[var(--primary)] font-bold px-2 py-0.5 rounded-full border border-blue-200">
                               Pod Lead (You)
                             </span>
                           )}
                         </div>
-                        <p className="text-xs text-slate-400 truncate">{staff.email}</p>
+                        <p className="text-xs text-[var(--surface-muted)] truncate">{staff.email}</p>
                       </div>
                     </div>
 
@@ -2807,24 +2807,24 @@ export function AdminTeamsPage() {
 
                   {/* Badges Bar */}
                   <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
-                    <span className="px-2.5 py-0.5 rounded-lg bg-slate-100 text-[#0D2137] font-bold capitalize border border-slate-200">
+                    <span className="px-2.5 py-0.5 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] text-[var(--foreground)] font-bold capitalize border border-[var(--surface-border)]">
                       {staff.role.replace("_", " ")}
                     </span>
-                    <span className="px-2.5 py-0.5 rounded-lg bg-blue-50 text-[#2B7BC4] font-semibold capitalize border border-blue-200/60">
+                    <span className="px-2.5 py-0.5 rounded-[var(--radius-xl)] bg-blue-50 text-[var(--primary)] font-semibold capitalize border border-blue-200/60">
                       {staff.department} Dept
                     </span>
 
                     {staff.on_leave_today ? (
-                      <span className="px-2.5 py-0.5 rounded-lg bg-purple-50 text-purple-700 font-bold border border-purple-200">
+                      <span className="px-2.5 py-0.5 rounded-[var(--radius-xl)] bg-purple-50 text-purple-700 font-bold border border-purple-200">
                         🏖️ On Leave
                       </span>
                     ) : staff.is_accepting_work ? (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-[var(--radius-xl)] bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">
                         <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
                         Accepting Work
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-amber-50 text-amber-700 font-semibold border border-amber-200">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-[var(--radius-xl)] bg-amber-50 text-amber-700 font-semibold border border-amber-200">
                         <span className="size-1.5 rounded-full bg-amber-500" />
                         Dispatch Paused
                       </span>
@@ -2832,10 +2832,10 @@ export function AdminTeamsPage() {
                   </div>
 
                   {/* Workload Progress Gauge */}
-                  <div className="space-y-1.5 p-3 rounded-xl bg-slate-50/80 border border-slate-200/80 text-xs">
-                    <div className="flex justify-between items-center text-slate-600">
+                  <div className="space-y-1.5 p-3 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)]/80 border border-[var(--surface-border)]/80 text-xs">
+                    <div className="flex justify-between items-center text-[var(--surface-muted)]">
                       <span className="font-semibold text-slate-700">Active Workload (WIP):</span>
-                      <span className="font-bold text-[#0D2137]">
+                      <span className="font-bold text-[var(--foreground)]">
                         {wip} / {cap} assets ({pct}%)
                       </span>
                     </div>
@@ -2849,32 +2849,32 @@ export function AdminTeamsPage() {
 
                   {/* Skills Chips */}
                   <div className="space-y-1">
-                    <span className="text-[10px] uppercase tracking-wider font-bold text-slate-400 block">Skills & Expertise</span>
+                    <span className="text-[10px] uppercase tracking-wider font-bold text-[var(--surface-muted)] block">Skills & Expertise</span>
                     <div className="flex gap-1.5 flex-wrap">
                       {(staff.skills || []).length > 0 ? (
                         staff.skills.map((s: string) => (
                           <span
                             key={s}
-                            className="px-2 py-0.5 rounded-md bg-blue-50/70 border border-blue-100 text-[10px] text-[#2B7BC4] font-medium"
+                            className="px-2 py-0.5 rounded-md bg-blue-50/70 border border-blue-100 text-[10px] text-[var(--primary)] font-medium"
                           >
                             {s}
                           </span>
                         ))
                       ) : (
-                        <span className="text-[11px] text-slate-400 italic">General Creative</span>
+                        <span className="text-[11px] text-[var(--surface-muted)] italic">General Creative</span>
                       )}
                     </div>
                   </div>
                 </div>
 
                 {/* Card Action Buttons */}
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                <div className="pt-3 border-t border-[var(--surface-border)] flex items-center justify-between gap-2">
                   {canEditThisMember ? (
                     <>
                       <button
                         type="button"
                         onClick={() => handleOpenEditCapacity(staff)}
-                        className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:border-[#2B7BC4] hover:text-[#2B7BC4] hover:bg-blue-50/40 transition-all cursor-pointer"
+                        className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs font-bold text-slate-700 hover:border-[var(--primary)] hover:text-[var(--primary)] hover:bg-blue-50/40 transition-all cursor-pointer"
                       >
                         <Sliders className="size-3.5" />
                         Edit Capacity
@@ -2884,7 +2884,7 @@ export function AdminTeamsPage() {
                         <button
                           type="button"
                           onClick={() => setDeletingMember(staff)}
-                          className="inline-flex items-center gap-1 px-3 py-2 rounded-xl border border-rose-200 text-xs font-bold text-rose-600 hover:bg-rose-50 transition-all cursor-pointer"
+                          className="inline-flex items-center gap-1 px-3 py-2 rounded-[var(--radius-xl)] border border-rose-200 text-xs font-bold text-rose-600 hover:bg-rose-50 transition-all cursor-pointer"
                           title="Deactivate staff member"
                         >
                           <Trash2 className="size-3.5" />
@@ -2893,7 +2893,7 @@ export function AdminTeamsPage() {
                       )}
                     </>
                   ) : (
-                    <span className="text-[11px] text-slate-400 italic">Assigned to Pod</span>
+                    <span className="text-[11px] text-[var(--surface-muted)] italic">Assigned to Pod</span>
                   )}
                 </div>
               </div>
@@ -2907,19 +2907,19 @@ export function AdminTeamsPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-md p-4 animate-fade-in">
           <form
             onSubmit={handleCreateMember}
-            className="w-full max-w-lg rounded-3xl bg-white p-6 sm:p-7 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto animate-scale-in border border-slate-100"
+            className="w-full max-w-lg rounded-[var(--radius-3xl)] bg-[var(--surface-card)] p-6 sm:p-7 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto animate-scale-in border border-[var(--surface-border)]"
           >
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div className="flex items-center justify-between border-b border-[var(--surface-border)] pb-3">
               <div>
-                <h3 className="text-lg font-bold text-[#0D2137]">Add Team Member</h3>
-                <p className="text-xs text-slate-500">
+                <h3 className="text-lg font-display font-black text-[var(--foreground)]">Add Team Member</h3>
+                <p className="text-xs text-[var(--surface-muted)]">
                   Provide credentials so this member can immediately sign in.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setAddModalOpen(false)}
-                className="size-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
+                className="size-8 rounded-full bg-[var(--surface-sunken)] flex items-center justify-center text-[var(--surface-muted)] hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
               >
                 <X className="size-4" />
               </button>
@@ -2934,7 +2934,7 @@ export function AdminTeamsPage() {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="e.g. Arjun Mehta"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs text-slate-900 font-medium focus:outline-none focus:border-[#2B7BC4] focus:ring-2 focus:ring-[#2B7BC4]/20 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs text-[var(--foreground)] font-medium focus:outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[#2B7BC4]/20 transition-all"
                 />
               </div>
 
@@ -2946,7 +2946,7 @@ export function AdminTeamsPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="arjun@creo.agency"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs text-slate-900 font-medium focus:outline-none focus:border-[#2B7BC4] focus:ring-2 focus:ring-[#2B7BC4]/20 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs text-[var(--foreground)] font-medium focus:outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[#2B7BC4]/20 transition-all"
                 />
               </div>
 
@@ -2957,7 +2957,7 @@ export function AdminTeamsPage() {
                   <button
                     type="button"
                     onClick={generateRandomPassword}
-                    className="text-[11px] font-bold text-[#2B7BC4] hover:underline cursor-pointer"
+                    className="text-[11px] font-bold text-[var(--primary)] hover:underline cursor-pointer"
                   >
                     Auto-Generate
                   </button>
@@ -2969,12 +2969,12 @@ export function AdminTeamsPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter login password"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-mono text-slate-900 focus:outline-none focus:border-[#2B7BC4] focus:ring-2 focus:ring-[#2B7BC4]/20 pr-16 transition-all"
+                    className="w-full px-3.5 py-2.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs font-mono text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[#2B7BC4]/20 pr-16 transition-all"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[11px] text-slate-500 hover:text-slate-800 font-semibold px-1.5 py-1"
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[11px] text-[var(--surface-muted)] hover:text-[var(--foreground)] font-semibold px-1.5 py-1"
                   >
                     {showPassword ? "Hide" : "Show"}
                   </button>
@@ -2996,7 +2996,7 @@ export function AdminTeamsPage() {
                         setSkillsInput("Posters, Carousels, Figma, Graphics");
                       }
                     }}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-semibold text-[#0D2137] shadow-2xs appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%20fill%3D%22none%22%20stroke%3D%22%232B7BC4%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[position:right_0.75rem_center] bg-no-repeat pr-9 hover:border-[#2B7BC4]/60 focus:border-[#2B7BC4] focus:ring-2 focus:ring-[#2B7BC4]/20 focus:outline-none transition-all cursor-pointer"
+                    className="w-full rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] px-3.5 py-2.5 text-xs font-semibold text-[var(--foreground)] shadow-2xs appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%20fill%3D%22none%22%20stroke%3D%22%232B7BC4%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[position:right_0.75rem_center] bg-no-repeat pr-9 hover:border-[var(--primary)]/60 focus:border-[var(--primary)] focus:ring-2 focus:ring-[#2B7BC4]/20 focus:outline-none transition-all cursor-pointer"
                   >
                     <option value="editor">Editor (Reels & Motion)</option>
                     <option value="designer">Designer (Posters & Carousels)</option>
@@ -3009,7 +3009,7 @@ export function AdminTeamsPage() {
                   <select
                     value={department}
                     onChange={(e) => setDepartment(e.target.value)}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-semibold text-[#0D2137] shadow-2xs appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%20fill%3D%22none%22%20stroke%3D%22%232B7BC4%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[position:right_0.75rem_center] bg-no-repeat pr-9 hover:border-[#2B7BC4]/60 focus:border-[#2B7BC4] focus:ring-2 focus:ring-[#2B7BC4]/20 focus:outline-none transition-all cursor-pointer"
+                    className="w-full rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] px-3.5 py-2.5 text-xs font-semibold text-[var(--foreground)] shadow-2xs appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%20fill%3D%22none%22%20stroke%3D%22%232B7BC4%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[position:right_0.75rem_center] bg-no-repeat pr-9 hover:border-[var(--primary)]/60 focus:border-[var(--primary)] focus:ring-2 focus:ring-[#2B7BC4]/20 focus:outline-none transition-all cursor-pointer"
                   >
                     <option value="video">Video Editing</option>
                     <option value="graphics">Graphic Design</option>
@@ -3028,7 +3028,7 @@ export function AdminTeamsPage() {
                   <select
                     value={selectedTeamLeadId}
                     onChange={(e) => setSelectedTeamLeadId(e.target.value)}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-semibold text-[#0D2137] shadow-2xs appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%20fill%3D%22none%22%20stroke%3D%22%232B7BC4%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[position:right_0.75rem_center] bg-no-repeat pr-9 hover:border-[#2B7BC4]/60 focus:border-[#2B7BC4] focus:ring-2 focus:ring-[#2B7BC4]/20 focus:outline-none transition-all cursor-pointer"
+                    className="w-full rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] px-3.5 py-2.5 text-xs font-semibold text-[var(--foreground)] shadow-2xs appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%20fill%3D%22none%22%20stroke%3D%22%232B7BC4%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[position:right_0.75rem_center] bg-no-repeat pr-9 hover:border-[var(--primary)]/60 focus:border-[var(--primary)] focus:ring-2 focus:ring-[#2B7BC4]/20 focus:outline-none transition-all cursor-pointer"
                   >
                     <option value="">-- Select Team Lead --</option>
                     {existingTeamLeads.map((tl) => (
@@ -3050,9 +3050,9 @@ export function AdminTeamsPage() {
                   max={12}
                   value={capacity}
                   onChange={(e) => setCapacity(Number(e.target.value))}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#2B7BC4]"
+                  className="w-full px-3.5 py-2.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs focus:outline-none focus:border-[var(--primary)]"
                 />
-                <p className="text-[11px] text-slate-400 mt-1">
+                <p className="text-[11px] text-[var(--surface-muted)] mt-1">
                   Used by the fair dispatch algorithm to prevent creator burnout.
                 </p>
               </div>
@@ -3066,23 +3066,23 @@ export function AdminTeamsPage() {
                   value={skillsInput}
                   onChange={(e) => setSkillsInput(e.target.value)}
                   placeholder="Reels, Video, Motion, Posters"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#2B7BC4]"
+                  className="w-full px-3.5 py-2.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs focus:outline-none focus:border-[var(--primary)]"
                 />
               </div>
             </div>
 
-            <div className="flex justify-end gap-2.5 pt-3 border-t border-slate-100">
+            <div className="flex justify-end gap-2.5 pt-3 border-t border-[var(--surface-border)]">
               <button
                 type="button"
                 onClick={() => setAddModalOpen(false)}
-                className="px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 cursor-pointer"
+                className="px-4 py-2.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs font-bold text-slate-700 hover:bg-[var(--surface-sunken)] cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-5 py-2.5 rounded-xl bg-[#2B7BC4] text-xs font-bold text-white hover:bg-[#1A5EA8] shadow-xs disabled:opacity-50 cursor-pointer"
+                className="px-5 py-2.5 rounded-[var(--radius-xl)] bg-[var(--primary)] text-xs font-bold text-white hover:bg-[#1A5EA8] shadow-xs disabled:opacity-50 cursor-pointer"
               >
                 {submitting ? "Creating Member..." : "Save & Create Member"}
               </button>
@@ -3096,19 +3096,19 @@ export function AdminTeamsPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-md p-4 animate-fade-in">
           <form
             onSubmit={handleSaveCapacity}
-            className="w-full max-w-md rounded-3xl bg-white p-6 shadow-2xl space-y-4 animate-scale-in border border-slate-100"
+            className="w-full max-w-md rounded-[var(--radius-3xl)] bg-[var(--surface-card)] p-6 shadow-2xl space-y-4 animate-scale-in border border-[var(--surface-border)]"
           >
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div className="flex items-center justify-between border-b border-[var(--surface-border)] pb-3">
               <div>
-                <h3 className="text-base font-bold text-[#0D2137]">
+                <h3 className="text-base font-bold text-[var(--foreground)]">
                   Edit Member Capacity & Load
                 </h3>
-                <p className="text-xs text-slate-500">{editingMember.full_name} ({editingMember.role})</p>
+                <p className="text-xs text-[var(--surface-muted)]">{editingMember.full_name} ({editingMember.role})</p>
               </div>
               <button
                 type="button"
                 onClick={() => setEditingMember(null)}
-                className="size-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
+                className="size-8 rounded-full bg-[var(--surface-sunken)] flex items-center justify-center text-[var(--surface-muted)] hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
               >
                 <X className="size-4" />
               </button>
@@ -3125,7 +3125,7 @@ export function AdminTeamsPage() {
                   max={15}
                   value={editCapacity}
                   onChange={(e) => setEditCapacity(Number(e.target.value))}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-[#2B7BC4] focus:ring-2 focus:ring-[#2B7BC4]/20 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs font-medium text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[#2B7BC4]/20 transition-all"
                 />
               </div>
 
@@ -3137,7 +3137,7 @@ export function AdminTeamsPage() {
                   type="text"
                   value={editSkills}
                   onChange={(e) => setEditSkills(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-[#2B7BC4] focus:ring-2 focus:ring-[#2B7BC4]/20 transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs font-medium text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-[#2B7BC4]/20 transition-all"
                 />
               </div>
 
@@ -3147,7 +3147,7 @@ export function AdminTeamsPage() {
                   id="accepting_work"
                   checked={editIsAccepting}
                   onChange={(e) => setEditIsAccepting(e.target.checked)}
-                  className="size-4 rounded text-[#2B7BC4] focus:ring-[#2B7BC4]"
+                  className="size-4 rounded text-[var(--primary)] focus:ring-[#2B7BC4]"
                 />
                 <label htmlFor="accepting_work" className="text-xs font-semibold text-slate-700">
                   Accepting new client tasks and calendar deliverables
@@ -3155,18 +3155,18 @@ export function AdminTeamsPage() {
               </div>
             </div>
 
-            <div className="flex justify-end gap-2.5 pt-3 border-t border-slate-100">
+            <div className="flex justify-end gap-2.5 pt-3 border-t border-[var(--surface-border)]">
               <button
                 type="button"
                 onClick={() => setEditingMember(null)}
-                className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 cursor-pointer"
+                className="px-4 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs font-bold text-slate-700 hover:bg-[var(--surface-sunken)] cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={updatingCapacity}
-                className="px-5 py-2 rounded-xl bg-[#2B7BC4] text-xs font-bold text-white hover:bg-[#1A5EA8] shadow-xs cursor-pointer"
+                className="px-5 py-2 rounded-[var(--radius-xl)] bg-[var(--primary)] text-xs font-bold text-white hover:bg-[#1A5EA8] shadow-xs cursor-pointer"
               >
                 {updatingCapacity ? "Saving..." : "Save Changes"}
               </button>
@@ -3178,20 +3178,20 @@ export function AdminTeamsPage() {
       {/* ── Deactivate Member Confirmation Modal ────────────────────────────── */}
       {deletingMember && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-md p-4 animate-fade-in">
-          <div className="w-full max-w-sm rounded-3xl bg-white p-6 shadow-2xl space-y-4 animate-scale-in border border-slate-100">
+          <div className="w-full max-w-sm rounded-[var(--radius-3xl)] bg-[var(--surface-card)] p-6 shadow-2xl space-y-4 animate-scale-in border border-[var(--surface-border)]">
             <div className="flex items-center gap-3 text-red-600">
               <AlertTriangle className="size-6 shrink-0" />
-              <h3 className="text-base font-bold text-[#0D2137]">Remove Team Member?</h3>
+              <h3 className="text-base font-bold text-[var(--foreground)]">Remove Team Member?</h3>
             </div>
-            <p className="text-xs text-slate-600">
+            <p className="text-xs text-[var(--surface-muted)]">
               Are you sure you want to deactivate <strong>{deletingMember.full_name}</strong>? They will no longer receive new auto-assigned tasks.
             </p>
 
-            <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
+            <div className="flex justify-end gap-2 pt-3 border-t border-[var(--surface-border)]">
               <button
                 type="button"
                 onClick={() => setDeletingMember(null)}
-                className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 cursor-pointer"
+                className="px-4 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs font-bold text-slate-700 hover:bg-[var(--surface-sunken)] cursor-pointer"
               >
                 Cancel
               </button>
@@ -3199,7 +3199,7 @@ export function AdminTeamsPage() {
                 type="button"
                 disabled={deleting}
                 onClick={handleConfirmDeactivate}
-                className="px-4 py-2 rounded-xl bg-red-600 text-xs font-bold text-white hover:bg-red-700 cursor-pointer"
+                className="px-4 py-2 rounded-[var(--radius-xl)] bg-red-600 text-xs font-bold text-white hover:bg-red-700 cursor-pointer"
               >
                 {deleting ? "Deactivating..." : "Yes, Deactivate"}
               </button>
@@ -3211,24 +3211,24 @@ export function AdminTeamsPage() {
       {/* ── Generated Credentials Reveal Modal ────────────────────────────── */}
       {credentialsModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-md p-4 animate-fade-in">
-          <div className="w-full max-w-md rounded-3xl bg-white p-6 sm:p-7 shadow-2xl space-y-4 animate-[zoomIn_0.15s_ease-out]">
+          <div className="w-full max-w-md rounded-[var(--radius-3xl)] bg-[var(--surface-card)] p-6 sm:p-7 shadow-2xl space-y-4 animate-[zoomIn_0.15s_ease-out]">
             <div className="text-center space-y-1">
-              <div className="size-14 mx-auto rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 text-2xl shadow-xs">
+              <div className="size-14 mx-auto rounded-[var(--radius-2xl)] bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 text-2xl shadow-xs">
                 <CheckCircle2 className="size-7" />
               </div>
-              <h3 className="text-lg font-bold text-[#0D2137]">Team Member Ready!</h3>
-              <p className="text-xs text-slate-500">
+              <h3 className="text-lg font-display font-black text-[var(--foreground)]">Team Member Ready!</h3>
+              <p className="text-xs text-[var(--surface-muted)]">
                 The account has been created. The staff member can immediately log in with these credentials.
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 font-mono text-xs space-y-2.5">
+            <div className="p-4 rounded-[var(--radius-2xl)] bg-[var(--surface-sunken)] border border-[var(--surface-border)] font-mono text-xs space-y-2.5">
               <div>
-                <span className="text-slate-400">Email: </span>
-                <span className="font-bold text-[#0D2137]">{credentialsModal.credentials?.email || credentialsModal.email}</span>
+                <span className="text-[var(--surface-muted)]">Email: </span>
+                <span className="font-bold text-[var(--foreground)]">{credentialsModal.credentials?.email || credentialsModal.email}</span>
               </div>
               <div>
-                <span className="text-slate-400">Password: </span>
+                <span className="text-[var(--surface-muted)]">Password: </span>
                 <span className="font-bold text-indigo-700">{credentialsModal.credentials?.password || credentialsModal.temp_password}</span>
               </div>
             </div>
@@ -3242,7 +3242,7 @@ export function AdminTeamsPage() {
                 setCopied(true);
                 setTimeout(() => setCopied(false), 2000);
               }}
-              className="w-full py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+              className="w-full py-2.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs font-bold text-slate-700 hover:bg-[var(--surface-sunken)] flex items-center justify-center gap-2 cursor-pointer shadow-xs"
             >
               {copied ? <Check className="size-4 text-emerald-600" /> : <Copy className="size-4" />}
               {copied ? "Copied Credentials!" : "Copy Login Credentials"}
@@ -3251,7 +3251,7 @@ export function AdminTeamsPage() {
             <button
               type="button"
               onClick={() => setCredentialsModal(null)}
-              className="w-full py-2.5 rounded-xl bg-[#2B7BC4] text-xs font-bold text-white hover:bg-[#1A5EA8] cursor-pointer"
+              className="w-full py-2.5 rounded-[var(--radius-xl)] bg-[var(--primary)] text-xs font-bold text-white hover:bg-[#1A5EA8] cursor-pointer"
             >
               Done & Close
             </button>
@@ -3375,7 +3375,7 @@ export function AdminAnnouncementsPage() {
       default:
         return {
           badge: "bg-sky-50 text-sky-700 border-sky-200",
-          icon: <Megaphone className="size-3 text-[#2B7BC4]" />,
+          icon: <Megaphone className="size-3 text-[var(--primary)]" />,
           label: "Broadcast",
         };
     }
@@ -3384,21 +3384,21 @@ export function AdminAnnouncementsPage() {
   const quickDepts = ["all", "creative", "video", "design", "marketing", "engineering"];
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+    <div className="space-y-6 animate-page-in">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <Megaphone className="size-5 text-[#2B7BC4]" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">Announcements & Briefs</h1>
+            <Megaphone className="size-5 text-[var(--primary)]" />
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">Announcements & Briefs</h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             Publish organization-wide notices, system updates, and department SLA targets
           </p>
         </div>
         <button
           type="button"
           onClick={() => setCreateOpen(true)}
-          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#2B7BC4] text-white text-xs font-bold hover:bg-[#1A5EA8] shadow-xs cursor-pointer"
+          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white text-xs font-bold hover:bg-[#1A5EA8] shadow-xs cursor-pointer"
         >
           <Plus className="size-4" /> Broadcast Announcement
         </button>
@@ -3411,10 +3411,10 @@ export function AdminAnnouncementsPage() {
             key={tab}
             type="button"
             onClick={() => setTypeFilter(tab)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all cursor-pointer ${
+            className={`px-3 py-1.5 rounded-[var(--radius-xl)] text-xs font-semibold capitalize transition-all cursor-pointer ${
               typeFilter === tab
                 ? "bg-[#0D2137] text-white shadow-2xs"
-                : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
+                : "bg-[var(--surface-card)] text-[var(--surface-muted)] border border-[var(--surface-border)] hover:bg-[var(--surface-sunken)]"
             }`}
           >
             {tab === "all" ? "All Updates" : tab}
@@ -3424,14 +3424,14 @@ export function AdminAnnouncementsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {loading ? (
-          <div className="col-span-full py-16 text-center text-slate-400">
-            <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+          <div className="col-span-full py-16 text-center text-[var(--surface-muted)]">
+            <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[var(--primary)]" />
             Loading announcements from database...
           </div>
         ) : filteredAnnouncements.length === 0 ? (
-          <div className="col-span-full py-12 text-center text-slate-500 bg-white rounded-2xl border border-slate-200 p-8">
+          <div className="col-span-full py-12 text-center text-[var(--surface-muted)] bg-[var(--surface-card)] rounded-[var(--radius-2xl)] border border-[var(--surface-border)] p-8">
             <p className="text-sm font-semibold text-slate-700">No announcements match this filter.</p>
-            <p className="text-xs text-slate-400 mt-1">Try selecting another filter or broadcast a new message.</p>
+            <p className="text-xs text-[var(--surface-muted)] mt-1">Try selecting another filter or broadcast a new message.</p>
           </div>
         ) : (
           filteredAnnouncements.map((item) => {
@@ -3439,7 +3439,7 @@ export function AdminAnnouncementsPage() {
             return (
               <div
                 key={item.id}
-                className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs flex flex-col justify-between space-y-3 hover:border-slate-300 transition-all"
+                className="rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] p-5 shadow-xs flex flex-col justify-between space-y-3 hover:border-[var(--surface-border)] transition-all"
               >
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
@@ -3454,9 +3454,9 @@ export function AdminAnnouncementsPage() {
                         item.target_departments.map((dept: string) => (
                           <span
                             key={dept}
-                            className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-slate-50 border border-slate-200 text-[10px] font-medium text-slate-600"
+                            className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-[var(--surface-sunken)] border border-[var(--surface-border)] text-[10px] font-medium text-[var(--surface-muted)]"
                           >
-                            <Tag className="size-2.5 text-slate-400" />
+                            <Tag className="size-2.5 text-[var(--surface-muted)]" />
                             {dept}
                           </span>
                         ))}
@@ -3465,27 +3465,27 @@ export function AdminAnnouncementsPage() {
                       <button
                         type="button"
                         onClick={() => handleDelete(item.id)}
-                        className="p-1 rounded-md text-slate-400 hover:text-rose-600 hover:bg-rose-50 cursor-pointer transition-colors"
+                        className="p-1 rounded-md text-[var(--surface-muted)] hover:text-rose-600 hover:bg-rose-50 cursor-pointer transition-colors"
                         title="Delete announcement"
                       >
                         <Trash2 className="size-3.5" />
                       </button>
                     )}
                   </div>
-                  <h3 className="font-bold text-sm text-[#0D2137]">{item.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed whitespace-pre-line">{item.content}</p>
+                  <h3 className="font-bold text-sm text-[var(--foreground)]">{item.title}</h3>
+                  <p className="text-xs text-[var(--surface-muted)] leading-relaxed whitespace-pre-line">{item.content}</p>
                 </div>
 
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-                  <span className="font-medium text-slate-500">
+                <div className="pt-2 border-t border-[var(--surface-border)] flex items-center justify-between text-[11px] text-[var(--surface-muted)]">
+                  <span className="font-medium text-[var(--surface-muted)]">
                     By {item.author || "Creo Admin"}
                     {item.author_role && (
-                      <span className="ml-1 text-[10px] text-slate-400 font-normal capitalize">
+                      <span className="ml-1 text-[10px] text-[var(--surface-muted)] font-normal capitalize">
                         • {item.author_role.replace("_", " ")}
                       </span>
                     )}
                   </span>
-                  <span className="font-medium text-slate-500 font-mono text-[10px]">
+                  <span className="font-medium text-[var(--surface-muted)] font-mono text-[10px]">
                     {item.created_at_ist || (item.created_at ? new Date(item.created_at).toLocaleDateString() : "Recent")}
                   </span>
                 </div>
@@ -3500,14 +3500,14 @@ export function AdminAnnouncementsPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm animate-in fade-in duration-150">
           <form
             onSubmit={handleCreate}
-            className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl space-y-4 border border-slate-100"
+            className="w-full max-w-md rounded-[var(--radius-2xl)] bg-[var(--surface-card)] p-6 shadow-2xl space-y-4 border border-[var(--surface-border)]"
           >
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="text-base font-bold text-[#0D2137]">Broadcast Announcement</h3>
+            <div className="flex items-center justify-between border-b border-[var(--surface-border)] pb-3">
+              <h3 className="text-base font-bold text-[var(--foreground)]">Broadcast Announcement</h3>
               <button
                 type="button"
                 onClick={() => setCreateOpen(false)}
-                className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 cursor-pointer"
+                className="rounded-[var(--radius-xl)] p-1 text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)] cursor-pointer"
               >
                 <X className="size-4" />
               </button>
@@ -3515,23 +3515,23 @@ export function AdminAnnouncementsPage() {
 
             <div className="space-y-3">
               <div>
-                <label className="block text-xs font-bold text-slate-600 mb-1">Title</label>
+                <label className="block text-xs font-bold text-[var(--surface-muted)] mb-1">Title</label>
                 <input
                   type="text"
                   required
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Q3 Creative Production Surge & SLA Target"
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#2B7BC4]"
+                  className="w-full px-3 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs focus:outline-none focus:border-[var(--primary)]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-600 mb-1">Type</label>
+                <label className="block text-xs font-bold text-[var(--surface-muted)] mb-1">Type</label>
                 <select
                   value={type}
                   onChange={(e) => setType(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#2B7BC4]"
+                  className="w-full px-3 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs focus:outline-none focus:border-[var(--primary)]"
                 >
                   <option value="broadcast">Broadcast (General Notice)</option>
                   <option value="system">System (Platform & Infrastructure)</option>
@@ -3541,7 +3541,7 @@ export function AdminAnnouncementsPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-600 mb-1">
+                <label className="block text-xs font-bold text-[var(--surface-muted)] mb-1">
                   Target Departments
                 </label>
                 <div className="flex flex-wrap gap-1.5 mb-2">
@@ -3554,8 +3554,8 @@ export function AdminAnnouncementsPage() {
                         onClick={() => toggleDept(d)}
                         className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border transition-all cursor-pointer ${
                           active
-                            ? "bg-[#2B7BC4] text-white border-[#2B7BC4]"
-                            : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100"
+                            ? "bg-[var(--primary)] text-white border-[var(--primary)]"
+                            : "bg-[var(--surface-sunken)] text-[var(--surface-muted)] border-[var(--surface-border)] hover:bg-[var(--surface-sunken)]"
                         }`}
                       >
                         {d}
@@ -3575,12 +3575,12 @@ export function AdminAnnouncementsPage() {
                       }
                     }}
                     placeholder="Add custom dept and press enter"
-                    className="flex-1 px-3 py-1.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#2B7BC4]"
+                    className="flex-1 px-3 py-1.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs focus:outline-none focus:border-[var(--primary)]"
                   />
                   <button
                     type="button"
                     onClick={addCustomDept}
-                    className="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 cursor-pointer"
+                    className="px-3 py-1.5 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] text-slate-700 text-xs font-bold hover:bg-slate-200 cursor-pointer"
                   >
                     Add
                   </button>
@@ -3588,29 +3588,29 @@ export function AdminAnnouncementsPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-600 mb-1">Content</label>
+                <label className="block text-xs font-bold text-[var(--surface-muted)] mb-1">Content</label>
                 <textarea
                   rows={4}
                   required
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   placeholder="Details and instructions for the team or clients..."
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#2B7BC4]"
+                  className="w-full px-3 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs focus:outline-none focus:border-[var(--primary)]"
                 />
               </div>
             </div>
 
-            <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
+            <div className="flex justify-end gap-2 pt-2 border-t border-[var(--surface-border)]">
               <button
                 type="button"
                 onClick={() => setCreateOpen(false)}
-                className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 cursor-pointer"
+                className="px-4 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs font-bold text-slate-700 hover:bg-[var(--surface-sunken)] cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 rounded-xl bg-[#2B7BC4] text-xs font-bold text-white hover:bg-[#1A5EA8] shadow-xs cursor-pointer"
+                className="px-4 py-2 rounded-[var(--radius-xl)] bg-[var(--primary)] text-xs font-bold text-white hover:bg-[#1A5EA8] shadow-xs cursor-pointer"
               >
                 Publish Now
               </button>
@@ -3651,26 +3651,26 @@ export function AdminReportsPage() {
 
   if (loading) {
     return (
-      <div className="py-20 text-center text-slate-400 space-y-3">
-        <Loader2 className="size-8 animate-spin mx-auto text-[#2B7BC4]" />
-        <p className="text-sm font-medium text-slate-600">Loading financial & production metrics...</p>
-        <p className="text-xs text-slate-400">Syncing with real-time operational database</p>
+      <div className="py-20 text-center text-[var(--surface-muted)] space-y-3">
+        <Loader2 className="size-8 animate-spin mx-auto text-[var(--primary)]" />
+        <p className="text-sm font-medium text-[var(--surface-muted)]">Loading financial & production metrics...</p>
+        <p className="text-xs text-[var(--surface-muted)]">Syncing with real-time operational database</p>
       </div>
     );
   }
 
   if (error && !reports) {
     return (
-      <div className="rounded-2xl border border-rose-200 bg-rose-50/50 p-8 text-center space-y-3 max-w-lg mx-auto my-12">
+      <div className="rounded-[var(--radius-2xl)] border border-rose-200 bg-rose-50/50 p-8 text-center space-y-3 max-w-lg mx-auto my-12">
         <div className="size-10 rounded-full bg-rose-100 text-rose-600 mx-auto flex items-center justify-center font-bold">
           !
         </div>
-        <h3 className="font-bold text-slate-800 text-sm">Unable to Load Reports</h3>
+        <h3 className="font-bold text-[var(--foreground)] text-sm">Unable to Load Reports</h3>
         <p className="text-xs text-rose-600">{error}</p>
         <button
           type="button"
           onClick={fetchReports}
-          className="mt-2 px-4 py-2 rounded-xl bg-[#2B7BC4] text-white text-xs font-bold hover:bg-[#1A5EA8] shadow-xs cursor-pointer"
+          className="mt-2 px-4 py-2 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white text-xs font-bold hover:bg-[#1A5EA8] shadow-xs cursor-pointer"
         >
           Retry Connection
         </button>
@@ -3679,23 +3679,23 @@ export function AdminReportsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+    <div className="space-y-6 animate-page-in">
+      <div className="flex items-center justify-between border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <BarChart3 className="size-5 text-[#2B7BC4]" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">
+            <BarChart3 className="size-5 text-[var(--primary)]" />
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">
               Financial & Production Reports
             </h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             Live MRR run-rate, turnaround SLA compliance, and asset format breakdown
           </p>
         </div>
         <button
           type="button"
           onClick={fetchReports}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 bg-white text-xs font-semibold text-slate-600 hover:bg-slate-50 shadow-xs cursor-pointer"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] text-xs font-semibold text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)] shadow-xs cursor-pointer"
         >
           Refresh Data
         </button>
@@ -3703,40 +3703,40 @@ export function AdminReportsPage() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-5 rounded-xl border border-slate-200 bg-white shadow-xs">
-          <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">MRR Run-rate</p>
-          <p className="text-2xl font-extrabold text-[#0D2137] mt-1.5">{reports?.mrr_formatted || "₹0"}</p>
+        <div className="p-5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-xs">
+          <p className="text-xs text-[var(--surface-muted)] uppercase tracking-wider font-semibold">MRR Run-rate</p>
+          <p className="text-2xl font-extrabold text-[var(--foreground)] mt-1.5">{reports?.mrr_formatted || "₹0"}</p>
           <p className="text-xs text-emerald-600 mt-1 font-semibold flex items-center gap-1">
             <TrendingUp className="size-3.5" /> +{reports?.mrr_growth_percentage || 18.4}% this month
           </p>
         </div>
 
-        <div className="p-5 rounded-xl border border-slate-200 bg-white shadow-xs">
-          <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">SLA Compliance</p>
-          <p className="text-2xl font-extrabold text-[#0D2137] mt-1.5">{reports?.delivery_sla_compliance || 100}%</p>
-          <p className="text-xs text-slate-500 mt-1">Target: &gt;92% on-time</p>
+        <div className="p-5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-xs">
+          <p className="text-xs text-[var(--surface-muted)] uppercase tracking-wider font-semibold">SLA Compliance</p>
+          <p className="text-2xl font-extrabold text-[var(--foreground)] mt-1.5">{reports?.delivery_sla_compliance || 100}%</p>
+          <p className="text-xs text-[var(--surface-muted)] mt-1">Target: &gt;92% on-time</p>
         </div>
 
-        <div className="p-5 rounded-xl border border-slate-200 bg-white shadow-xs">
-          <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Active Brands</p>
-          <p className="text-2xl font-extrabold text-[#0D2137] mt-1.5">{reports?.active_clients_count || 0} Active</p>
+        <div className="p-5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-xs">
+          <p className="text-xs text-[var(--surface-muted)] uppercase tracking-wider font-semibold">Active Brands</p>
+          <p className="text-2xl font-extrabold text-[var(--foreground)] mt-1.5">{reports?.active_clients_count || 0} Active</p>
           <p className="text-xs text-emerald-600 mt-1 font-semibold">{reports?.client_retention_rate || 96.2}% retention</p>
         </div>
 
-        <div className="p-5 rounded-xl border border-slate-200 bg-white shadow-xs">
-          <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Avg Turnaround</p>
-          <p className="text-2xl font-extrabold text-[#0D2137] mt-1.5">{reports?.turnaround_avg_hours || 31.4}h</p>
-          <p className="text-xs text-slate-500 mt-1">Within 48-hour SLA window</p>
+        <div className="p-5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-xs">
+          <p className="text-xs text-[var(--surface-muted)] uppercase tracking-wider font-semibold">Avg Turnaround</p>
+          <p className="text-2xl font-extrabold text-[var(--foreground)] mt-1.5">{reports?.turnaround_avg_hours || 31.4}h</p>
+          <p className="text-xs text-[var(--surface-muted)] mt-1">Within 48-hour SLA window</p>
         </div>
       </div>
 
       {/* Monthly Revenue Trend */}
       {reports?.monthly_revenue_history && reports.monthly_revenue_history.length > 0 && (
-        <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-xs space-y-4">
+        <div className="rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] p-6 shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-sm text-[#0D2137]">Monthly Revenue Trajectory</h3>
-              <p className="text-xs text-slate-500">6-month MRR growth across all subscribed clients</p>
+              <h3 className="font-bold text-sm text-[var(--foreground)]">Monthly Revenue Trajectory</h3>
+              <p className="text-xs text-[var(--surface-muted)]">6-month MRR growth across all subscribed clients</p>
             </div>
             <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1">
               <TrendingUp className="size-3" /> +{reports?.mrr_growth_percentage || 18.4}% MoM
@@ -3749,16 +3749,16 @@ export function AdminReportsPage() {
               const heightPct = Math.max(18, Math.round(((m.revenue || 0) / maxRev) * 100));
               return (
                 <div key={m.month} className="flex-1 flex flex-col items-center gap-2 group">
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-bold text-slate-600">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-bold text-[var(--surface-muted)]">
                     ₹{(m.revenue / 1000).toFixed(0)}k
                   </div>
-                  <div className="w-full bg-slate-100/80 rounded-t-lg h-28 flex items-end overflow-hidden">
+                  <div className="w-full bg-[var(--surface-sunken)]/80 rounded-t-lg h-28 flex items-end overflow-hidden">
                     <div
                       className="w-full bg-gradient-to-t from-[#2B7BC4] to-[#4FA3E3] rounded-t-lg transition-all duration-300 group-hover:brightness-110"
                       style={{ height: `${heightPct}%` }}
                     />
                   </div>
-                  <span className="text-[11px] font-semibold text-slate-500">{m.month}</span>
+                  <span className="text-[11px] font-semibold text-[var(--surface-muted)]">{m.month}</span>
                 </div>
               );
             })}
@@ -3767,14 +3767,14 @@ export function AdminReportsPage() {
       )}
 
       {/* Production Format Breakdown */}
-      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-xs space-y-4">
-        <h3 className="font-bold text-sm text-[#0D2137]">Deliverables Output by Format</h3>
+      <div className="rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] p-6 shadow-xs space-y-4">
+        <h3 className="font-bold text-sm text-[var(--foreground)]">Deliverables Output by Format</h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {(reports?.format_distribution || []).map((f: any) => (
-            <div key={f.format} className="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
-              <span className="text-xs text-slate-500 font-semibold">{f.format}</span>
-              <div className="text-xl font-bold text-[#0D2137]">{f.count} {f.count === 1 ? 'asset' : 'assets'}</div>
-              <div className="text-[11px] text-[#2B7BC4] font-medium">{f.percentage}% of output</div>
+            <div key={f.format} className="p-4 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] border border-[var(--surface-border)] space-y-1">
+              <span className="text-xs text-[var(--surface-muted)] font-semibold">{f.format}</span>
+              <div className="text-xl font-display font-black text-[var(--foreground)]">{f.count} {f.count === 1 ? 'asset' : 'assets'}</div>
+              <div className="text-[11px] text-[var(--primary)] font-medium">{f.percentage}% of output</div>
             </div>
           ))}
         </div>
@@ -3814,14 +3814,14 @@ export function AdminAddonsPage() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+    <div className="space-y-6 animate-page-in">
+      <div className="flex items-center justify-between border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <Puzzle className="size-5 text-[#2B7BC4]" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">Add-on Services Catalog</h1>
+            <Puzzle className="size-5 text-[var(--primary)]" />
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">Add-on Services Catalog</h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             Extra shoot days, VFX motion packs, and client add-on fulfillment queue
           </p>
         </div>
@@ -3829,35 +3829,35 @@ export function AdminAddonsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {loading ? (
-          <div className="col-span-full py-16 text-center text-slate-400">
-            <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+          <div className="col-span-full py-16 text-center text-[var(--surface-muted)]">
+            <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[var(--primary)]" />
             Loading add-on services...
           </div>
         ) : addons.length === 0 ? (
-          <div className="col-span-full py-12 text-center text-slate-500">
+          <div className="col-span-full py-12 text-center text-[var(--surface-muted)]">
             No add-on catalog items found.
           </div>
         ) : (
           addons.map((addon) => (
             <div
               key={addon.id}
-              className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs flex flex-col justify-between space-y-4"
+              className="rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] p-5 shadow-xs flex flex-col justify-between space-y-4"
             >
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#E8F4FD] text-[#2B7BC4] text-[10px] font-bold uppercase tracking-wider border border-[#C9DFF0]">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#E8F4FD] text-[var(--primary)] text-[10px] font-bold uppercase tracking-wider border border-[#C9DFF0]">
                     {addon.category}
                   </span>
-                  <span className="text-xs font-bold text-[#0D2137]">
-                    ₹{addon.price_inr.toLocaleString("en-IN")} <span className="text-[10px] font-normal text-slate-500">/ {addon.unit}</span>
+                  <span className="text-xs font-bold text-[var(--foreground)]">
+                    ₹{addon.price_inr.toLocaleString("en-IN")} <span className="text-[10px] font-normal text-[var(--surface-muted)]">/ {addon.unit}</span>
                   </span>
                 </div>
-                <h3 className="font-bold text-sm text-[#0D2137]">{addon.name}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">{addon.description}</p>
+                <h3 className="font-bold text-sm text-[var(--foreground)]">{addon.name}</h3>
+                <p className="text-xs text-[var(--surface-muted)] leading-relaxed">{addon.description}</p>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate-600">
+              <div className="pt-3 border-t border-[var(--surface-border)] flex items-center justify-between">
+                <span className="text-xs font-semibold text-[var(--surface-muted)]">
                   {addon.pending_requests > 0 ? (
                     <span className="text-amber-600 font-bold">⚡ {addon.pending_requests} pending fulfillment</span>
                   ) : (
@@ -3868,7 +3868,7 @@ export function AdminAddonsPage() {
                   <button
                     type="button"
                     onClick={() => handleComplete(addon.id)}
-                    className="px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 shadow-xs cursor-pointer"
+                    className="px-3 py-1.5 rounded-[var(--radius-xl)] bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 shadow-xs cursor-pointer"
                   >
                     Mark Fulfilled
                   </button>
@@ -3911,23 +3911,23 @@ export function AdminEscalationsPage() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+    <div className="space-y-6 animate-page-in">
+      <div className="flex items-center justify-between border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
             <AlertTriangle className="size-5 text-amber-600" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">SLA Breach Escalations</h1>
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">SLA Breach Escalations</h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             Real-time alert board for tasks approaching or exceeding delivery deadlines
           </p>
         </div>
       </div>
 
-      <div className="rounded-xl border border-slate-200 bg-white shadow-xs overflow-hidden">
+      <div className="rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50 text-[#0D2137] border-b border-slate-200 font-semibold">
+            <thead className="bg-[var(--surface-sunken)] text-[var(--foreground)] border-b border-[var(--surface-border)] font-semibold">
               <tr>
                 <th className="px-4 py-3">Severity</th>
                 <th className="px-4 py-3">Client Brand</th>
@@ -3940,8 +3940,8 @@ export function AdminEscalationsPage() {
             <tbody className="divide-y divide-slate-100">
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="px-4 py-12 text-center text-slate-400">
-                    <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+                  <td colSpan={6} className="px-4 py-12 text-center text-[var(--surface-muted)]">
+                    <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[var(--primary)]" />
                     Checking SLA breach queue...
                   </td>
                 </tr>
@@ -3953,21 +3953,21 @@ export function AdminEscalationsPage() {
                 </tr>
               ) : (
                 escalations.map((esc) => (
-                  <tr key={esc.id} className="hover:bg-slate-50">
+                  <tr key={esc.id} className="hover:bg-[var(--surface-sunken)]">
                     <td className="px-4 py-3">
                       <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">
                         {esc.severity}
                       </span>
                     </td>
-                    <td className="px-4 py-3 font-semibold text-[#0D2137]">{esc.client}</td>
-                    <td className="px-4 py-3 font-mono text-[11px] text-[#2B7BC4] uppercase">{esc.deliverable_type}</td>
-                    <td className="px-4 py-3 text-slate-600">{esc.assignee}</td>
+                    <td className="px-4 py-3 font-semibold text-[var(--foreground)]">{esc.client}</td>
+                    <td className="px-4 py-3 font-mono text-[11px] text-[var(--primary)] uppercase">{esc.deliverable_type}</td>
+                    <td className="px-4 py-3 text-[var(--surface-muted)]">{esc.assignee}</td>
                     <td className="px-4 py-3 text-rose-600 font-bold text-[11px]">Past Due</td>
                     <td className="px-4 py-3 text-right">
                       <button
                         type="button"
                         onClick={() => handleResolve(esc.id)}
-                        className="px-3 py-1 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 shadow-xs cursor-pointer"
+                        className="px-3 py-1 rounded-[var(--radius-xl)] bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 shadow-xs cursor-pointer"
                       >
                         Resolve
                       </button>
@@ -3999,22 +3999,22 @@ export function AdminSalesPage() {
 
   if (loading) {
     return (
-      <div className="py-16 text-center text-slate-400">
-        <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+      <div className="py-16 text-center text-[var(--surface-muted)]">
+        <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[var(--primary)]" />
         Loading sales and pricing pipeline from database...
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+    <div className="space-y-6 animate-page-in">
+      <div className="flex items-center justify-between border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <DollarSign className="size-5 text-[#2B7BC4]" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">Sales & Custom Pricing</h1>
+            <DollarSign className="size-5 text-[var(--primary)]" />
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">Sales & Custom Pricing</h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             Subscription tiers, pipeline revenue forecasts, and custom enterprise deals
           </p>
         </div>
@@ -4023,29 +4023,29 @@ export function AdminSalesPage() {
       {/* Plan Performance */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {(salesData?.plans || []).map((plan: any) => (
-          <div key={plan.name || plan.display_name} className="p-5 rounded-xl border border-slate-200 bg-white shadow-xs space-y-2">
-            <span className="text-xs font-bold uppercase text-slate-400">{plan.display_name || plan.name}</span>
-            <div className="text-2xl font-extrabold text-[#0D2137]">
-              ₹{Number(plan.monthly_price).toLocaleString("en-IN")} <span className="text-xs font-normal text-slate-400">/mo</span>
+          <div key={plan.name || plan.display_name} className="p-5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-xs space-y-2">
+            <span className="text-xs font-bold uppercase text-[var(--surface-muted)]">{plan.display_name || plan.name}</span>
+            <div className="text-2xl font-extrabold text-[var(--foreground)]">
+              ₹{Number(plan.monthly_price).toLocaleString("en-IN")} <span className="text-xs font-normal text-[var(--surface-muted)]">/mo</span>
             </div>
-            <div className="text-xs text-slate-600">
-              <span className="font-bold text-[#2B7BC4]">{plan.active_subs} active</span> · {plan.scarcity_slots} slots open
+            <div className="text-xs text-[var(--surface-muted)]">
+              <span className="font-bold text-[var(--primary)]">{plan.active_subs} active</span> · {plan.scarcity_slots} slots open
             </div>
           </div>
         ))}
       </div>
 
       {/* Custom Deals Table */}
-      <div className="rounded-xl border border-slate-200 bg-white shadow-xs overflow-hidden">
-        <div className="px-4 py-3 bg-slate-50 border-b border-slate-200 font-semibold text-xs text-[#0D2137]">
+      <div className="rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-xs overflow-hidden">
+        <div className="px-4 py-3 bg-[var(--surface-sunken)] border-b border-[var(--surface-border)] font-semibold text-xs text-[var(--foreground)]">
           Custom Deal Approval Pipeline
         </div>
         <div className="divide-y divide-slate-100">
           {(salesData?.custom_pricing_requests || []).map((deal: any) => (
-            <div key={deal.id} className="p-4 flex items-center justify-between hover:bg-slate-50">
+            <div key={deal.id} className="p-4 flex items-center justify-between hover:bg-[var(--surface-sunken)]">
               <div>
-                <h4 className="text-xs font-bold text-[#0D2137]">{deal.client_name}</h4>
-                <p className="text-[11px] text-slate-500">{deal.contact_email} · {deal.requested_plan}</p>
+                <h4 className="text-xs font-bold text-[var(--foreground)]">{deal.client_name}</h4>
+                <p className="text-[11px] text-[var(--surface-muted)]">{deal.contact_email} · {deal.requested_plan}</p>
                 <div className="text-xs font-semibold text-emerald-600 mt-1">
                   Proposed: ₹{deal.offered_price_inr.toLocaleString("en-IN")} (Standard: ₹{deal.standard_price_inr.toLocaleString("en-IN")})
                 </div>
@@ -4057,7 +4057,7 @@ export function AdminSalesPage() {
                     deal.status = "approved";
                     setSalesData({ ...salesData });
                   }}
-                  className="px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 shadow-xs cursor-pointer"
+                  className="px-3 py-1.5 rounded-[var(--radius-xl)] bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 shadow-xs cursor-pointer"
                 >
                   Approve Deal
                 </button>
@@ -4109,14 +4109,14 @@ export function AdminSettingsPage() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+    <div className="space-y-6 animate-page-in">
+      <div className="flex items-center justify-between border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <Settings className="size-5 text-[#2B7BC4]" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">Platform Settings</h1>
+            <Settings className="size-5 text-[var(--primary)]" />
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">Platform Settings</h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             Turnaround SLAs, notification gateways, and connected payment services
           </p>
         </div>
@@ -4124,33 +4124,33 @@ export function AdminSettingsPage() {
 
       <form onSubmit={handleSave} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
         {/* SLA Card */}
-        <div className="p-6 rounded-xl border border-slate-200 bg-white shadow-xs space-y-4">
-          <h3 className="text-sm font-bold text-[#0D2137]">Delivery & Revision SLAs</h3>
+        <div className="p-6 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-xs space-y-4">
+          <h3 className="text-sm font-bold text-[var(--foreground)]">Delivery & Revision SLAs</h3>
           <div className="space-y-3 text-xs">
             <div>
-              <label className="block text-slate-600 font-semibold mb-1">Standard Delivery SLA (Days)</label>
+              <label className="block text-[var(--surface-muted)] font-semibold mb-1">Standard Delivery SLA (Days)</label>
               <input
                 type="number"
                 value={settings.sla_delivery_days}
                 onChange={(e) => setSettings({ ...settings, sla_delivery_days: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-[#0D2137]"
+                className="w-full px-3 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs text-[var(--foreground)]"
               />
             </div>
             <div>
-              <label className="block text-slate-600 font-semibold mb-1">Revision Turnaround (Hours)</label>
+              <label className="block text-[var(--surface-muted)] font-semibold mb-1">Revision Turnaround (Hours)</label>
               <input
                 type="number"
                 value={settings.sla_revision_hours}
                 onChange={(e) => setSettings({ ...settings, sla_revision_hours: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-[#0D2137]"
+                className="w-full px-3 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs text-[var(--foreground)]"
               />
             </div>
           </div>
         </div>
 
         {/* Notifications & Gateways */}
-        <div className="p-6 rounded-xl border border-slate-200 bg-white shadow-xs space-y-4">
-          <h3 className="text-sm font-bold text-[#0D2137]">Integrations & Gateways</h3>
+        <div className="p-6 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-xs space-y-4">
+          <h3 className="text-sm font-bold text-[var(--foreground)]">Integrations & Gateways</h3>
           <div className="divide-y divide-slate-100 text-xs">
             <div className="py-2.5 flex justify-between items-center">
               <span>Razorpay Payments</span>
@@ -4187,7 +4187,7 @@ export function AdminSettingsPage() {
           {!saved && <div />}
           <button
             type="submit"
-            className="px-5 py-2.5 rounded-xl bg-[#2B7BC4] text-white text-xs font-bold hover:bg-[#1A5EA8] shadow-xs cursor-pointer"
+            className="px-5 py-2.5 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white text-xs font-bold hover:bg-[#1A5EA8] shadow-xs cursor-pointer"
           >
             Save All Configurations
           </button>
@@ -4295,17 +4295,17 @@ export function AdminLeavePage() {
   const myRequestsCount = leaveRequests.filter((lr) => lr.is_self).length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-page-in">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--surface-border)] pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <UserCog className="size-5 text-[#2B7BC4]" />
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D2137]">
+            <UserCog className="size-5 text-[var(--primary)]" />
+            <h1 className="text-2xl font-display font-black tracking-tight tracking-tight text-[var(--foreground)]">
               {isAdmin ? "Staff Leave Approvals" : "Staff Leave Requests"}
             </h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[var(--surface-muted)] mt-1">
             {isAdmin
               ? "Review, approve, and manage time-off requests submitted by Team Leads and creative pod members"
               : "Hierarchical time-off approval workflow: Team Leads review pod requests, Admins oversee agency operations"}
@@ -4316,12 +4316,12 @@ export function AdminLeavePage() {
             <button
               type="button"
               onClick={() => setCreateModalOpen(true)}
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#2B7BC4] text-white text-xs font-bold hover:bg-[#1A5EA8] shadow-xs cursor-pointer transition-colors"
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white text-xs font-bold hover:bg-[#1A5EA8] shadow-xs cursor-pointer transition-colors"
             >
               <Plus className="size-4" /> Apply for Leave
             </button>
           ) : (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 text-[#2B7BC4] text-xs font-bold border border-blue-200">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 text-[var(--primary)] text-xs font-bold border border-blue-200">
               <Shield className="size-3.5" /> Executive Approver Mode
             </span>
           )}
@@ -4329,15 +4329,15 @@ export function AdminLeavePage() {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--surface-border)] pb-2">
         <div className="flex items-center gap-1.5 overflow-x-auto">
           <button
             type="button"
             onClick={() => setActiveTab("all")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            className={`px-3 py-1.5 rounded-[var(--radius-xl)] text-xs font-semibold transition-all cursor-pointer ${
               activeTab === "all"
                 ? "bg-[#0D2137] text-white shadow-2xs"
-                : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
+                : "bg-[var(--surface-card)] text-[var(--surface-muted)] border border-[var(--surface-border)] hover:bg-[var(--surface-sunken)]"
             }`}
           >
             All Requests ({leaveRequests.length})
@@ -4345,16 +4345,16 @@ export function AdminLeavePage() {
           <button
             type="button"
             onClick={() => setActiveTab("pending")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-[var(--radius-xl)] text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === "pending"
                 ? "bg-amber-600 text-white shadow-2xs"
-                : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
+                : "bg-[var(--surface-card)] text-[var(--surface-muted)] border border-[var(--surface-border)] hover:bg-[var(--surface-sunken)]"
             }`}
           >
             Pending Review
             {pendingCount > 0 && (
               <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
-                activeTab === "pending" ? "bg-white text-amber-700" : "bg-amber-100 text-amber-800"
+                activeTab === "pending" ? "bg-[var(--surface-card)] text-amber-700" : "bg-amber-100 text-amber-800"
               }`}>
                 {pendingCount}
               </span>
@@ -4363,10 +4363,10 @@ export function AdminLeavePage() {
           <button
             type="button"
             onClick={() => setActiveTab("approved")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            className={`px-3 py-1.5 rounded-[var(--radius-xl)] text-xs font-semibold transition-all cursor-pointer ${
               activeTab === "approved"
                 ? "bg-emerald-600 text-white shadow-2xs"
-                : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
+                : "bg-[var(--surface-card)] text-[var(--surface-muted)] border border-[var(--surface-border)] hover:bg-[var(--surface-sunken)]"
             }`}
           >
             Approved
@@ -4375,10 +4375,10 @@ export function AdminLeavePage() {
             <button
               type="button"
               onClick={() => setActiveTab("my_requests")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-[var(--radius-xl)] text-xs font-semibold transition-all cursor-pointer ${
                 activeTab === "my_requests"
-                  ? "bg-[#2B7BC4] text-white shadow-2xs"
-                  : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
+                  ? "bg-[var(--primary)] text-white shadow-2xs"
+                  : "bg-[var(--surface-card)] text-[var(--surface-muted)] border border-[var(--surface-border)] hover:bg-[var(--surface-sunken)]"
               }`}
             >
               My Submissions ({myRequestsCount})
@@ -4392,7 +4392,7 @@ export function AdminLeavePage() {
             setStatusFilter(e.target.value);
             setActiveTab("all");
           }}
-          className="px-3 py-1.5 rounded-xl border border-slate-200 bg-white text-xs font-semibold text-[#0D2137] focus:outline-none focus:border-[#2B7BC4]"
+          className="px-3 py-1.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] text-xs font-semibold text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)]"
         >
           <option value="all">Filter Status (All)</option>
           <option value="pending">Pending</option>
@@ -4401,16 +4401,16 @@ export function AdminLeavePage() {
         </select>
       </div>
 
-      <div className="rounded-xl border border-slate-200 bg-white shadow-xs overflow-hidden">
+      <div className="rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-xs overflow-hidden">
         {/* Mobile View (< 768px) */}
         <div className="block md:hidden divide-y divide-slate-100">
           {loading ? (
-            <div className="px-4 py-12 text-center text-slate-400">
-              <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+            <div className="px-4 py-12 text-center text-[var(--surface-muted)]">
+              <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[var(--primary)]" />
               Loading leave requests from database...
             </div>
           ) : filtered.length === 0 ? (
-            <div className="px-4 py-8 text-center text-slate-500 text-xs">
+            <div className="px-4 py-8 text-center text-[var(--surface-muted)] text-xs">
               No leave requests found matching filter.
             </div>
           ) : (
@@ -4419,20 +4419,20 @@ export function AdminLeavePage() {
                 <div className="flex items-start justify-between gap-2">
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <span className="font-bold text-sm text-[#0D2137]">{lr.employee_name}</span>
+                      <span className="font-bold text-sm text-[var(--foreground)]">{lr.employee_name}</span>
                       {lr.is_self && (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-[#2B7BC4] border border-blue-200">
+                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-[var(--primary)] border border-blue-200">
                           You
                         </span>
                       )}
                     </div>
-                    <div className="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                    <div className="text-[11px] text-[var(--surface-muted)] flex items-center gap-1 mt-0.5">
                       <span className="font-medium capitalize">{lr.role?.replace("_", " ") || "Staff"}</span>
                       <span>•</span>
                       <span className="capitalize">{lr.department?.replace("_", " ")}</span>
                     </div>
-                    <div className="text-[10px] text-slate-400 mt-0.5">
-                      Reports to: <span className="text-slate-600 font-medium">{lr.team_lead_name}</span>
+                    <div className="text-[10px] text-[var(--surface-muted)] mt-0.5">
+                      Reports to: <span className="text-[var(--surface-muted)] font-medium">{lr.team_lead_name}</span>
                     </div>
                   </div>
                   <span
@@ -4448,14 +4448,14 @@ export function AdminLeavePage() {
                   </span>
                 </div>
 
-                <div className="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
-                  <div className="font-mono text-[11px] text-slate-600 font-semibold mb-1">
+                <div className="text-xs text-[var(--surface-muted)] bg-[var(--surface-sunken)] p-2.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)]">
+                  <div className="font-mono text-[11px] text-[var(--surface-muted)] font-semibold mb-1">
                     📅 {lr.start_date} to {lr.end_date}
                   </div>
                   {lr.reason && <p className="text-slate-700">{lr.reason}</p>}
                   {lr.approved_by_name && (
-                    <div className="text-[10px] text-slate-500 mt-1.5 pt-1.5 border-t border-slate-200">
-                      Reviewed by: <span className="font-semibold text-[#0D2137]">{lr.approved_by_name}</span>
+                    <div className="text-[10px] text-[var(--surface-muted)] mt-1.5 pt-1.5 border-t border-[var(--surface-border)]">
+                      Reviewed by: <span className="font-semibold text-[var(--foreground)]">{lr.approved_by_name}</span>
                     </div>
                   )}
                 </div>
@@ -4467,7 +4467,7 @@ export function AdminLeavePage() {
                         type="button"
                         disabled={processingId === lr.id}
                         onClick={() => handleAction(lr.id, "approve")}
-                        className="flex-1 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 cursor-pointer disabled:opacity-50 text-center transition-colors"
+                        className="flex-1 py-1.5 rounded-[var(--radius-xl)] bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 cursor-pointer disabled:opacity-50 text-center transition-colors"
                       >
                         Approve
                       </button>
@@ -4475,7 +4475,7 @@ export function AdminLeavePage() {
                         type="button"
                         disabled={processingId === lr.id}
                         onClick={() => handleAction(lr.id, "reject")}
-                        className="flex-1 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 text-xs font-bold hover:bg-rose-100 cursor-pointer disabled:opacity-50 text-center transition-colors"
+                        className="flex-1 py-1.5 rounded-[var(--radius-xl)] bg-rose-50 text-rose-700 border border-rose-200 text-xs font-bold hover:bg-rose-100 cursor-pointer disabled:opacity-50 text-center transition-colors"
                       >
                         Reject
                       </button>
@@ -4485,7 +4485,7 @@ export function AdminLeavePage() {
                     <button
                       type="button"
                       onClick={() => handleCancel(lr.id)}
-                      className="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 text-xs font-semibold hover:bg-rose-50 hover:text-rose-700 cursor-pointer transition-colors"
+                      className="px-3 py-1.5 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] text-[var(--surface-muted)] text-xs font-semibold hover:bg-rose-50 hover:text-rose-700 cursor-pointer transition-colors"
                     >
                       Cancel
                     </button>
@@ -4499,7 +4499,7 @@ export function AdminLeavePage() {
         {/* Desktop View (>= 768px) */}
         <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50 text-[#0D2137] border-b border-slate-200 font-semibold">
+            <thead className="bg-[var(--surface-sunken)] text-[var(--foreground)] border-b border-[var(--surface-border)] font-semibold">
               <tr>
                 <th className="px-4 py-3">Staff Member</th>
                 <th className="px-4 py-3">Hierarchy / Pod</th>
@@ -4512,52 +4512,52 @@ export function AdminLeavePage() {
             <tbody className="divide-y divide-slate-100">
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="px-4 py-12 text-center text-slate-400">
-                    <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[#2B7BC4]" />
+                  <td colSpan={6} className="px-4 py-12 text-center text-[var(--surface-muted)]">
+                    <Loader2 className="size-6 animate-spin mx-auto mb-2 text-[var(--primary)]" />
                     Loading leave requests from database...
                   </td>
                 </tr>
               ) : filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-4 py-8 text-center text-slate-500">
+                  <td colSpan={6} className="px-4 py-8 text-center text-[var(--surface-muted)]">
                     No leave requests found matching filter.
                   </td>
                 </tr>
               ) : (
                 filtered.map((lr) => (
-                  <tr key={lr.id} className="hover:bg-slate-50 transition-colors">
+                  <tr key={lr.id} className="hover:bg-[var(--surface-sunken)] transition-colors">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-1.5">
-                        <span className="font-semibold text-[#0D2137]">{lr.employee_name}</span>
+                        <span className="font-semibold text-[var(--foreground)]">{lr.employee_name}</span>
                         {lr.is_self && (
-                          <span className="px-1.5 py-0.2 rounded text-[10px] font-bold bg-blue-50 text-[#2B7BC4] border border-blue-200">
+                          <span className="px-1.5 py-0.2 rounded text-[10px] font-bold bg-blue-50 text-[var(--primary)] border border-blue-200">
                             You
                           </span>
                         )}
                       </div>
-                      <div className="text-[11px] text-slate-400 flex items-center gap-1">
+                      <div className="text-[11px] text-[var(--surface-muted)] flex items-center gap-1">
                         <span>{lr.employee_email}</span>
                         <span>•</span>
-                        <span className="font-medium capitalize text-slate-600">{lr.role?.replace("_", " ")}</span>
+                        <span className="font-medium capitalize text-[var(--surface-muted)]">{lr.role?.replace("_", " ")}</span>
                       </div>
                     </td>
                     <td className="px-4 py-3">
                       <div className="text-slate-700 font-medium">
                         {lr.team_lead_name}
                       </div>
-                      <div className="text-[10px] text-slate-400 capitalize">
+                      <div className="text-[10px] text-[var(--surface-muted)] capitalize">
                         {lr.department?.replace("_", " ")} Dept
                       </div>
                     </td>
-                    <td className="px-4 py-3 font-mono text-[11px] text-slate-600">
+                    <td className="px-4 py-3 font-mono text-[11px] text-[var(--surface-muted)]">
                       <div>{lr.start_date} to {lr.end_date}</div>
                       {lr.created_at_ist && (
-                        <div className="text-[10px] text-slate-400 font-sans mt-0.5">
+                        <div className="text-[10px] text-[var(--surface-muted)] font-sans mt-0.5">
                           Req: {lr.created_at_ist}
                         </div>
                       )}
                     </td>
-                    <td className="px-4 py-3 text-slate-600 max-w-xs truncate" title={lr.reason}>
+                    <td className="px-4 py-3 text-[var(--surface-muted)] max-w-xs truncate" title={lr.reason}>
                       {lr.reason}
                     </td>
                     <td className="px-4 py-3">
@@ -4574,7 +4574,7 @@ export function AdminLeavePage() {
                           {lr.status}
                         </span>
                         {lr.approved_by_name && (
-                          <div className="text-[10px] text-slate-400">
+                          <div className="text-[10px] text-[var(--surface-muted)]">
                             By {lr.approved_by_name}
                           </div>
                         )}
@@ -4588,7 +4588,7 @@ export function AdminLeavePage() {
                               type="button"
                               disabled={processingId === lr.id}
                               onClick={() => handleAction(lr.id, "approve")}
-                              className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold hover:bg-emerald-100 cursor-pointer disabled:opacity-50 transition-colors"
+                              className="px-2.5 py-1 rounded-[var(--radius-xl)] bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold hover:bg-emerald-100 cursor-pointer disabled:opacity-50 transition-colors"
                             >
                               Approve
                             </button>
@@ -4596,7 +4596,7 @@ export function AdminLeavePage() {
                               type="button"
                               disabled={processingId === lr.id}
                               onClick={() => handleAction(lr.id, "reject")}
-                              className="px-2.5 py-1 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 text-[11px] font-bold hover:bg-rose-100 cursor-pointer disabled:opacity-50 transition-colors"
+                              className="px-2.5 py-1 rounded-[var(--radius-xl)] bg-rose-50 text-rose-700 border border-rose-200 text-[11px] font-bold hover:bg-rose-100 cursor-pointer disabled:opacity-50 transition-colors"
                             >
                               Reject
                             </button>
@@ -4606,14 +4606,14 @@ export function AdminLeavePage() {
                           <button
                             type="button"
                             onClick={() => handleCancel(lr.id)}
-                            className="px-2.5 py-1 rounded-lg bg-slate-50 text-slate-500 border border-slate-200 text-[11px] font-semibold hover:bg-rose-50 hover:text-rose-700 hover:border-rose-200 cursor-pointer transition-colors"
+                            className="px-2.5 py-1 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] text-[var(--surface-muted)] border border-[var(--surface-border)] text-[11px] font-semibold hover:bg-rose-50 hover:text-rose-700 hover:border-rose-200 cursor-pointer transition-colors"
                             title="Cancel this leave request"
                           >
                             Cancel
                           </button>
                         )}
                         {!lr.can_approve && !lr.can_cancel && (
-                          <span className="text-slate-400 text-xs">—</span>
+                          <span className="text-[var(--surface-muted)] text-xs">—</span>
                         )}
                       </div>
                     </td>
@@ -4630,17 +4630,17 @@ export function AdminLeavePage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm animate-in fade-in duration-150">
           <form
             onSubmit={handleApply}
-            className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl space-y-4 border border-slate-100"
+            className="w-full max-w-md rounded-[var(--radius-2xl)] bg-[var(--surface-card)] p-6 shadow-2xl space-y-4 border border-[var(--surface-border)]"
           >
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div className="flex items-center justify-between border-b border-[var(--surface-border)] pb-3">
               <div className="flex items-center gap-2">
-                <CalendarDays className="size-5 text-[#2B7BC4]" />
-                <h3 className="text-base font-bold text-[#0D2137]">Apply for Leave / Time Off</h3>
+                <CalendarDays className="size-5 text-[var(--primary)]" />
+                <h3 className="text-base font-bold text-[var(--foreground)]">Apply for Leave / Time Off</h3>
               </div>
               <button
                 type="button"
                 onClick={() => setCreateModalOpen(false)}
-                className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 cursor-pointer"
+                className="rounded-[var(--radius-xl)] p-1 text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)] cursor-pointer"
               >
                 <X className="size-4" />
               </button>
@@ -4649,7 +4649,7 @@ export function AdminLeavePage() {
             <div className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-600 mb-1">Start Date</label>
+                  <label className="block text-xs font-bold text-[var(--surface-muted)] mb-1">Start Date</label>
                   <input
                     type="date"
                     required
@@ -4661,54 +4661,54 @@ export function AdminLeavePage() {
                         setEndDate(e.target.value);
                       }
                     }}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#2B7BC4]"
+                    className="w-full px-3 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs focus:outline-none focus:border-[var(--primary)]"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-600 mb-1">End Date</label>
+                  <label className="block text-xs font-bold text-[var(--surface-muted)] mb-1">End Date</label>
                   <input
                     type="date"
                     required
                     min={startDate || todayStr}
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#2B7BC4]"
+                    className="w-full px-3 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs focus:outline-none focus:border-[var(--primary)]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-600 mb-1">Reason for Leave</label>
+                <label className="block text-xs font-bold text-[var(--surface-muted)] mb-1">Reason for Leave</label>
                 <textarea
                   required
                   rows={3}
                   value={reason}
                   onChange={(e) => setReason(e.target.value)}
                   placeholder="e.g. Scheduled medical appointment, family commitments, or annual personal leave..."
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-[#2B7BC4] resize-none"
+                  className="w-full px-3 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs focus:outline-none focus:border-[var(--primary)] resize-none"
                 />
               </div>
 
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 text-[11px] text-slate-500 space-y-1">
-                <div className="font-semibold text-[#0D2137] flex items-center gap-1">
-                  <Shield className="size-3.5 text-[#2B7BC4]" /> Approval Hierarchy
+              <div className="p-3 bg-[var(--surface-sunken)] rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-[11px] text-[var(--surface-muted)] space-y-1">
+                <div className="font-semibold text-[var(--foreground)] flex items-center gap-1">
+                  <Shield className="size-3.5 text-[var(--primary)]" /> Approval Hierarchy
                 </div>
                 <p>Team member requests are routed to your assigned Team Lead. Team Lead requests are routed to Agency Administration.</p>
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+            <div className="flex items-center justify-end gap-2 pt-2 border-t border-[var(--surface-border)]">
               <button
                 type="button"
                 onClick={() => setCreateModalOpen(false)}
-                className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 cursor-pointer"
+                className="px-4 py-2 rounded-[var(--radius-xl)] border border-[var(--surface-border)] text-xs font-bold text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)] cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-4 py-2 rounded-xl bg-[#2B7BC4] text-xs font-bold text-white hover:bg-[#1A5EA8] cursor-pointer disabled:opacity-50 flex items-center gap-1.5 shadow-xs"
+                className="px-4 py-2 rounded-[var(--radius-xl)] bg-[var(--primary)] text-xs font-bold text-white hover:bg-[#1A5EA8] cursor-pointer disabled:opacity-50 flex items-center gap-1.5 shadow-xs"
               >
                 {submitting && <Loader2 className="size-3.5 animate-spin" />}
                 {submitting ? "Submitting..." : "Submit Request"}

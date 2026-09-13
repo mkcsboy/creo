@@ -286,63 +286,63 @@ export function TermsPage() {
   });
 
   return (
-    <div className="w-full bg-[#FAFAF8] text-[#0D2137]">
+    <div className="w-full bg-[var(--background)] text-[var(--foreground)]">
       {/* Hero Header */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#E8F4FD] via-[#F4F9FD] to-[#FAFAF8] pt-10 pb-8 sm:pt-14 sm:pb-10 border-b border-slate-200/80">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#2B7BC4]/10 rounded-full blur-3xl pointer-events-none" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#E8F4FD] via-[#F4F9FD] to-[#FAFAF8] pt-10 pb-8 sm:pt-14 sm:pb-10 border-b border-[var(--surface-border)]/80">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[var(--primary)]/10 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <div className="mb-2">
             <Link
               to="/"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#2B7BC4] transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--surface-muted)] hover:text-[var(--primary)] transition-colors"
             >
               <ArrowLeft className="size-3.5" />
               <span>Back to Home</span>
             </Link>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1 text-xs font-bold text-[#2B7BC4] shadow-2xs border border-[#C9DFF0] mb-3">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[var(--surface-card)] px-3.5 py-1 text-xs font-bold text-[var(--primary)] shadow-2xs border border-[#C9DFF0] mb-3">
             <ShieldCheck className="size-3.5" />
             <span>Official Legal Governance</span>
           </div>
 
-          <h1 className="text-3xl font-black tracking-tight text-[#0D2137] sm:text-5xl">
+          <h1 className="text-3xl font-black tracking-tight text-[var(--foreground)] sm:text-5xl">
             Terms & Conditions
           </h1>
-          <p className="mt-2 text-xs sm:text-sm text-slate-500 font-medium">
+          <p className="mt-2 text-xs sm:text-sm text-[var(--surface-muted)] font-medium">
             Last updated: June 29, 2026 &bull; Effective for all active client retainers
           </p>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[var(--surface-muted)] sm:text-base">
             Transparent, founder-friendly terms governing our monthly production retainers, guaranteed turnaround SLAs, revision cycles, and client portal access.
           </p>
 
           {/* Quick SLA Highlights */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs font-semibold text-slate-600">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200/90 shadow-2xs">
-              <Clock className="size-3.5 text-[#2B7BC4]" /> 7-Day First Batch SLA
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs font-semibold text-[var(--surface-muted)]">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--surface-card)] border border-[var(--surface-border)]/90 shadow-2xs">
+              <Clock className="size-3.5 text-[var(--primary)]" /> 7-Day First Batch SLA
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200/90 shadow-2xs">
-              <RefreshCw className="size-3.5 text-[#2B7BC4]" /> 2 Revision Rounds Included
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--surface-card)] border border-[var(--surface-border)]/90 shadow-2xs">
+              <RefreshCw className="size-3.5 text-[var(--primary)]" /> 2 Revision Rounds Included
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200/90 shadow-2xs">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--surface-card)] border border-[var(--surface-border)]/90 shadow-2xs">
               <CreditCard className="size-3.5 text-emerald-600" /> Month-to-Month. Cancel Anytime.
             </span>
           </div>
 
           {/* In-Page Search */}
           <div className="mt-8 max-w-lg mx-auto relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-[var(--surface-muted)]" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search terms, SLAs, revisions, quotas..."
-              className="w-full rounded-2xl border border-[#C9DFF0] bg-white pl-11 pr-10 py-3 text-sm text-[#0D2137] shadow-xs focus:ring-2 focus:ring-[#2B7BC4]/30 focus:border-[#2B7BC4] outline-none transition-all"
+              className="w-full rounded-[var(--radius-2xl)] border border-[#C9DFF0] bg-[var(--surface-card)] pl-11 pr-10 py-3 text-sm text-[var(--foreground)] shadow-xs focus:ring-2 focus:ring-[#2B7BC4]/30 focus:border-[var(--primary)] outline-none transition-all"
             />
             {search && (
               <button
                 type="button"
                 onClick={() => setSearch("")}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[var(--surface-muted)] hover:text-[var(--surface-muted)] cursor-pointer"
               >
                 <X className="size-4" />
               </button>
@@ -356,12 +356,12 @@ export function TermsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Table of Contents Sidebar */}
-            <aside className="lg:col-span-4 sticky top-24 rounded-3xl border border-slate-200/90 bg-white p-6 shadow-xs hidden lg:block">
-              <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#2B7BC4]">
+            <aside className="lg:col-span-4 sticky top-24 rounded-[var(--radius-3xl)] border border-[var(--surface-border)]/90 bg-[var(--surface-card)] p-6 shadow-xs hidden lg:block">
+              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[var(--surface-border)]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
                   Table of Contents
                 </span>
-                <span className="text-[11px] font-semibold text-slate-400">
+                <span className="text-[11px] font-semibold text-[var(--surface-muted)]">
                   {TERMS_SECTIONS.length} Clauses
                 </span>
               </div>
@@ -371,10 +371,10 @@ export function TermsPage() {
                     key={s.id}
                     href={`#${s.id}`}
                     onClick={() => setActiveSection(s.id)}
-                    className={`block px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
+                    className={`block px-3 py-2 rounded-[var(--radius-xl)] text-xs font-semibold transition-all ${
                       activeSection === s.id
-                        ? "bg-[#E8F4FD] text-[#2B7BC4] font-bold"
-                        : "text-slate-600 hover:bg-slate-50 hover:text-[#0D2137]"
+                        ? "bg-[var(--primary)]/10 text-[var(--primary)] font-bold"
+                        : "text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)] hover:text-[var(--foreground)]"
                     }`}
                   >
                     {s.title}
@@ -382,17 +382,17 @@ export function TermsPage() {
                 ))}
               </nav>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col gap-2">
+              <div className="mt-6 pt-4 border-t border-[var(--surface-border)] flex flex-col gap-2">
                 <Link
                   to="/privacy"
-                  className="inline-flex items-center justify-between px-3 py-2 rounded-xl bg-slate-50 text-xs font-semibold text-slate-700 hover:bg-[#E8F4FD] hover:text-[#2B7BC4] transition-colors"
+                  className="inline-flex items-center justify-between px-3 py-2 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] text-xs font-semibold text-slate-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)] transition-colors"
                 >
                   <span>View Privacy Policy</span>
                   <ChevronRight className="size-3.5" />
                 </Link>
                 <Link
                   to="/pricing"
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white text-xs font-bold shadow-md shadow-blue-500/20 hover:brightness-110 active:scale-95 transition-all"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white text-xs font-bold shadow-md shadow-blue-500/20 hover:brightness-110 active:scale-95 transition-all"
                 >
                   <span>Explore Retainer Plans</span>
                   <ArrowRight className="size-3.5" />
@@ -403,16 +403,16 @@ export function TermsPage() {
             {/* Clauses Content */}
             <main className="lg:col-span-8 space-y-6">
               {filtered.length === 0 ? (
-                <div className="rounded-3xl border border-slate-200/80 bg-white p-12 text-center shadow-xs">
+                <div className="rounded-[var(--radius-3xl)] border border-[var(--surface-border)]/80 bg-[var(--surface-card)] p-12 text-center shadow-xs">
                   <FileText className="size-10 text-slate-300 mx-auto mb-3" />
-                  <h3 className="text-base font-bold text-[#0D2137]">No matching clauses found</h3>
-                  <p className="text-xs text-slate-500 mt-1">
+                  <h3 className="text-base font-bold text-[var(--foreground)]">No matching clauses found</h3>
+                  <p className="text-xs text-[var(--surface-muted)] mt-1">
                     Try searching with another keyword or reset the search filter.
                   </p>
                   <button
                     type="button"
                     onClick={() => setSearch("")}
-                    className="mt-4 px-4 py-2 rounded-xl bg-[#2B7BC4] text-white text-xs font-bold cursor-pointer"
+                    className="mt-4 px-4 py-2 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white text-xs font-bold cursor-pointer"
                   >
                     Reset Search
                   </button>
@@ -422,20 +422,20 @@ export function TermsPage() {
                   <article
                     key={section.id}
                     id={section.id}
-                    className="rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-xs hover:border-[#2B7BC4]/40 transition-colors"
+                    className="rounded-[var(--radius-3xl)] border border-[var(--surface-border)]/90 bg-[var(--surface-card)] p-6 sm:p-8 shadow-xs hover:border-[var(--primary)]/40 transition-colors"
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-slate-100">
-                      <h2 className="text-lg sm:text-xl font-bold text-[#0D2137]">
+                    <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-[var(--surface-border)]">
+                      <h2 className="text-lg sm:text-xl font-bold text-[var(--foreground)]">
                         {section.title}
                       </h2>
                       {section.badge && (
-                        <span className="rounded-full bg-blue-50 border border-blue-200/80 px-3 py-0.5 text-[10px] font-bold text-[#2B7BC4]">
+                        <span className="rounded-full bg-[var(--primary)]/10 border border-blue-200/80 px-3 py-0.5 text-[10px] font-bold text-[var(--primary)]">
                           {section.badge}
                         </span>
                       )}
                     </div>
 
-                    <div className="space-y-3.5 text-xs sm:text-sm leading-relaxed text-slate-600">
+                    <div className="space-y-3.5 text-xs sm:text-sm leading-relaxed text-[var(--surface-muted)]">
                       {section.content.map((p, idx) => (
                         <p key={idx}>{p}</p>
                       ))}
@@ -445,19 +445,19 @@ export function TermsPage() {
               )}
 
               {/* Bottom Support Banner */}
-              <div className="rounded-3xl border border-[#C9DFF0] bg-gradient-to-r from-[#E8F4FD] to-sky-50 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="rounded-[var(--radius-3xl)] border border-[#C9DFF0] bg-gradient-to-r from-[#E8F4FD] to-sky-50 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                  <h4 className="text-base font-bold text-[#0D2137]">
+                  <h4 className="text-base font-bold text-[var(--foreground)]">
                     Need Clarification on Our Retainer Terms?
                   </h4>
-                  <p className="text-xs text-slate-600 mt-1">
+                  <p className="text-xs text-[var(--surface-muted)] mt-1">
                     Our team is available to explain deliverable SLAs, revision cycles, or custom enterprise contracts.
                   </p>
                 </div>
                 <div className="flex items-center gap-2.5 shrink-0">
                   <Link
                     to="/faq"
-                    className="px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-2xs"
+                    className="px-4 py-2.5 rounded-[var(--radius-xl)] border border-[var(--surface-border)] bg-[var(--surface-card)] text-xs font-bold text-slate-700 hover:bg-[var(--surface-sunken)] transition-colors shadow-2xs"
                   >
                     Read FAQ
                   </Link>
@@ -465,7 +465,7 @@ export function TermsPage() {
                     href="https://wa.me/919941999415"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white text-xs font-bold shadow-md hover:brightness-110 active:scale-95 transition-all"
+                    className="px-5 py-2.5 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white text-xs font-bold shadow-md hover:brightness-110 active:scale-95 transition-all"
                   >
                     Contact Legal Desk
                   </a>
@@ -490,63 +490,63 @@ export function PrivacyPage() {
   });
 
   return (
-    <div className="w-full bg-[#FAFAF8] text-[#0D2137]">
+    <div className="w-full bg-[var(--background)] text-[var(--foreground)]">
       {/* Hero Header */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#E8F4FD] via-[#F4F9FD] to-[#FAFAF8] pt-10 pb-8 sm:pt-14 sm:pb-10 border-b border-slate-200/80">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#E8F4FD] via-[#F4F9FD] to-[#FAFAF8] pt-10 pb-8 sm:pt-14 sm:pb-10 border-b border-[var(--surface-border)]/80">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-blue-400/10 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <div className="mb-2">
             <Link
               to="/"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#2B7BC4] transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--surface-muted)] hover:text-[var(--primary)] transition-colors"
             >
               <ArrowLeft className="size-3.5" />
               <span>Back to Home</span>
             </Link>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1 text-xs font-bold text-[#2B7BC4] shadow-2xs border border-[#C9DFF0] mb-3">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[var(--surface-card)] px-3.5 py-1 text-xs font-bold text-[var(--primary)] shadow-2xs border border-[#C9DFF0] mb-3">
             <Lock className="size-3.5" />
             <span>Zero-Trust Data Protection</span>
           </div>
 
-          <h1 className="text-3xl font-black tracking-tight text-[#0D2137] sm:text-5xl">
+          <h1 className="text-3xl font-black tracking-tight text-[var(--foreground)] sm:text-5xl">
             Privacy Policy & Data Security
           </h1>
-          <p className="mt-2 text-xs sm:text-sm text-slate-500 font-medium">
+          <p className="mt-2 text-xs sm:text-sm text-[var(--surface-muted)] font-medium">
             Last updated: June 29, 2026 &bull; Compliant with Global Privacy Regulations
           </p>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[var(--surface-muted)] sm:text-base">
             How Creo encrypts, isolates, and protects your brand assets, Instagram tokens, and financial records with multi-tenant database isolation.
           </p>
 
           {/* Quick Security Highlights */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs font-semibold text-slate-600">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200/90 shadow-2xs">
-              <ShieldCheck className="size-3.5 text-[#2B7BC4]" /> PostgreSQL Row-Level Security
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs font-semibold text-[var(--surface-muted)]">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--surface-card)] border border-[var(--surface-border)]/90 shadow-2xs">
+              <ShieldCheck className="size-3.5 text-[var(--primary)]" /> PostgreSQL Row-Level Security
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200/90 shadow-2xs">
-              <Lock className="size-3.5 text-[#2B7BC4]" /> AES-256 Storage & Fernet Tokens
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--surface-card)] border border-[var(--surface-border)]/90 shadow-2xs">
+              <Lock className="size-3.5 text-[var(--primary)]" /> AES-256 Storage & Fernet Tokens
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200/90 shadow-2xs">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--surface-card)] border border-[var(--surface-border)]/90 shadow-2xs">
               <CheckCircle2 className="size-3.5 text-emerald-600" /> Never Sold. Never Scraped.
             </span>
           </div>
 
           {/* In-Page Search */}
           <div className="mt-8 max-w-lg mx-auto relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-[var(--surface-muted)]" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search encryption, tokens, retention, rights..."
-              className="w-full rounded-2xl border border-[#C9DFF0] bg-white pl-11 pr-10 py-3 text-sm text-[#0D2137] shadow-xs focus:ring-2 focus:ring-[#2B7BC4]/30 focus:border-[#2B7BC4] outline-none transition-all"
+              className="w-full rounded-[var(--radius-2xl)] border border-[#C9DFF0] bg-[var(--surface-card)] pl-11 pr-10 py-3 text-sm text-[var(--foreground)] shadow-xs focus:ring-2 focus:ring-[#2B7BC4]/30 focus:border-[var(--primary)] outline-none transition-all"
             />
             {search && (
               <button
                 type="button"
                 onClick={() => setSearch("")}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[var(--surface-muted)] hover:text-[var(--surface-muted)] cursor-pointer"
               >
                 <X className="size-4" />
               </button>
@@ -560,12 +560,12 @@ export function PrivacyPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Table of Contents Sidebar */}
-            <aside className="lg:col-span-4 sticky top-24 rounded-3xl border border-slate-200/90 bg-white p-6 shadow-xs hidden lg:block">
-              <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#2B7BC4]">
+            <aside className="lg:col-span-4 sticky top-24 rounded-[var(--radius-3xl)] border border-[var(--surface-border)]/90 bg-[var(--surface-card)] p-6 shadow-xs hidden lg:block">
+              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[var(--surface-border)]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
                   Privacy Index
                 </span>
-                <span className="text-[11px] font-semibold text-slate-400">
+                <span className="text-[11px] font-semibold text-[var(--surface-muted)]">
                   {PRIVACY_SECTIONS.length} Clauses
                 </span>
               </div>
@@ -575,10 +575,10 @@ export function PrivacyPage() {
                     key={s.id}
                     href={`#${s.id}`}
                     onClick={() => setActiveSection(s.id)}
-                    className={`block px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
+                    className={`block px-3 py-2 rounded-[var(--radius-xl)] text-xs font-semibold transition-all ${
                       activeSection === s.id
-                        ? "bg-[#E8F4FD] text-[#2B7BC4] font-bold"
-                        : "text-slate-600 hover:bg-slate-50 hover:text-[#0D2137]"
+                        ? "bg-[var(--primary)]/10 text-[var(--primary)] font-bold"
+                        : "text-[var(--surface-muted)] hover:bg-[var(--surface-sunken)] hover:text-[var(--foreground)]"
                     }`}
                   >
                     {s.title}
@@ -586,17 +586,17 @@ export function PrivacyPage() {
                 ))}
               </nav>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col gap-2">
+              <div className="mt-6 pt-4 border-t border-[var(--surface-border)] flex flex-col gap-2">
                 <Link
                   to="/terms"
-                  className="inline-flex items-center justify-between px-3 py-2 rounded-xl bg-slate-50 text-xs font-semibold text-slate-700 hover:bg-[#E8F4FD] hover:text-[#2B7BC4] transition-colors"
+                  className="inline-flex items-center justify-between px-3 py-2 rounded-[var(--radius-xl)] bg-[var(--surface-sunken)] text-xs font-semibold text-slate-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)] transition-colors"
                 >
                   <span>View Terms & Conditions</span>
                   <ChevronRight className="size-3.5" />
                 </Link>
                 <Link
                   to="/pricing"
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white text-xs font-bold shadow-md shadow-blue-500/20 hover:brightness-110 active:scale-95 transition-all"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white text-xs font-bold shadow-md shadow-blue-500/20 hover:brightness-110 active:scale-95 transition-all"
                 >
                   <span>Explore Retainer Plans</span>
                   <ArrowRight className="size-3.5" />
@@ -607,16 +607,16 @@ export function PrivacyPage() {
             {/* Clauses Content */}
             <main className="lg:col-span-8 space-y-6">
               {filtered.length === 0 ? (
-                <div className="rounded-3xl border border-slate-200/80 bg-white p-12 text-center shadow-xs">
+                <div className="rounded-[var(--radius-3xl)] border border-[var(--surface-border)]/80 bg-[var(--surface-card)] p-12 text-center shadow-xs">
                   <Lock className="size-10 text-slate-300 mx-auto mb-3" />
-                  <h3 className="text-base font-bold text-[#0D2137]">No matching clauses found</h3>
-                  <p className="text-xs text-slate-500 mt-1">
+                  <h3 className="text-base font-bold text-[var(--foreground)]">No matching clauses found</h3>
+                  <p className="text-xs text-[var(--surface-muted)] mt-1">
                     Try searching with another keyword or reset the search filter.
                   </p>
                   <button
                     type="button"
                     onClick={() => setSearch("")}
-                    className="mt-4 px-4 py-2 rounded-xl bg-[#2B7BC4] text-white text-xs font-bold cursor-pointer"
+                    className="mt-4 px-4 py-2 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white text-xs font-bold cursor-pointer"
                   >
                     Reset Search
                   </button>
@@ -626,10 +626,10 @@ export function PrivacyPage() {
                   <article
                     key={section.id}
                     id={section.id}
-                    className="rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-xs hover:border-[#2B7BC4]/40 transition-colors"
+                    className="rounded-[var(--radius-3xl)] border border-[var(--surface-border)]/90 bg-[var(--surface-card)] p-6 sm:p-8 shadow-xs hover:border-[var(--primary)]/40 transition-colors"
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-slate-100">
-                      <h2 className="text-lg sm:text-xl font-bold text-[#0D2137]">
+                    <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-[var(--surface-border)]">
+                      <h2 className="text-lg sm:text-xl font-bold text-[var(--foreground)]">
                         {section.title}
                       </h2>
                       {section.badge && (
@@ -639,7 +639,7 @@ export function PrivacyPage() {
                       )}
                     </div>
 
-                    <div className="space-y-3.5 text-xs sm:text-sm leading-relaxed text-slate-600">
+                    <div className="space-y-3.5 text-xs sm:text-sm leading-relaxed text-[var(--surface-muted)]">
                       {section.content.map((p, idx) => (
                         <p key={idx}>{p}</p>
                       ))}
@@ -649,19 +649,19 @@ export function PrivacyPage() {
               )}
 
               {/* Bottom Privacy Banner */}
-              <div className="rounded-3xl border border-[#C9DFF0] bg-gradient-to-r from-[#E8F4FD] to-sky-50 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="rounded-[var(--radius-3xl)] border border-[#C9DFF0] bg-gradient-to-r from-[#E8F4FD] to-sky-50 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                  <h4 className="text-base font-bold text-[#0D2137]">
+                  <h4 className="text-base font-bold text-[var(--foreground)]">
                     Questions Regarding Your Data or Instagram Access?
                   </h4>
-                  <p className="text-xs text-slate-600 mt-1">
+                  <p className="text-xs text-[var(--surface-muted)] mt-1">
                     Contact our dedicated Privacy and Security Officer for data exports, token revocations, or compliance audits.
                   </p>
                 </div>
                 <div className="flex items-center gap-2.5 shrink-0">
                   <a
                     href="mailto:privacy@getcreo.in"
-                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white text-xs font-bold shadow-md hover:brightness-110 active:scale-95 transition-all"
+                    className="px-5 py-2.5 rounded-[var(--radius-xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] text-white text-xs font-bold shadow-md hover:brightness-110 active:scale-95 transition-all"
                   >
                     Email Privacy Officer
                   </a>

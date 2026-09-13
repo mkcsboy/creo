@@ -5,6 +5,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "ghost" | "destructive";
   size?: "sm" | "md" | "lg";
   isLoading?: boolean;
+  pill?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -14,6 +15,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant = "primary",
       size = "md",
       isLoading = false,
+      pill = false,
       disabled,
       children,
       ...props
@@ -21,34 +23,37 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-medium transition-colors select-none cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 min-h-[44px] min-w-[44px] rounded-md";
+      "inline-flex items-center justify-center font-medium select-none cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 min-h-[44px] min-w-[44px] transition-all duration-200 ease-out active:scale-[0.97]";
+
+    const radiusStyle = pill ? "rounded-full" : "rounded-xl";
 
     const variantStyles = {
       primary:
-        "bg-[#2B7BC4] text-white hover:bg-[#1A5EA8] shadow-xs active:scale-[0.98] transition-all font-semibold",
+        "bg-[var(--primary)] text-[var(--primary-foreground)] hover:brightness-110 shadow-sm hover:shadow-md font-semibold shimmer-btn",
       secondary:
-        "bg-white text-[#0D2137] border border-[#C9DFF0] hover:bg-[#F0F7FD] hover:border-[#2B7BC4]/40 active:bg-[#E8F4FD] font-medium shadow-xs",
+        "bg-[var(--secondary)] text-[var(--secondary-foreground)] border border-[var(--border)] hover:border-[var(--primary)]/40 hover:bg-[var(--surface-hover)] font-medium shadow-sm",
       ghost:
-        "bg-transparent text-[#0D2137] hover:bg-[#E8F4FD] active:bg-[#C9DFF0]/50",
-      destructive: "bg-[#991B1B] text-white hover:bg-[#7F1D1D] active:opacity-95 shadow-xs",
+        "bg-transparent text-[var(--foreground)] hover:bg-[var(--surface-hover)] active:bg-[var(--surface-active)]",
+      destructive:
+        "bg-[var(--destructive)] text-white hover:brightness-110 shadow-sm font-semibold",
     };
 
     const sizeStyles = {
-      sm: "text-xs px-3 py-1.5 gap-1.5",
-      md: "text-sm px-4 py-2 gap-2",
-      lg: "text-base px-6 py-3 gap-2.5",
+      sm: "text-xs px-3.5 py-1.5 gap-1.5",
+      md: "text-sm px-5 py-2.5 gap-2",
+      lg: "text-base px-7 py-3 gap-2.5",
     };
 
     return (
       <button
         ref={ref}
         disabled={disabled || isLoading}
-        className={clsx(baseStyles, variantStyles[variant], sizeStyles[size], className)}
+        className={clsx(baseStyles, radiusStyle, variantStyles[variant], sizeStyles[size], className)}
         {...props}
       >
         {isLoading && (
           <span
-            className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2"
+            className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin shrink-0"
             aria-hidden="true"
           />
         )}

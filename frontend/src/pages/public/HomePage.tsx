@@ -96,7 +96,7 @@ function AnimatedMetricCard({ item, isLast }: { item: MetricItem; isLast?: boole
   return (
     <div
       ref={cardRef}
-      className={`group relative p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex flex-col justify-center items-center transition-all duration-300 hover:border-[#2B7BC4]/60 hover:shadow-lg hover:-translate-y-1 overflow-hidden ${
+      className={`group relative p-5 rounded-[var(--radius-2xl)] card-premium bg-[var(--surface-card)] border border-[var(--surface-border)]/80 shadow-xs flex flex-col justify-center items-center transition-all duration-300 hover:border-[var(--primary)]/60 hover:shadow-lg hover:-translate-y-1 overflow-hidden ${
         isLast ? "col-span-2 md:col-span-1" : ""
       }`}
     >
@@ -107,18 +107,18 @@ function AnimatedMetricCard({ item, isLast }: { item: MetricItem; isLast?: boole
       />
 
       {/* Numerical metric with animated counter */}
-      <div className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#0D2137] mb-1.5 transition-transform duration-300 group-hover:scale-105 font-mono">
+      <div className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--foreground)] mb-1.5 transition-transform duration-300 group-hover:scale-105 font-mono">
         <span>{item.prefix || ""}</span>
         <span className="tabular-nums">{displayCount()}</span>
-        <span className="text-[#2B7BC4]">{item.suffix || ""}</span>
+        <span className="text-[var(--primary)]">{item.suffix || ""}</span>
       </div>
 
       <div className="text-sm font-bold text-slate-700">{item.label}</div>
-      <div className="text-xs text-slate-400 mt-0.5">{item.sub}</div>
+      <div className="text-xs text-[var(--surface-muted)] mt-0.5">{item.sub}</div>
 
       {/* Subtle pulsing live indicator during animation */}
       {isAnimating && (
-        <span className="absolute top-2 right-2 size-1.5 rounded-full bg-[#2B7BC4] animate-ping" />
+        <span className="absolute top-2 right-2 size-1.5 rounded-full bg-[var(--primary)] animate-ping" />
       )}
     </div>
   );
@@ -238,7 +238,7 @@ export function HomePage() {
   }
 
   return (
-    <div className="w-full bg-white text-[#0D2137] overflow-hidden">
+    <div className="w-full bg-[var(--surface-card)] text-[var(--foreground)] overflow-hidden">
       {/* ── 1. Hero Section (Blue to White Left-to-Right Gradient) ─────────── */}
       <section
         className="relative overflow-hidden bg-gradient-to-r from-[#07192F] via-[#0B2545] via-25% via-[#123966] via-50% via-[#1D5E9E] via-72% to-[#EAF3FB] to-95% text-white pt-8 pb-12 lg:pt-12 lg:pb-16"
@@ -255,7 +255,7 @@ export function HomePage() {
         />
 
         {/* Ambient Glows */}
-        <div className="absolute top-1/4 left-[-10%] w-[500px] h-[500px] bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/4 left-[-10%] w-[500px] h-[500px] bg-[var(--primary)]/100/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-[15%] w-[450px] h-[450px] bg-sky-300/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
@@ -282,7 +282,7 @@ export function HomePage() {
               <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                 <Link
                   to="/pricing"
-                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-bold text-[#0B2545] bg-white hover:bg-slate-50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 rounded-full shadow-xl shadow-black/15 cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-bold text-[#0B2545] bg-[var(--surface-card)] hover:bg-[var(--surface-sunken)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 rounded-full shadow-xl shadow-black/15 cursor-pointer"
                 >
                   <span>See Our Plans</span>
                   <ArrowRight className="size-5 transition-transform duration-200 group-hover:translate-x-1 text-[#1D5E9E]" />
@@ -292,7 +292,7 @@ export function HomePage() {
                   href="https://wa.me/919941999415"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 rounded-full shadow-sm cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-[var(--surface-card)]/10 hover:bg-[var(--surface-card)]/20 border border-white/25 backdrop-blur-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 rounded-full shadow-md cursor-pointer"
                 >
                   <span>Book a Strategy Call</span>
                   <svg
@@ -340,9 +340,9 @@ export function HomePage() {
             {/* Right Column: Interactive Creative Production Suite Mockup */}
             <div className="lg:col-span-6 flex justify-center lg:justify-end relative">
               {/* Main Studio Operating Window */}
-              <div className="w-full max-w-lg lg:max-w-none rounded-3xl border border-white/60 bg-white/95 backdrop-blur-2xl shadow-2xl shadow-blue-950/25 p-5 sm:p-7 text-slate-800 relative transition-transform duration-500 hover:shadow-blue-500/20">
+              <div className="w-full max-w-lg lg:max-w-none rounded-[var(--radius-3xl)] border border-white/60 bg-[var(--surface-card)]/95 backdrop-blur-2xl shadow-2xl shadow-blue-950/25 p-5 sm:p-7 text-[var(--foreground)] relative transition-transform duration-500 hover:shadow-blue-500/20">
                 {/* Window Bar */}
-                <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+                <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--surface-border)]">
                   <div className="flex items-center gap-2">
                     <div className="size-3 rounded-full bg-rose-400" />
                     <div className="size-3 rounded-full bg-amber-400" />
@@ -354,10 +354,10 @@ export function HomePage() {
                 {/* 2 Live Deliverable Preview Cards with Real AI Images & Animations */}
                 <div className="space-y-3.5">
                   {/* Card 1: Cinematic 9:16 Reel */}
-                  <div className="group relative rounded-2xl border border-slate-200/90 bg-gradient-to-r from-slate-50 to-blue-50/40 p-4 transition-all duration-300 hover:border-blue-300 hover:shadow-md">
+                  <div className="group relative rounded-[var(--radius-2xl)] border border-[var(--surface-border)]/90 bg-gradient-to-r from-slate-50 to-blue-50/40 p-4 transition-all duration-300 hover:border-blue-300 hover:shadow-md">
                     <div className="flex items-start gap-3.5">
                       {/* Video Thumbnail Preview with Real AI Media & Pulse Animation */}
-                      <div className="relative size-16 sm:size-20 rounded-xl overflow-hidden shrink-0 shadow-md group-hover:shadow-lg transition-all duration-500 border border-slate-200/80 bg-slate-900">
+                      <div className="relative size-16 sm:size-20 rounded-[var(--radius-xl)] overflow-hidden shrink-0 shadow-md group-hover:shadow-lg transition-all duration-500 border border-[var(--surface-border)]/80 bg-slate-900">
                         <img
                           src="/assets/deliverables/astra_living_reel.jpg"
                           alt="Astra Living Reel"
@@ -367,8 +367,8 @@ export function HomePage() {
                         
                         {/* Animated Play Button with Wave Pulse */}
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="absolute size-7 rounded-full bg-white/40 animate-ping opacity-75" />
-                          <div className="relative size-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-[#0B2545] shadow-sm group-hover:scale-110 transition-transform">
+                          <span className="absolute size-7 rounded-full bg-[var(--surface-card)]/40 animate-ping opacity-75" />
+                          <div className="relative size-7 rounded-full bg-[var(--surface-card)]/90 backdrop-blur-xs flex items-center justify-center text-[#0B2545] shadow-md group-hover:scale-110 transition-transform">
                             <Play className="size-3 fill-[#0B2545] ml-0.5" />
                           </div>
                         </div>
@@ -390,10 +390,10 @@ export function HomePage() {
                             Ready to Post
                           </span>
                         </div>
-                        <h4 className="text-sm font-bold text-[#0D2137] mt-1.5 truncate group-hover:text-[#2B7BC4] transition-colors">
+                        <h4 className="text-sm font-bold text-[var(--foreground)] mt-1.5 truncate group-hover:text-[var(--primary)] transition-colors">
                           Astra Living · Golden Hour Minimalist Drop
                         </h4>
-                        <div className="mt-2 flex items-center gap-3 text-xs text-slate-500">
+                        <div className="mt-2 flex items-center gap-3 text-xs text-[var(--surface-muted)]">
                           <span className="font-semibold text-slate-700">48.2k Views</span>
                           <span>•</span>
                           <span className="text-emerald-600 font-semibold">+340% Reach</span>
@@ -403,10 +403,10 @@ export function HomePage() {
                   </div>
 
                   {/* Card 2: Editorial Carousel */}
-                  <div className="group relative rounded-2xl border border-slate-200/90 bg-gradient-to-r from-slate-50 to-emerald-50/30 p-4 transition-all duration-300 hover:border-emerald-300 hover:shadow-md">
+                  <div className="group relative rounded-[var(--radius-2xl)] border border-[var(--surface-border)]/90 bg-gradient-to-r from-slate-50 to-emerald-50/30 p-4 transition-all duration-300 hover:border-emerald-300 hover:shadow-md">
                     <div className="flex items-start gap-3.5">
                       {/* Carousel Thumbnail with Real AI Media & Layer Indicator */}
-                      <div className="relative size-16 sm:size-20 rounded-xl overflow-hidden shrink-0 shadow-md group-hover:shadow-lg transition-all duration-500 border border-slate-200/80 bg-slate-900">
+                      <div className="relative size-16 sm:size-20 rounded-[var(--radius-xl)] overflow-hidden shrink-0 shadow-md group-hover:shadow-lg transition-all duration-500 border border-[var(--surface-border)]/80 bg-slate-900">
                         <img
                           src="/assets/deliverables/urban_bakes_carousel.jpg"
                           alt="Urban Bakes 36-Hr Fermentation Guide"
@@ -426,15 +426,15 @@ export function HomePage() {
                             <Layers className="size-3" />
                             Editorial Carousel
                           </span>
-                          <span className="text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200/80 flex items-center gap-1">
-                            <span className="size-1.5 rounded-full bg-blue-500 animate-ping" />
+                          <span className="text-[11px] font-bold text-blue-700 bg-[var(--primary)]/10 px-2 py-0.5 rounded-full border border-blue-200/80 flex items-center gap-1">
+                            <span className="size-1.5 rounded-full bg-[var(--primary)]/100 animate-ping" />
                             Auto-Sync
                           </span>
                         </div>
-                        <h4 className="text-sm font-bold text-[#0D2137] mt-1.5 truncate group-hover:text-[#2B7BC4] transition-colors">
+                        <h4 className="text-sm font-bold text-[var(--foreground)] mt-1.5 truncate group-hover:text-[var(--primary)] transition-colors">
                           Urban Bakes · 36-Hr Fermentation Guide
                         </h4>
-                        <div className="mt-2 flex items-center gap-3 text-xs text-slate-500">
+                        <div className="mt-2 flex items-center gap-3 text-xs text-[var(--surface-muted)]">
                           <span className="font-semibold text-slate-700">1,280 Saves</span>
                           <span>•</span>
                           <span className="text-blue-600 font-semibold">8.4% Save Rate</span>
@@ -445,12 +445,12 @@ export function HomePage() {
                 </div>
 
                 {/* Velocity Progress Tracker */}
-                <div className="mt-5 pt-4 border-t border-slate-100">
+                <div className="mt-5 pt-4 border-t border-[var(--surface-border)]">
                   <div className="flex items-center justify-between text-xs mb-1.5">
-                    <span className="font-semibold text-slate-600">Weekly Quota Completion</span>
-                    <span className="font-bold text-[#2B7BC4]">4 of 4 Assets Delivered (100%)</span>
+                    <span className="font-semibold text-[var(--surface-muted)]">Weekly Quota Completion</span>
+                    <span className="font-bold text-[var(--primary)]">4 of 4 Assets Delivered (100%)</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                  <div className="w-full h-2 rounded-full bg-[var(--surface-sunken)] overflow-hidden">
                     <div className="h-full rounded-full bg-gradient-to-r from-[#2B7BC4] to-emerald-400 w-full" />
                   </div>
                 </div>
@@ -461,7 +461,7 @@ export function HomePage() {
       </section>
 
       {/* ── 2. Brand Partners & Key Impact Numbers ───────────────────────── */}
-      <section className="py-10 sm:py-12 bg-gradient-to-b from-white via-slate-50/60 to-white border-b border-slate-200/70" id="stats">
+      <section className="py-10 sm:py-12 bg-gradient-to-b from-white via-slate-50/60 to-white border-b border-[var(--surface-border)]/70" id="stats">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
 
           {/* 5 Impact Metric Cards with Count-Up Loading Animations */}
@@ -478,19 +478,19 @@ export function HomePage() {
       </section>
 
       {/* ── 4. How It Works: The 7-Day Roadmap ───────────────────────────── */}
-      <section className="py-12 sm:py-16 bg-gradient-to-b from-[#F4F9FD] to-white border-y border-slate-200/70" id="how-it-works">
+      <section className="py-12 sm:py-16 bg-gradient-to-b from-[#F4F9FD] to-white border-y border-[var(--surface-border)]/70" id="how-it-works">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <ScrollReveal variant="up">
             <div className="text-center max-w-3xl mx-auto mb-10">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold text-[#2B7BC4] border border-blue-200/80 shadow-2xs mb-3">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--surface-card)] px-4 py-1.5 text-xs font-bold text-[var(--primary)] border border-blue-200/80 shadow-2xs mb-3">
                 <Clock className="size-3.5" />
                 <span>Turnaround Timeline</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0D2137]">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[var(--foreground)]">
                 From Sign-Up to First Batch <br />
-                <span className="text-[#2B7BC4]">in Exactly 7 Days</span>
+                <span className="text-[var(--primary)]">in Exactly 7 Days</span>
               </h2>
-              <p className="mt-3 text-sm sm:text-base text-slate-600">
+              <p className="mt-3 text-sm sm:text-base text-[var(--surface-muted)]">
                 No protracted 6-week agency setups. A streamlined 5-step workflow engineered for rapid execution.
               </p>
             </div>
@@ -501,10 +501,10 @@ export function HomePage() {
               const Icon = step.icon;
               return (
                 <ScrollReveal key={step.number} variant="up" delay={idx * 100}>
-                  <div className="rounded-2xl bg-white p-3.5 sm:p-4 border border-slate-200/80 shadow-xs hover:border-blue-400 hover:shadow-xl transition-all duration-500 flex flex-col justify-between group overflow-hidden h-full">
+                  <div className="rounded-[var(--radius-2xl)] bg-[var(--surface-card)] p-3.5 sm:p-4 border border-[var(--surface-border)]/80 shadow-xs hover:border-blue-400 hover:shadow-xl transition-all duration-500 flex flex-col justify-between group overflow-hidden h-full">
                     <div>
                       {/* Real Animated AI Step Visual */}
-                      <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-3.5 bg-slate-100 shadow-inner">
+                      <div className="relative aspect-[4/3] rounded-[var(--radius-xl)] overflow-hidden mb-3.5 bg-[var(--surface-sunken)] shadow-inner">
                         <img
                           src={step.image}
                           alt={step.title}
@@ -514,7 +514,7 @@ export function HomePage() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
                         
                         <div className="absolute top-2 left-2 flex items-center gap-1.5">
-                          <span className="text-[10px] font-black px-2 py-0.5 rounded-md bg-white/95 backdrop-blur-xs text-[#2B7BC4] shadow-xs">
+                          <span className="text-[10px] font-black px-2 py-0.5 rounded-md bg-[var(--surface-card)]/95 backdrop-blur-xs text-[var(--primary)] shadow-xs">
                             {step.day}
                           </span>
                         </div>
@@ -525,15 +525,15 @@ export function HomePage() {
                           </span>
                         </div>
 
-                        <div className="absolute bottom-2 left-2 size-7 rounded-lg bg-white/90 backdrop-blur-xs text-[#2B7BC4] flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:bg-[#2B7BC4] group-hover:text-white transition-all duration-300">
+                        <div className="absolute bottom-2 left-2 size-7 rounded-[var(--radius-xl)] bg-[var(--surface-card)]/90 backdrop-blur-xs text-[var(--primary)] flex items-center justify-center shadow-md group-hover:scale-110 group-hover:bg-[var(--primary)] group-hover:text-white transition-all duration-300">
                           <Icon className="size-3.5" />
                         </div>
                       </div>
 
-                      <h3 className="text-sm font-bold text-[#0D2137] mb-1.5 group-hover:text-[#2B7BC4] transition-colors">
+                      <h3 className="text-sm font-bold text-[var(--foreground)] mb-1.5 group-hover:text-[var(--primary)] transition-colors">
                         {step.title}
                       </h3>
-                      <p className="text-[11px] text-slate-600 leading-relaxed">{step.description}</p>
+                      <p className="text-[11px] text-[var(--surface-muted)] leading-relaxed">{step.description}</p>
                     </div>
                   </div>
                 </ScrollReveal>
@@ -544,40 +544,40 @@ export function HomePage() {
       </section>
 
       {/* ── 5. Why Brands Switch to Creo (Comparison Matrix) ─────────────── */}
-      <section className="py-12 sm:py-16 bg-white" id="comparison">
+      <section className="py-12 sm:py-16 bg-[var(--surface-card)]" id="comparison">
         <div className="max-w-6xl mx-auto px-6 sm:px-8">
           <ScrollReveal variant="up">
             <div className="text-center max-w-3xl mx-auto mb-10">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0D2137]">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[var(--foreground)]">
                 Why Ambitious Brands <br />
-                <span className="text-[#2B7BC4]">Choose Creo Over the Rest</span>
+                <span className="text-[var(--primary)]">Choose Creo Over the Rest</span>
               </h2>
-              <p className="mt-3 text-sm sm:text-base text-slate-600">
+              <p className="mt-3 text-sm sm:text-base text-[var(--surface-muted)]">
                 Traditional agencies are too slow. Freelancers are too unreliable. Creo gives you the sweet spot: agency-grade output with startup agility.
               </p>
             </div>
           </ScrollReveal>
 
           <ScrollReveal variant="scale" delay={120}>
-            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+            <div className="overflow-x-auto rounded-[var(--radius-2xl)] border border-[var(--surface-border)] shadow-md">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-slate-200 bg-slate-50/80 text-xs font-bold uppercase tracking-wider text-slate-500">
+                  <tr className="border-b border-[var(--surface-border)] bg-[var(--surface-sunken)]/80 text-xs font-bold uppercase tracking-wider text-[var(--surface-muted)]">
                     <th className="p-4 sm:p-5">Feature</th>
-                    <th className="p-4 sm:p-5 text-slate-400">Traditional Agency</th>
-                    <th className="p-4 sm:p-5 text-slate-400">Freelancer Marketplace</th>
-                    <th className="p-4 sm:p-5 bg-blue-50/80 text-[#2B7BC4] font-black border-l border-blue-200">
+                    <th className="p-4 sm:p-5 text-[var(--surface-muted)]">Traditional Agency</th>
+                    <th className="p-4 sm:p-5 text-[var(--surface-muted)]">Freelancer Marketplace</th>
+                    <th className="p-4 sm:p-5 bg-[var(--primary)]/10/80 text-[var(--primary)] font-black border-l border-blue-200">
                       Creo Retainer ⚡
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-sm">
                   {COMPARISON_ROWS.map((row) => (
-                    <tr key={row.feature} className="hover:bg-slate-50/60 transition-colors">
-                      <td className="p-4 sm:p-5 font-bold text-[#0D2137]">{row.feature}</td>
-                      <td className="p-4 sm:p-5 text-slate-500">{row.traditional}</td>
-                      <td className="p-4 sm:p-5 text-slate-500">{row.freelancer}</td>
-                      <td className="p-4 sm:p-5 font-bold text-[#0D2137] bg-blue-50/40 border-l border-blue-100">
+                    <tr key={row.feature} className="hover:bg-[var(--surface-sunken)]/60 transition-colors">
+                      <td className="p-4 sm:p-5 font-bold text-[var(--foreground)]">{row.feature}</td>
+                      <td className="p-4 sm:p-5 text-[var(--surface-muted)]">{row.traditional}</td>
+                      <td className="p-4 sm:p-5 text-[var(--surface-muted)]">{row.freelancer}</td>
+                      <td className="p-4 sm:p-5 font-bold text-[var(--foreground)] bg-[var(--primary)]/10/40 border-l border-blue-100">
                         {row.creo}
                       </td>
                     </tr>
@@ -590,10 +590,10 @@ export function HomePage() {
       </section>
 
       {/* ── 7. Retainer Quick-Glance Section ──────────────────────────────── */}
-      <section className="py-12 sm:py-16 bg-white" id="pricing-glance">
+      <section className="py-12 sm:py-16 bg-[var(--surface-card)]" id="pricing-glance">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <ScrollReveal variant="scale">
-            <div className="rounded-3xl bg-gradient-to-r from-[#0D2137] via-[#123966] to-[#1D5E9E] p-8 sm:p-12 lg:p-14 text-white shadow-2xl relative overflow-hidden">
+            <div className="rounded-[var(--radius-3xl)] bg-gradient-to-r from-[#0D2137] via-[#123966] to-[#1D5E9E] p-8 sm:p-12 lg:p-14 text-white shadow-2xl relative overflow-hidden">
               <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl pointer-events-none" />
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
@@ -627,7 +627,7 @@ export function HomePage() {
                 <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
                   <Link
                     to="/pricing"
-                    className="px-7 py-3.5 rounded-xl bg-white text-[#0D2137] font-extrabold text-sm text-center hover:bg-slate-50 transition-all duration-200 shadow-lg hover:scale-105"
+                    className="px-7 py-3.5 rounded-[var(--radius-xl)] bg-[var(--surface-card)] text-[var(--foreground)] font-extrabold text-sm text-center hover:bg-[var(--surface-sunken)] transition-all duration-200 shadow-lg hover:scale-105"
                   >
                     View Full Plans & Pricing →
                   </Link>
@@ -635,7 +635,7 @@ export function HomePage() {
                     href="https://wa.me/919941999415"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold text-sm text-center backdrop-blur-md transition-all duration-200"
+                    className="px-7 py-3.5 rounded-[var(--radius-xl)] bg-[var(--surface-card)]/10 hover:bg-[var(--surface-card)]/20 border border-white/30 text-white font-bold text-sm text-center backdrop-blur-md transition-all duration-200"
                   >
                     Schedule Custom Demo
                   </a>
@@ -650,20 +650,20 @@ export function HomePage() {
       <section className="py-12 sm:py-16 bg-gradient-to-b from-[#EAF3FB] to-white relative" id="lead-magnet">
         <div className="max-w-4xl mx-auto px-6 sm:px-8 text-center relative z-10">
           <ScrollReveal variant="up">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold text-[#2B7BC4] border border-blue-200 mb-3 shadow-2xs">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--surface-card)] px-4 py-1.5 text-xs font-bold text-[var(--primary)] border border-blue-200 mb-3 shadow-2xs">
               <Calendar className="size-3.5" />
               <span>Free Agency Resource</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#0D2137] mb-3">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--foreground)] mb-3">
               Download the 30-Day Content Calendar Blueprint
             </h2>
-          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto mb-6 leading-relaxed">
+          <p className="text-sm sm:text-base text-[var(--surface-muted)] max-w-2xl mx-auto mb-6 leading-relaxed">
             The exact social media content matrix we use for our top retainer brands. Includes 30 post concepts, proven video hooks, and call-to-action scripts.
           </p>
 
           {leadStatus === "success" ? (
-            <div className="mt-8 inline-flex items-center gap-2.5 rounded-2xl bg-emerald-50 border border-emerald-300 px-8 py-4 text-base font-semibold text-emerald-800 shadow-xs">
+            <div className="mt-8 inline-flex items-center gap-2.5 rounded-[var(--radius-2xl)] bg-emerald-50 border border-emerald-300 px-8 py-4 text-base font-semibold text-emerald-800 shadow-xs">
               <CheckCircle2 className="size-5 text-emerald-600" />
               Check your inbox! Your free 30-day template and video hook bank are on their way.
             </div>
@@ -678,12 +678,12 @@ export function HomePage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="Enter your work email..."
-                className="h-13 flex-1 rounded-2xl border border-[#C9DFF0] bg-white px-5 text-sm text-[#0D2137] outline-none focus:ring-2 focus:ring-[#2B7BC4]/50 shadow-xs"
+                className="h-13 flex-1 rounded-[var(--radius-2xl)] border border-[#C9DFF0] bg-[var(--surface-card)] px-5 text-sm text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#2B7BC4]/50 shadow-xs"
               />
               <button
                 type="submit"
                 disabled={leadStatus === "loading"}
-                className="h-13 rounded-2xl bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] hover:brightness-110 active:scale-95 px-8 text-white font-bold text-sm inline-flex items-center justify-center gap-2 transition-all shadow-md shadow-blue-500/20 cursor-pointer disabled:opacity-60"
+                className="h-13 rounded-[var(--radius-2xl)] bg-gradient-to-r from-[#2B7BC4] to-[#1E609A] hover:brightness-110 active:scale-95 px-8 text-white font-bold text-sm inline-flex items-center justify-center gap-2 transition-all shadow-md shadow-blue-500/20 cursor-pointer disabled:opacity-60"
               >
                 {leadStatus === "loading" ? (
                   <>
@@ -704,7 +704,7 @@ export function HomePage() {
             <p className="mt-3 text-sm text-rose-600">{leadError}</p>
           )}
 
-          <p className="text-xs text-slate-400 mt-4 tracking-wide">
+          <p className="text-xs text-[var(--surface-muted)] mt-4 tracking-wide">
             Instant PDF & Notion download link. Zero spam. Unsubscribe anytime.
           </p>
           </ScrollReveal>

@@ -99,13 +99,13 @@ export function StageTerms({ onAccepted, onBack, isSubmitting }: StageTermsProps
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      className="max-w-4xl lg:max-w-5xl w-full mx-auto rounded-2xl border border-[#C9DFF0] bg-white p-8 sm:p-10 lg:p-12 shadow-sm"
+      className="max-w-4xl lg:max-w-5xl w-full mx-auto rounded-[var(--radius-2xl)] border border-[#C9DFF0] bg-[var(--surface-card)] p-8 sm:p-10 lg:p-12 shadow-md"
     >
       <header className="mb-6 sm:mb-8">
-        <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#E8F4FD] border border-[#C9DFF0] text-[#2B7BC4] text-[11px] font-bold uppercase tracking-wider mb-2.5">
+        <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[var(--primary)]/10 border border-[#C9DFF0] text-[var(--primary)] text-[11px] font-bold uppercase tracking-wider mb-2.5">
           Step 2 of 5
         </div>
-        <h2 className="text-2xl sm:text-3xl font-bold font-display text-[#0D2137] tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-display font-black tracking-tight font-display text-[var(--foreground)] tracking-tight">
           Master Service Agreement
         </h2>
         <p className="text-xs sm:text-sm text-[#64748B] mt-1.5 leading-normal">
@@ -117,7 +117,7 @@ export function StageTerms({ onAccepted, onBack, isSubmitting }: StageTermsProps
       {/* Scroll container */}
       <div
         ref={scrollContainerRef}
-        className="h-72 sm:h-80 md:h-96 max-h-[50vh] overflow-y-auto bg-[#F8FAFC] border border-[#C9DFF0] rounded-2xl p-6 sm:p-8 mb-6 font-mono text-xs sm:text-[13px] text-[#334155] leading-relaxed whitespace-pre-wrap select-text scroll-smooth shadow-inner"
+        className="h-72 sm:h-80 md:h-96 max-h-[50vh] overflow-y-auto bg-[#F8FAFC] border border-[#C9DFF0] rounded-[var(--radius-2xl)] p-6 sm:p-8 mb-6 font-mono text-xs sm:text-[13px] text-[#334155] leading-relaxed whitespace-pre-wrap select-text scroll-smooth shadow-inner"
       >
         {MSA_TEXT}
         {/* IntersectionObserver sentinel */}
@@ -129,7 +129,7 @@ export function StageTerms({ onAccepted, onBack, isSubmitting }: StageTermsProps
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="mb-6 text-xs sm:text-sm font-medium text-amber-700 bg-amber-50 border border-amber-200 px-4 py-3 rounded-xl flex items-center gap-2"
+          className="mb-6 text-xs sm:text-sm font-medium text-amber-700 bg-amber-50 border border-amber-200 px-4 py-3 rounded-[var(--radius-xl)] flex items-center gap-2"
         >
           <span>↓</span>
           <span>Please scroll to the end of the agreement to continue.</span>
@@ -140,7 +140,7 @@ export function StageTerms({ onAccepted, onBack, isSubmitting }: StageTermsProps
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="mb-6 text-xs sm:text-sm font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 px-4 py-3 rounded-xl flex items-center gap-2"
+          className="mb-6 text-xs sm:text-sm font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 px-4 py-3 rounded-[var(--radius-xl)] flex items-center gap-2"
         >
           <span>✓</span>
           <span>You have read and scrolled through the full agreement.</span>
@@ -152,7 +152,7 @@ export function StageTerms({ onAccepted, onBack, isSubmitting }: StageTermsProps
           <button
             type="button"
             onClick={onBack}
-            className="w-full sm:w-auto py-3.5 sm:py-4 px-6 rounded-xl border border-[#C9DFF0] text-xs sm:text-sm font-bold text-[#64748B] hover:text-[#0D2137] hover:bg-[#F8FAFC] transition-colors cursor-pointer inline-flex items-center justify-center gap-2 shrink-0"
+            className="w-full sm:w-auto py-3.5 sm:py-4 px-6 rounded-[var(--radius-xl)] border border-[#C9DFF0] text-xs sm:text-sm font-bold text-[#64748B] hover:text-[var(--foreground)] hover:bg-[#F8FAFC] transition-colors cursor-pointer inline-flex items-center justify-center gap-2 shrink-0"
           >
             <span>← Back to Step 1</span>
           </button>
@@ -164,10 +164,10 @@ export function StageTerms({ onAccepted, onBack, isSubmitting }: StageTermsProps
           disabled={!hasScrolled || isSubmitting}
           whileHover={hasScrolled && !isSubmitting ? { scale: 1.01 } : {}}
           whileTap={hasScrolled && !isSubmitting ? { scale: 0.99 } : {}}
-          className={`flex-1 w-full py-3.5 sm:py-4 px-8 rounded-xl font-bold text-sm sm:text-base transition-all shadow-sm ${
+          className={`flex-1 w-full py-3.5 sm:py-4 px-8 rounded-[var(--radius-xl)] font-bold text-sm sm:text-base transition-all shadow-md ${
             hasScrolled && !isSubmitting
-              ? "bg-[#2B7BC4] text-white hover:bg-[#1A5EA8] cursor-pointer shadow-blue-500/20"
-              : "bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed"
+              ? "bg-[var(--primary)] text-white hover:bg-[#1A5EA8] cursor-pointer shadow-blue-500/20"
+              : "bg-[var(--surface-sunken)] text-[var(--surface-muted)] border border-[var(--surface-border)] cursor-not-allowed"
           }`}
         >
           {isSubmitting ? "Accepting Terms…" : "Accept Agreement & Continue to Payment →"}

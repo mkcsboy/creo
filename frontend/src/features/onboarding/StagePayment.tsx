@@ -42,14 +42,14 @@ function PlanCard({
       whileHover={{ y: -3 }}
       whileTap={{ scale: 0.99 }}
       onClick={onSelect}
-      className={`relative rounded-2xl p-5 sm:p-6 cursor-pointer transition-all flex flex-col h-full min-w-[200px] ${
+      className={`relative rounded-[var(--radius-2xl)] p-5 sm:p-6 cursor-pointer transition-all flex flex-col h-full min-w-[200px] ${
         selected
-          ? "border-2 border-[#2B7BC4] bg-[#F0F7FD] shadow-md ring-2 ring-[#2B7BC4]/10"
-          : "border border-[#C9DFF0] bg-white hover:border-[#2B7BC4]/40 hover:shadow-xs"
+          ? "border-2 border-[var(--primary)] bg-[#F0F7FD] shadow-md ring-2 ring-[#2B7BC4]/10"
+          : "border border-[#C9DFF0] bg-[var(--surface-card)] hover:border-[var(--primary)]/40 hover:shadow-xs"
       }`}
     >
       {plan.is_recommended && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2B7BC4] text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded-full shadow-xs whitespace-nowrap">
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--primary)] text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded-full shadow-xs whitespace-nowrap">
           Most Popular
         </div>
       )}
@@ -58,12 +58,12 @@ function PlanCard({
         <p className="text-[11px] font-bold tracking-wider text-[#64748B] uppercase mb-1">
           {plan.name}
         </p>
-        <h3 className="text-base sm:text-lg font-bold font-display text-[#0D2137] mb-2">
+        <h3 className="text-base sm:text-lg font-bold font-display text-[var(--foreground)] mb-2">
           {plan.display_name}
         </h3>
 
         <div className="my-2 sm:my-3">
-          <span className="text-2xl sm:text-3xl font-extrabold text-[#0D2137]">
+          <span className="text-2xl sm:text-3xl font-extrabold text-[var(--foreground)]">
             {formatINR(plan.price_minor)}
           </span>
           <span className="text-xs text-[#64748B] ml-1.5 font-medium">/mo</span>
@@ -80,10 +80,10 @@ function PlanCard({
       </div>
 
       <div
-        className={`w-full mt-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all ${
+        className={`w-full mt-4 py-2.5 sm:py-3 rounded-[var(--radius-xl)] text-xs sm:text-sm font-semibold text-center transition-all ${
           selected
-            ? "bg-[#2B7BC4] text-white shadow-xs"
-            : "bg-slate-50 text-[#64748B] border border-[#C9DFF0] hover:bg-white"
+            ? "bg-[var(--primary)] text-white shadow-xs"
+            : "bg-[var(--surface-sunken)] text-[#64748B] border border-[#C9DFF0] hover:bg-[var(--surface-card)]"
         }`}
       >
         {selected ? "Selected Plan" : "Choose Plan"}
@@ -112,15 +112,15 @@ export function StagePayment({ userId, onPaymentComplete, onBack, isAlreadyPaid 
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-xl mx-auto rounded-2xl border border-emerald-200 bg-white p-6 sm:p-8 shadow-sm text-center"
+        className="max-w-xl mx-auto rounded-[var(--radius-2xl)] border border-emerald-200 bg-[var(--surface-card)] p-6 sm:p-8 shadow-md text-center"
       >
-        <div className="size-14 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+        <div className="size-14 rounded-[var(--radius-2xl)] bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto mb-4 text-2xl font-display font-black tracking-tight">
           ✓
         </div>
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold uppercase tracking-wider mb-2">
           Step 3 Completed
         </div>
-        <h2 className="text-xl sm:text-2xl font-bold font-display text-[#0D2137] tracking-tight">
+        <h2 className="text-xl sm:text-2xl font-display font-black tracking-tight font-display text-[var(--foreground)] tracking-tight">
           Subscription Active
         </h2>
         <p className="text-xs sm:text-sm text-[#64748B] mt-2 mb-6 max-w-md mx-auto leading-relaxed">
@@ -129,7 +129,7 @@ export function StagePayment({ userId, onPaymentComplete, onBack, isAlreadyPaid 
         <button
           type="button"
           onClick={onPaymentComplete}
-          className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-[#2B7BC4] text-white font-semibold text-sm hover:bg-[#1A5EA8] shadow-sm transition-all cursor-pointer"
+          className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-[var(--radius-xl)] bg-[var(--primary)] text-white font-semibold text-sm hover:bg-[#1A5EA8] shadow-md transition-all cursor-pointer"
         >
           Continue to Brand Discovery (Step 4) →
         </button>
@@ -204,13 +204,13 @@ export function StagePayment({ userId, onPaymentComplete, onBack, isAlreadyPaid 
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      className="max-w-4xl lg:max-w-5xl w-full mx-auto rounded-2xl border border-[#C9DFF0] bg-white p-5 sm:p-7 lg:p-8 shadow-sm"
+      className="max-w-4xl lg:max-w-5xl w-full mx-auto rounded-[var(--radius-2xl)] border border-[#C9DFF0] bg-[var(--surface-card)] p-5 sm:p-7 lg:p-8 shadow-md"
     >
       <header className="mb-4 sm:mb-5">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F4FD] border border-[#C9DFF0] text-[#2B7BC4] text-[10px] font-bold uppercase tracking-wider mb-2">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--primary)]/10 border border-[#C9DFF0] text-[var(--primary)] text-[10px] font-bold uppercase tracking-wider mb-2">
           Step 3 of 5
         </div>
-        <h2 className="text-xl sm:text-2xl font-bold font-display text-[#0D2137] tracking-tight">
+        <h2 className="text-xl sm:text-2xl font-display font-black tracking-tight font-display text-[var(--foreground)] tracking-tight">
           Choose Your Plan
         </h2>
         <p className="text-xs sm:text-sm text-[#64748B] mt-1 leading-normal">
@@ -228,7 +228,7 @@ export function StagePayment({ userId, onPaymentComplete, onBack, isAlreadyPaid 
           >
             {plansLoading ? (
               <div className="text-[#64748B] p-8 text-center text-xs font-medium">
-                <div className="size-6 border-2 border-[#2B7BC4] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+                <div className="size-6 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
                 Loading pricing plans…
               </div>
             ) : (
@@ -245,7 +245,7 @@ export function StagePayment({ userId, onPaymentComplete, onBack, isAlreadyPaid 
             )}
 
             {errorMsg && (
-              <div className="mb-3 p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs font-medium text-rose-800">
+              <div className="mb-3 p-3 rounded-[var(--radius-xl)] bg-rose-50 border border-rose-200 text-xs font-medium text-rose-800">
                 ⚠ {errorMsg}
               </div>
             )}
@@ -255,7 +255,7 @@ export function StagePayment({ userId, onPaymentComplete, onBack, isAlreadyPaid 
                 <button
                   type="button"
                   onClick={onBack}
-                  className="w-full sm:w-auto py-3 px-5 rounded-xl border border-[#C9DFF0] text-xs font-bold text-[#64748B] hover:text-[#0D2137] hover:bg-[#F8FAFC] transition-colors cursor-pointer inline-flex items-center justify-center gap-1.5 shrink-0"
+                  className="w-full sm:w-auto py-3 px-5 rounded-[var(--radius-xl)] border border-[#C9DFF0] text-xs font-bold text-[#64748B] hover:text-[var(--foreground)] hover:bg-[#F8FAFC] transition-colors cursor-pointer inline-flex items-center justify-center gap-1.5 shrink-0"
                 >
                   <span>← Back to Service Agreement</span>
                 </button>
@@ -267,10 +267,10 @@ export function StagePayment({ userId, onPaymentComplete, onBack, isAlreadyPaid 
                 disabled={!selectedPlanId || phase === "processing"}
                 whileHover={selectedPlanId && phase !== "processing" ? { scale: 1.01 } : {}}
                 whileTap={selectedPlanId && phase !== "processing" ? { scale: 0.99 } : {}}
-                className={`flex-1 w-full py-3 px-6 rounded-xl font-bold text-sm transition-all shadow-sm ${
+                className={`flex-1 w-full py-3 px-6 rounded-[var(--radius-xl)] font-bold text-sm transition-all shadow-md ${
                   selectedPlanId && phase !== "processing"
-                    ? "bg-[#2B7BC4] text-white hover:bg-[#1A5EA8] cursor-pointer shadow-blue-500/20"
-                    : "bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed"
+                    ? "bg-[var(--primary)] text-white hover:bg-[#1A5EA8] cursor-pointer shadow-blue-500/20"
+                    : "bg-[var(--surface-sunken)] text-[var(--surface-muted)] border border-[var(--surface-border)] cursor-not-allowed"
                 }`}
               >
                 {phase === "processing" ? "Opening Razorpay Gateway…" : "Proceed to Secure Checkout →"}
@@ -287,7 +287,7 @@ export function StagePayment({ userId, onPaymentComplete, onBack, isAlreadyPaid 
             className="p-10 text-center"
           >
             <div className="text-4xl mb-3">🔐</div>
-            <h3 className="font-display font-bold text-lg text-[#0D2137] mb-1">
+            <h3 className="font-display font-bold text-lg text-[var(--foreground)] mb-1">
               Confirming your payment...
             </h3>
             <p className="text-xs text-[#64748B] max-w-sm mx-auto">
