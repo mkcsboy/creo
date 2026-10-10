@@ -145,9 +145,9 @@ export async function fetchKanbanTasks(): Promise<any> {
 
 export async function resolveTaskSla(taskId: string): Promise<any> {
   // Assuming a generic resolution endpoint or status patch
-  return request(`/api/v1/admin/deliverables/${taskId}/status`, {
+  return request(`/api/v1/tasks/${taskId}/move`, {
     method: "PATCH",
-    body: JSON.stringify({ status: "completed" })
+    body: JSON.stringify({ to_status: "completed" })
   });
 }
 
@@ -464,7 +464,7 @@ export interface PlanNegotiationApiItem {
 }
 
 export async function fetchPlanNegotiations(): Promise<PlanNegotiationApiItem[]> {
-  return request<PlanNegotiationApiItem[]>(`/api/v1/admin/negotiations`);
+  return request<PlanNegotiationApiItem[]>(`/api/v1/negotiations`);
 }
 
 export async function updatePlanNegotiation(
@@ -473,7 +473,7 @@ export async function updatePlanNegotiation(
   extra?: { decline_reason?: string; counter_price?: number; counter_note?: string; agreed_price?: number; reel_quota?: number; poster_quota?: number; story_quota?: number },
 ): Promise<{ status: string; message: string; negotiation_id: string; new_status: string }> {
   return request<{ status: string; message: string; negotiation_id: string; new_status: string }>(
-    `/api/v1/admin/negotiations/${negId}`,
+    `/api/v1/negotiations/${negId}/approve`,
     {
       method: "PATCH",
       body: JSON.stringify({ action, ...extra }),
@@ -492,7 +492,7 @@ export async function createPlanNegotiation(payload: {
   client_id?: string;
 }): Promise<{ status: string; id: string; message: string }> {
   return request<{ status: string; id: string; message: string }>(
-    `/api/v1/admin/negotiations`,
+    `/api/v1/negotiations/submit`,
     {
       method: "POST",
       body: JSON.stringify(payload),
